@@ -13,6 +13,9 @@ export default function Home(): JSX.Element {
       <h1>
         <code>docusaurus-theme-vanilla</code>
       </h1>
+      <main>
+        <a href="https://github.com/jc-verse/docusaurus-theme-vanilla">GitHub</a>
+      </main>
     </div>
   );
 }
