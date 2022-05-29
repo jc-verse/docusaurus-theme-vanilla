@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Markdown links</h1><h1>Markdown links</h1><p>There are two ways of adding a link to another page: through a <strong>URL path</strong> and a <strong>file path</strong>.</p><pre><code class="language-md">- [URL path to another document](./installation)
+- [file path to another document](./installation.md)
+</code></pre><p>URL paths are unprocessed by Docusaurus, and you can see them as directly rendering to <code>&lt;a href=&quot;./installation&quot;&gt;</code>, i.e. it will be resolved according to the page&#x27;s URL location, rather than its file-system location.</p><p>If you want to reference another Markdown file <strong>included by the same plugin</strong>, you could use the relative path of the document you want to link to. Docusaurus&#x27; Markdown loader will convert the file path to the target file&#x27;s URL path (and hence remove the <code>.md</code> extension).</p><p>For example, if you are in <code>docs/folder/doc1.md</code> and you want to reference <code>docs/folder/doc2.md</code>, <code>docs/folder/subfolder/doc3.md</code> and <code>docs/otherFolder/doc4.md</code>:</p><pre><code class="language-md" metastring="title=&quot;docs/folder/doc1.md&quot;" title="&quot;docs/folder/doc1.md&quot;">I am referencing a [document](doc2.md).
+
+Reference to another [document in a subfolder](subfolder/doc3.md).
+
+[Relative document](../otherFolder/doc4.md) referencing works as well.
+</code></pre><p>Relative file paths are resolved against the current file&#x27;s directory. Absolute file paths, on the other hand, are resolved relative to the <strong>content root</strong>, usually <code>docs/</code>, <code>blog/</code>, or <a href="/docs/i18n/tutorial">localized ones</a> like <code>i18n/zh-Hans/plugin-content-docs/current</code>.</p><p>Absolute file paths can also be relative to the site directory. However, beware that links that begin with <code>/docs/</code> or <code>/blog/</code> are <strong>not portable</strong> as you would need to manually update them if you create new doc versions or localize them.</p><pre><code class="language-md">You can write [links](/otherFolder/doc4.md) relative to the content root (`/docs/`).
+
+You can also write [links](/docs/otherFolder/doc4.md) relative to the site directory, but it&#x27;s not recommended.
+</code></pre><p>Using relative <em>file</em> paths (with <code>.md</code> extensions) instead of relative <em>URL</em> links provides the following benefits:</p><ul><li>Links will keep working on the GitHub interface and many Markdown editors</li><li>You can customize the files&#x27; slugs without having to update all the links</li><li>Moving files around the folders can be tracked by your editor, and some editors may automatically update file links</li><li>A <a href="/docs/versioning">versioned doc</a> will link to another doc of the exact same version</li><li>Relative URL links are very likely to break if you update the <a href="/docs/api/docusaurus-config#trailingSlash"><code>trailingSlash</code> config</a></li></ul><div class="admonition admonition-warning alert alert--danger"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>warning</h5></div><div class="admonition-content"><p>Markdown file references only work when the source and target files are processed by the same plugin instance. This is a technical limitation of our Markdown processing architecture and will be fixed in the future. If you are linking files between plugins (e.g. linking to a doc page from a blog post), you have to use URL links.</p></div></div><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/markdown-features/assets">Previous doc: <!-- -->Assets</a></span><span class="nextLink_cubj"><a href="/docs/markdown-features/plugins">Next doc: <!-- -->MDX Plugins</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

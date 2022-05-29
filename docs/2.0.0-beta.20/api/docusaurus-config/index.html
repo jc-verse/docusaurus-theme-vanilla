@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>docusaurus.config.js</h1><h1><code>docusaurus.config.js</code></h1><h2 id="overview"><a href="#overview">Overview</a></h2><p><code>docusaurus.config.js</code> contains configurations for your site and is placed in the root directory of your site.</p><p>It usually exports a site configuration object:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // site config...
+};
+</code></pre><details><summary>Config files also support config creator functions and async code.</summary><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = function configCreator() {
+  return {
+    // site config...
+  };
+};
+</code></pre><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = async function configCreatorAsync() {
+  return {
+    // site config...
+  };
+};
+</code></pre><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = Promise.resolve({
+  // site config...
+});
+</code></pre></details><h2 id="required-fields"><a href="#required-fields">Required fields</a></h2><h3 id="title"><a href="#title"><code>title</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>Title for your website. Will be used in metadata and as browser tab title.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  title: &quot;Docusaurus&quot;,
+};
+</code></pre><h3 id="url"><a href="#url"><code>url</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>URL for your website. This can also be considered the top-level hostname. For example, <code>https://facebook.github.io</code> is the URL of <a href="https://facebook.github.io/metro/">https://facebook.github.io/metro/</a>, and <code>https://docusaurus.io</code> is the URL for <a href="https://docusaurus.io.">https://docusaurus.io.</a> This field is related to the <a href="#baseurl">baseUrl</a> field.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  url: &quot;https://docusaurus.io&quot;,
+};
+</code></pre><h3 id="baseUrl"><a href="#baseUrl"><code>baseUrl</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>Base URL for your site. Can be considered as the path after the host. For example, <code>/metro/</code> is the base URL of <a href="https://facebook.github.io/metro/">https://facebook.github.io/metro/</a>. For URLs that have no path, the baseUrl should be set to <code>/</code>. This field is related to the <a href="#url">url</a> field. Always has both leading and trailing slash.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  baseUrl: &quot;/&quot;,
+};
+</code></pre><h2 id="optional-fields"><a href="#optional-fields">Optional fields</a></h2><h3 id="favicon"><a href="#favicon"><code>favicon</code></a></h3><ul><li>Type: <code>string | undefined</code></li></ul><p>Path to your site favicon; must be a URL that can be used in link&#x27;s href. For example, if your favicon is in <code>static/img/favicon.ico</code>:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  favicon: &quot;/img/favicon.ico&quot;,
+};
+</code></pre><h3 id="trailingSlash"><a href="#trailingSlash"><code>trailingSlash</code></a></h3><ul><li>Type: <code>boolean | undefined</code></li></ul><p>Allow to customize the presence/absence of a trailing slash at the end of URLs/links, and how static HTML files are generated:</p><ul><li><code>undefined</code> (default): keeps URLs untouched, and emit <code>/docs/myDoc/index.html</code> for <code>/docs/myDoc.md</code></li><li><code>true</code>: add trailing slashes to URLs/links, and emit <code>/docs/myDoc/index.html</code> for <code>/docs/myDoc.md</code></li><li><code>false</code>: remove trailing slashes from URLs/links, and emit <code>/docs/myDoc.html</code> for <code>/docs/myDoc.md</code></li></ul><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Each static hosting provider serves static files differently (this behavior may even change over time).</p><p>Refer to the <a href="/docs/2.0.0-beta.20/deployment">deployment guide</a> and <a href="https://github.com/slorber/trailing-slash-guide">slorber/trailing-slash-guide</a> to choose the appropriate setting.</p></div></div><h3 id="i18n"><a href="#i18n"><code>i18n</code></a></h3><ul><li>Type: <code>Object</code></li></ul><p>The i18n configuration object to <a href="/docs/2.0.0-beta.20/i18n/introduction">localize your site</a>.</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  i18n: {
+    defaultLocale: &quot;en&quot;,
+    locales: [&quot;en&quot;, &quot;fr&quot;],
+    localeConfigs: {
+      en: {
+        label: &quot;English&quot;,
+        direction: &quot;ltr&quot;,
+        htmlLang: &quot;en-US&quot;,
+        calendar: &quot;gregory&quot;,
+      },
+      fa: {
+        label: &quot;فارسی&quot;,
+        direction: &quot;rtl&quot;,
+        htmlLang: &quot;fa-IR&quot;,
+        calendar: &quot;persian&quot;,
+      },
+    },
+  },
+};
+</code></pre><ul><li><code>defaultLocale</code>: The locale that (1) does not have its name in the base URL (2) gets started with <code>docusaurus start</code> without <code>--locale</code> option (3) will be used for the <code>&lt;link hrefLang=&quot;x-default&quot;&gt;</code> tag</li><li><code>locales</code>: List of locales deployed on your site. Must contain <code>defaultLocale</code>.</li><li><code>localeConfigs</code>: Individual options for each locale.<ul><li><code>label</code>: The label displayed for this locale in the locales dropdown.</li><li><code>direction</code>: <code>ltr</code> (default) or <code>rtl</code> (for <a href="https://developer.mozilla.org/en-US/docs/Glossary/rtl">right-to-left languages</a> like Arabic, Hebrew, etc.). Used to select the locale&#x27;s CSS and html meta attribute.</li><li><code>htmlLang</code>: BCP 47 language tag to use in <code>&lt;html lang=&quot;...&quot;&gt;</code> and in <code>&lt;link ... hreflang=&quot;...&quot;&gt;</code></li><li><code>calendar</code>: the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/calendar">calendar</a> used to calculate the date era. Note that it doesn&#x27;t control the actual string displayed: <code>MM/DD/YYYY</code> and <code>DD/MM/YYYY</code> are both <code>gregory</code>. To choose the format (<code>DD/MM/YYYY</code> or <code>MM/DD/YYYY</code>), set your locale name to <code>en-GB</code> or <code>en-US</code> (<code>en</code> means <code>en-US</code>).</li></ul></li></ul><h3 id="noIndex"><a href="#noIndex"><code>noIndex</code></a></h3><ul><li>Type: <code>boolean</code></li></ul><p>This option adds <code>&lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot;&gt;</code> to every page to tell search engines to avoid indexing your site (more information <a href="https://moz.com/learn/seo/robots-meta-directives">here</a>).</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  noIndex: true, // Defaults to `false`
+};
+</code></pre><h3 id="onBrokenLinks"><a href="#onBrokenLinks"><code>onBrokenLinks</code></a></h3><ul><li>Type: <code>&#x27;ignore&#x27; | &#x27;log&#x27; | &#x27;warn&#x27; | &#x27;error&#x27; | &#x27;throw&#x27;</code></li></ul><p>The behavior of Docusaurus when it detects any broken link.</p><p>By default, it throws an error, to ensure you never ship any broken link, but you can lower this security if needed.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>The broken links detection is only available for a production build (<code>docusaurus build</code>).</p></div></div><h3 id="onBrokenMarkdownLinks"><a href="#onBrokenMarkdownLinks"><code>onBrokenMarkdownLinks</code></a></h3><ul><li>Type: <code>&#x27;ignore&#x27; | &#x27;log&#x27; | &#x27;warn&#x27; | &#x27;error&#x27; | &#x27;throw&#x27;</code></li></ul><p>The behavior of Docusaurus when it detects any broken markdown link.</p><p>By default, it prints a warning, to let you know about your broken markdown link, but you can change this security if needed.</p><h3 id="onDuplicateRoutes"><a href="#onDuplicateRoutes"><code>onDuplicateRoutes</code></a></h3><ul><li>Type: <code>&#x27;ignore&#x27; | &#x27;log&#x27; | &#x27;warn&#x27; | &#x27;error&#x27; | &#x27;throw&#x27;</code></li></ul><p>The behavior of Docusaurus when it detects any <a href="/docs/2.0.0-beta.20/creating-pages#duplicate-routes">duplicate routes</a>.</p><p>By default, it displays a warning after you run <code>yarn start</code> or <code>yarn build</code>.</p><h3 id="tagline"><a href="#tagline"><code>tagline</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>The tagline for your website.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  tagline:
+    &quot;Docusaurus makes it easy to maintain Open Source documentation websites.&quot;,
+};
+</code></pre><h3 id="organizationName"><a href="#organizationName"><code>organizationName</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>The GitHub user or organization that owns the repository. You don&#x27;t need this if you are not using the <code>docusaurus deploy</code> command.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // Docusaurus&#x27; organization is facebook
+  organizationName: &quot;facebook&quot;,
+};
+</code></pre><h3 id="projectName"><a href="#projectName"><code>projectName</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>The name of the GitHub repository. You don&#x27;t need this if you are not using the <code>docusaurus deploy</code> command.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  projectName: &quot;docusaurus&quot;,
+};
+</code></pre><h3 id="deploymentBranch"><a href="#deploymentBranch"><code>deploymentBranch</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>The name of the branch to deploy the static files to. You don&#x27;t need this if you are not using the <code>docusaurus deploy</code> command.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  deploymentBranch: &quot;gh-pages&quot;,
+};
+</code></pre><h3 id="githubHost"><a href="#githubHost"><code>githubHost</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>The hostname of your server. Useful if you are using GitHub Enterprise. You don&#x27;t need this if you are not using the <code>docusaurus deploy</code> command.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  githubHost: &quot;github.com&quot;,
+};
+</code></pre><h3 id="githubPort"><a href="#githubPort"><code>githubPort</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>The port of your server. Useful if you are using GitHub Enterprise. You don&#x27;t need this if you are not using the <code>docusaurus deploy</code> command.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  githubPort: &quot;22&quot;,
+};
+</code></pre><h3 id="themeConfig"><a href="#themeConfig"><code>themeConfig</code></a></h3><ul><li>Type: <code>Object</code></li></ul><p>The <a href="/docs/2.0.0-beta.20/api/themes/configuration">theme configuration</a> object to customize your site UI like navbar and footer.</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    docs: {
+      sidebar: {
+        hideable: false,
+        autoCollapseCategories: false,
+      },
+    },
+    colorMode: {
+      defaultMode: &quot;light&quot;,
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+    navbar: {
+      title: &quot;Site Title&quot;,
+      logo: {
+        alt: &quot;Site Logo&quot;,
+        src: &quot;img/logo.svg&quot;,
+        width: 32,
+        height: 32,
+      },
+      items: [
+        {
+          to: &quot;docs/docusaurus.config.js&quot;,
+          activeBasePath: &quot;docs&quot;,
+          label: &quot;docusaurus.config.js&quot;,
+          position: &quot;left&quot;,
+        },
+        // ... other links
+      ],
+    },
+    footer: {
+      style: &quot;dark&quot;,
+      links: [
+        {
+          title: &quot;Docs&quot;,
+          items: [
+            {
+              label: &quot;Docs&quot;,
+              to: &quot;docs/doc1&quot;,
+            },
+          ],
+        },
+        // ... other links
+      ],
+      logo: {
+        alt: &quot;Facebook Open Source Logo&quot;,
+        src: &quot;https://docusaurus.io/img/oss_logo.png&quot;,
+        width: 160,
+        height: 51,
+      },
+      copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`, // You can also put own HTML here
+    },
+  },
+};
+</code></pre><h3 id="plugins"><a href="#plugins"><code>plugins</code></a></h3><ul><li>Type: <code>PluginConfig[]</code></li></ul><pre><code class="language-ts">type PluginConfig = string | [string, any] | PluginModule | [PluginModule, any];
+</code></pre><p>See <a href="/docs/2.0.0-beta.20/api/plugin-methods/">plugin method references</a> for the shape of a <code>PluginModule</code>.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  plugins: [
+    &quot;docusaurus-plugin-awesome&quot;,
+    [&quot;docusuarus-plugin-confetti&quot;, { fancy: false }],
+    () =&gt; ({
+      postBuild() {
+        console.log(&quot;Build finished&quot;);
+      },
+    }),
+  ],
+};
+</code></pre><h3 id="themes"><a href="#themes"><code>themes</code></a></h3><ul><li>Type: <code>PluginConfig[]</code></li></ul><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themes: [&quot;@docusaurus/theme-classic&quot;],
+};
+</code></pre><h3 id="presets"><a href="#presets"><code>presets</code></a></h3><ul><li>Type: <code>PresetConfig[]</code></li></ul><pre><code class="language-ts">type PresetConfig = string | [string, any];
+</code></pre><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  presets: [],
+};
+</code></pre><h3 id="customfields"><a href="#customfields"><code>customFields</code></a></h3><p>Docusaurus guards <code>docusaurus.config.js</code> from unknown fields. To add a custom field, define it on <code>customFields</code>.</p><ul><li>Type: <code>Object</code></li></ul><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  customFields: {
+    admin: &quot;endi&quot;,
+    superman: &quot;lol&quot;,
+  },
+};
+</code></pre><p>Attempting to add unknown fields in the config will lead to errors during build time:</p><pre><code class="language-bash">Error: The field(s) &#x27;foo&#x27;, &#x27;bar&#x27; are not recognized in docusaurus.config.js
+</code></pre><h3 id="staticDirectories"><a href="#staticDirectories"><code>staticDirectories</code></a></h3><p>An array of paths, relative to the site&#x27;s directory or absolute. Files under these paths will be copied to the build output as-is.</p><ul><li>Type: <code>string[]</code></li></ul><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  staticDirectories: [&quot;static&quot;],
+};
+</code></pre><h3 id="scripts"><a href="#scripts"><code>scripts</code></a></h3><p>An array of scripts to load. The values can be either strings or plain objects of attribute-value maps. The <code>&lt;script&gt;</code> tags will be inserted in the HTML <code>&lt;head&gt;</code>.</p><p>Note that <code>&lt;script&gt;</code> added here are render-blocking, so you might want to add <code>async: true</code>/<code>defer: true</code> to the objects.</p><ul><li>Type: <code>(string | Object)[]</code></li></ul><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  scripts: [
+    // String format.
+    &quot;https://docusaurus.io/script.js&quot;,
+    // Object format.
+    {
+      src: &quot;https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js&quot;,
+      async: true,
+    },
+  ],
+};
+</code></pre><h3 id="stylesheets"><a href="#stylesheets"><code>stylesheets</code></a></h3><p>An array of CSS sources to load. The values can be either strings or plain objects of attribute-value maps. The <code>&lt;link&gt;</code> tags will be inserted in the HTML <code>&lt;head&gt;</code>.</p><ul><li>Type: <code>(string | Object)[]</code></li></ul><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  stylesheets: [
+    // String format.
+    &quot;https://docusaurus.io/style.css&quot;,
+    // Object format.
+    {
+      href: &quot;http://mydomain.com/style.css&quot;,
+    },
+  ],
+};
+</code></pre><h3 id="clientModules"><a href="#clientModules"><code>clientModules</code></a></h3><p>An array of <a href="/docs/2.0.0-beta.20/advanced/client#client-modules">client modules</a> to load globally on your site.</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  clientModules: [
+    require.resolve(&quot;./mySiteGlobalJs.js&quot;),
+    require.resolve(&quot;./mySiteGlobalCss.css&quot;),
+  ],
+};
+</code></pre><h3 id="ssrTemplate"><a href="#ssrTemplate"><code>ssrTemplate</code></a></h3><p>An HTML template written in <a href="https://eta.js.org/docs/syntax#syntax-overview">Eta&#x27;s syntax</a> that will be used to render your application. This can be used to set custom attributes on the <code>body</code> tags, additional <code>meta</code> tags, customize the <code>viewport</code>, etc. Please note that Docusaurus will rely on the template to be correctly structured in order to function properly, once you do customize it, you will have to make sure that your template is compliant with the requirements from upstream.</p><ul><li>Type: <code>string</code></li></ul><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  ssrTemplate: `&lt;!DOCTYPE html&gt;
+&lt;html &lt;%~ it.htmlAttributes %&gt;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta name=&quot;generator&quot; content=&quot;Docusaurus v&lt;%= it.version %&gt;&quot;&gt;
+    &lt;% if (it.noIndex) { %&gt;
+      &lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot; /&gt;
+    &lt;% } %&gt;
+    &lt;%~ it.headTags %&gt;
+    &lt;% it.metaAttributes.forEach((metaAttribute) =&gt; { %&gt;
+      &lt;%~ metaAttribute %&gt;
+    &lt;% }); %&gt;
+    &lt;% it.stylesheets.forEach((stylesheet) =&gt; { %&gt;
+      &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%= it.baseUrl %&gt;&lt;%= stylesheet %&gt;&quot; /&gt;
+    &lt;% }); %&gt;
+    &lt;% it.scripts.forEach((script) =&gt; { %&gt;
+      &lt;link rel=&quot;preload&quot; href=&quot;&lt;%= it.baseUrl %&gt;&lt;%= script %&gt;&quot; as=&quot;script&quot;&gt;
+    &lt;% }); %&gt;
+  &lt;/head&gt;
+  &lt;body &lt;%~ it.bodyAttributes %&gt;&gt;
+    &lt;%~ it.preBodyTags %&gt;
+    &lt;div id=&quot;__docusaurus&quot;&gt;
+      &lt;%~ it.appHtml %&gt;
+    &lt;/div&gt;
+    &lt;% it.scripts.forEach((script) =&gt; { %&gt;
+      &lt;script src=&quot;&lt;%= it.baseUrl %&gt;&lt;%= script %&gt;&quot;&gt;&lt;/script&gt;
+    &lt;% }); %&gt;
+    &lt;%~ it.postBodyTags %&gt;
+  &lt;/body&gt;
+&lt;/html&gt;`,
+};
+</code></pre><h3 id="titleDelimiter"><a href="#titleDelimiter"><code>titleDelimiter</code></a></h3><ul><li>Type: <code>string</code></li></ul><p>Will be used as title delimiter in the generated <code>&lt;title&gt;</code> tag.</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  titleDelimiter: &quot;🦖&quot;, // Defaults to `|`
+};
+</code></pre><h3 id="baseurlIssueBanner"><a href="#baseurlIssueBanner"><code>baseUrlIssueBanner</code></a></h3><ul><li>Type: <code>boolean</code></li></ul><p>When enabled, will show a banner in case your site can&#x27;t load its CSS or JavaScript files, which is a very common issue, often related to a wrong <code>baseUrl</code> in site config.</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  baseUrlIssueBanner: true, // Defaults to `true`
+};
+</code></pre><p><img alt="baseUrlIssueBanner" src="/assets/images/baseUrlIssueBanner-3292a9164bf77c06a723e8d3ddfe66c0.png" width="1864" height="1384"></p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>This banner needs to inline CSS / JS in case all asset loading fails due to wrong base URL.</p><p>If you have a strict <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a>, you should rather disable it.</p></div></div><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/docusaurus-core">Previous doc: <!-- -->Client API</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/api/plugin-methods/">Next doc: <!-- -->Plugin Method References</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#overview">Overview</a></li><li><a href="#required-fields">Required fields</a><ol><li><a href="#title"><code>title</code></a></li><li><a href="#url"><code>url</code></a></li><li><a href="#baseUrl"><code>baseUrl</code></a></li></ol></li><li><a href="#optional-fields">Optional fields</a><ol><li><a href="#favicon"><code>favicon</code></a></li><li><a href="#trailingSlash"><code>trailingSlash</code></a></li><li><a href="#i18n"><code>i18n</code></a></li><li><a href="#noIndex"><code>noIndex</code></a></li><li><a href="#onBrokenLinks"><code>onBrokenLinks</code></a></li><li><a href="#onBrokenMarkdownLinks"><code>onBrokenMarkdownLinks</code></a></li><li><a href="#onDuplicateRoutes"><code>onDuplicateRoutes</code></a></li><li><a href="#tagline"><code>tagline</code></a></li><li><a href="#organizationName"><code>organizationName</code></a></li><li><a href="#projectName"><code>projectName</code></a></li><li><a href="#deploymentBranch"><code>deploymentBranch</code></a></li><li><a href="#githubHost"><code>githubHost</code></a></li><li><a href="#githubPort"><code>githubPort</code></a></li><li><a href="#themeConfig"><code>themeConfig</code></a></li><li><a href="#plugins"><code>plugins</code></a></li><li><a href="#themes"><code>themes</code></a></li><li><a href="#presets"><code>presets</code></a></li><li><a href="#customfields"><code>customFields</code></a></li><li><a href="#staticDirectories"><code>staticDirectories</code></a></li><li><a href="#scripts"><code>scripts</code></a></li><li><a href="#stylesheets"><code>stylesheets</code></a></li><li><a href="#clientModules"><code>clientModules</code></a></li><li><a href="#ssrTemplate"><code>ssrTemplate</code></a></li><li><a href="#titleDelimiter"><code>titleDelimiter</code></a></li><li><a href="#baseurlIssueBanner"><code>baseUrlIssueBanner</code></a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

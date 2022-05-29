@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>string-literal-i18n-messages</h1><h1>string-literal-i18n-messages</h1><p>Enforce translate APIs to be called on plain text labels.</p><p>Docusaurus offers the <a href="/docs/cli#docusaurus-write-translations-sitedir"><code>docusaurus write-translations</code></a> API, which statically extracts the text labels marked as translatable. Dynamic values used in <code>&lt;Translate&gt;</code> or <code>translate()</code> calls will fail to be extracted. This rule will ensure that all translate calls are statically extractable.</p><h2 id="details"><a href="#details">Rule Details</a></h2><p>Examples of <strong>incorrect</strong> code for this rule:</p><pre><code class="language-js">const text = &#x27;Some text to be translated&#x27;
+
+// Invalid &lt;Translate&gt; child
+&lt;Translate&gt;{text}&lt;/Translate&gt;
+
+// Invalid message attribute
+translate({message: text})
+</code></pre><p>Examples of <strong>correct</strong> code for this rule:</p><pre><code class="language-js">// Valid &lt;Translate&gt; child
+&lt;Translate&gt;Some text to be translated&lt;/Translate&gt;
+
+// Valid message attribute
+translate({message: &#x27;Some text to be translated&#x27;})
+
+// Valid &lt;Translate&gt; child using values object as prop
+&lt;Translate values={{firstName: &#x27;Sébastien&#x27;}}&gt;
+  {&#x27;Welcome, {firstName}! How are you?&#x27;}
+&lt;/Translate&gt;
+
+// Valid message attribute using values object as second argument
+translate({message: &#x27;The logo of site {siteName}&#x27;}, {siteName: &#x27;Docusaurus&#x27;})
+</code></pre><h2 id="when-not-to-use"><a href="#when-not-to-use">When Not To Use It</a></h2><p>If you&#x27;re not using the <a href="/docs/i18n/introduction">i18n feature</a>, you can disable this rule.</p><h2 id="further-reading"><a href="#further-reading">Further Reading</a></h2><ul><li><a href="https://docusaurus.io/docs/docusaurus-core#translate">https://docusaurus.io/docs/docusaurus-core#translate</a></li><li><a href="https://docusaurus.io/docs/docusaurus-core#translate-imperative">https://docusaurus.io/docs/docusaurus-core#translate-imperative</a></li></ul><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/api/misc/@docusaurus/eslint-plugin/no-untranslated-text">Previous doc: <!-- -->no-untranslated-text</a></span><span class="nextLink_cubj"><a href="/docs/api/misc/@docusaurus/logger">Next doc: <!-- -->📦 logger</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#details">Rule Details</a></li><li><a href="#when-not-to-use">When Not To Use It</a></li><li><a href="#further-reading">Further Reading</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

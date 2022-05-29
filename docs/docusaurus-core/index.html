@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Docusaurus Client API</h1><p>Docusaurus provides some APIs on the clients that can be helpful to you when building your site.</p><h2 id="components"><a href="#components">Components</a></h2><h3 id="errorboundary"><a href="#errorboundary"><code>&lt;ErrorBoundary /&gt;</code></a></h3><p>This component creates a <a href="https://reactjs.org/docs/error-boundaries.html">React error boundary</a>.</p><p>Use it to wrap components that might throw, and display a fallback when that happens instead of crashing the whole app.</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+import ErrorBoundary from &quot;@docusaurus/ErrorBoundary&quot;;
+
+const SafeComponent = () =&gt; (
+  &lt;ErrorBoundary
+    fallback={({ error, tryAgain }) =&gt; (
+      &lt;div&gt;
+        &lt;p&gt;This component crashed because of error: {error.message}.&lt;/p&gt;
+        &lt;button onClick={tryAgain}&gt;Try Again!&lt;/button&gt;
+      &lt;/div&gt;
+    )}&gt;
+    &lt;SomeDangerousComponentThatMayThrow /&gt;
+  &lt;/ErrorBoundary&gt;
+);
+</code></pre><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>To see it in action, click here: <button type="button">Boom!</button></p></div></div><div class="admonition admonition-info alert alert--info"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</h5></div><div class="admonition-content"><p>Docusaurus uses this component to catch errors within the theme&#x27;s layout, and also within the entire app.</p></div></div><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>This component doesn&#x27;t catch build-time errors and only protects against client-side render errors that can happen when using stateful React components.</p></div></div><h4 id="errorboundary-props"><a href="#errorboundary-props">Props</a></h4><ul><li><code>fallback</code>: an optional render callback returning a JSX element. It will receive an object with 2 attributes: <code>error</code>, the error that was caught, and <code>tryAgain</code>, a function (<code>() =&gt; void</code>) callback to reset the error in the component and try rendering it again. If not present, <code>@theme/Error</code> will be rendered instead. <code>@theme/Error</code> is used for the error boundaries wrapping the site, above the layout.</li></ul><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>The <code>fallback</code> prop is a callback, and <strong>not a React functional component</strong>. You can&#x27;t use React hooks inside this callback.</p></div></div><h3 id="head"><a href="#head"><code>&lt;Head/&gt;</code></a></h3><p>This reusable React component will manage all of your changes to the document head. It takes plain HTML tags and outputs plain HTML tags and is beginner-friendly. It is a wrapper around <a href="https://github.com/nfl/react-helmet">React Helmet</a>.</p><p>Usage Example:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+// highlight-next-line
+import Head from &quot;@docusaurus/Head&quot;;
+
+const MySEO = () =&gt; (
+  // highlight-start
+  &lt;Head&gt;
+    &lt;meta property=&quot;og:description&quot; content=&quot;My custom description&quot; /&gt;
+    &lt;meta charSet=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;My Title&lt;/title&gt;
+    &lt;link rel=&quot;canonical&quot; href=&quot;http://mysite.com/example&quot; /&gt;
+  &lt;/Head&gt;
+  // highlight-end
+);
+</code></pre><p>Nested or latter components will override duplicate usages:</p><pre><code class="language-jsx">&lt;Parent&gt;
+  {/* highlight-start */}
+  &lt;Head&gt;
+    &lt;title&gt;My Title&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;Helmet application&quot; /&gt;
+  &lt;/Head&gt;
+  {/* highlight-end */}
+  &lt;Child&gt;
+    {/* highlight-start */}
+    &lt;Head&gt;
+      &lt;title&gt;Nested Title&lt;/title&gt;
+      &lt;meta name=&quot;description&quot; content=&quot;Nested component&quot; /&gt;
+    &lt;/Head&gt;
+    {/* highlight-end */}
+  &lt;/Child&gt;
+&lt;/Parent&gt;
+</code></pre><p>Outputs:</p><pre><code class="language-html">&lt;head&gt;
+  &lt;title&gt;Nested Title&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;Nested component&quot; /&gt;
+&lt;/head&gt;
+</code></pre><h3 id="link"><a href="#link"><code>&lt;Link/&gt;</code></a></h3><p>This component enables linking to internal pages as well as a powerful performance feature called preloading. Preloading is used to prefetch resources so that the resources are fetched by the time the user navigates with this component. We use an <code>IntersectionObserver</code> to fetch a low-priority request when the <code>&lt;Link&gt;</code> is in the viewport and then use an <code>onMouseOver</code> event to trigger a high-priority request when it is likely that a user will navigate to the requested resource.</p><p>The component is a wrapper around react-router’s <code>&lt;Link&gt;</code> component that adds useful enhancements specific to Docusaurus. All props are passed through to react-router’s <code>&lt;Link&gt;</code> component.</p><p>External links also work, and automatically have these props: <code>target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;</code>.</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+// highlight-next-line
+import Link from &quot;@docusaurus/Link&quot;;
+
+const Page = () =&gt; (
+  &lt;div&gt;
+    &lt;p&gt;
+      {/* highlight-next-line */}
+      Check out my &lt;Link to=&quot;/blog&quot;&gt;blog&lt;/Link&gt;!
+    &lt;/p&gt;
+    &lt;p&gt;
+      {/* highlight-next-line */}
+      Follow me on &lt;Link to=&quot;https://twitter.com/docusaurus&quot;&gt;Twitter&lt;/Link&gt;!
+    &lt;/p&gt;
+  &lt;/div&gt;
+);
+</code></pre><h4 id="to-string"><a href="#to-string"><code>to</code>: string</a></h4><p>The target location to navigate to. Example: <code>/docs/introduction</code>.</p><pre><code class="language-jsx">&lt;Link to=&quot;/courses&quot; /&gt;
+</code></pre><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Prefer this component to vanilla <code>&lt;a&gt;</code> tags because Docusaurus does a lot of optimizations (e.g. broken path detection, prefetching, applying base URL...) if you use <code>&lt;Link&gt;</code>.</p></div></div><h3 id="redirect"><a href="#redirect"><code>&lt;Redirect/&gt;</code></a></h3><p>Rendering a <code>&lt;Redirect&gt;</code> will navigate to a new location. The new location will override the current location in the history stack like server-side redirects (HTTP 3xx) do. You can refer to <a href="https://reacttraining.com/react-router/web/api/Redirect">React Router&#x27;s Redirect documentation</a> for more info on available props.</p><p>Example usage:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+// highlight-next-line
+import { Redirect } from &quot;@docusaurus/router&quot;;
+
+const Home = () =&gt; {
+  // highlight-next-line
+  return &lt;Redirect to=&quot;/docs/test&quot; /&gt;;
+};
+</code></pre><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p><code>@docusaurus/router</code> implements <a href="https://reacttraining.com/react-router/web/guides/quick-start">React Router</a> and supports its features.</p></div></div><h3 id="browseronly"><a href="#browseronly"><code>&lt;BrowserOnly/&gt;</code></a></h3><p>The <code>&lt;BrowserOnly&gt;</code> component permits to render React components only in the browser after the React app has hydrated.</p><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Use it for integrating with code that can&#x27;t run in Node.js, because the <code>window</code> or <code>document</code> objects are being accessed.</p></div></div><h4 id="browseronly-props"><a href="#browseronly-props">Props</a></h4><ul><li><code>children</code>: render function prop returning browser-only JSX. Will not be executed in Node.js</li><li><code>fallback</code> (optional): JSX to render on the server (Node.js) and until React hydration completes.</li></ul><h4 id="browseronly-example-code"><a href="#browseronly-example-code">Example with code</a></h4><pre><code class="language-jsx">// highlight-start
+import BrowserOnly from &quot;@docusaurus/BrowserOnly&quot;;
+// highlight-end
+
+const MyComponent = () =&gt; {
+  return (
+    // highlight-start
+    &lt;BrowserOnly&gt;
+      {() =&gt; &lt;span&gt;page url = {window.location.href}&lt;/span&gt;}
+    &lt;/BrowserOnly&gt;
+    // highlight-end
+  );
+};
+</code></pre><h4 id="browseronly-example-library"><a href="#browseronly-example-library">Example with a library</a></h4><pre><code class="language-jsx">// highlight-start
+import BrowserOnly from &quot;@docusaurus/BrowserOnly&quot;;
+// highlight-end
+
+const MyComponent = (props) =&gt; {
+  return (
+    // highlight-start
+    &lt;BrowserOnly fallback={&lt;div&gt;Loading...&lt;/div&gt;}&gt;
+      {() =&gt; {
+        const LibComponent = require(&quot;some-lib&quot;).LibComponent;
+        return &lt;LibComponent {...props} /&gt;;
+      }}
+    &lt;/BrowserOnly&gt;
+    // highlight-end
+  );
+};
+</code></pre><h3 id="interpolate"><a href="#interpolate"><code>&lt;Interpolate/&gt;</code></a></h3><p>A simple interpolation component for text containing dynamic placeholders.</p><p>The placeholders will be replaced with the provided dynamic values and JSX elements of your choice (strings, links, styled elements...).</p><h4 id="interpolate-props"><a href="#interpolate-props">Props</a></h4><ul><li><code>children</code>: text containing interpolation placeholders like <code>{placeholderName}</code></li><li><code>values</code>: object containing interpolation placeholder values</li></ul><pre><code class="language-jsx">import React from &quot;react&quot;;
+import Link from &quot;@docusaurus/Link&quot;;
+import Interpolate from &quot;@docusaurus/Interpolate&quot;;
+
+export default function VisitMyWebsiteMessage() {
+  return (
+    // highlight-start
+    &lt;Interpolate
+      values={{
+        firstName: &quot;Sébastien&quot;,
+        website: (
+          &lt;Link to=&quot;https://docusaurus.io&quot; className=&quot;my-website-class&quot;&gt;
+            website
+          &lt;/Link&gt;
+        ),
+      }}&gt;
+      {&quot;Hello, {firstName}! How are you? Take a look at my {website}&quot;}
+    &lt;/Interpolate&gt;
+    // highlight-end
+  );
+}
+</code></pre><h3 id="translate"><a href="#translate"><code>&lt;Translate/&gt;</code></a></h3><p>When <a href="/docs/i18n/introduction">localizing your site</a>, the <code>&lt;Translate/&gt;</code> component will allow providing <strong>translation support to React components</strong>, such as your homepage. The <code>&lt;Translate&gt;</code> component supports <a href="#interpolate">interpolation</a>.</p><p>The translation strings will statically extracted from your code with the <a href="/docs/cli#docusaurus-write-translations-sitedir"><code>docusaurus write-translations</code></a> CLI and a <code>code.json</code> translation file will be created in <code>website/i18n/[locale]</code>.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>The <code>&lt;Translate/&gt;</code> props <strong>must be hardcoded strings</strong>.</p><p>Apart from the <code>values</code> prop used for interpolation, it is <strong>not possible to use variables</strong>, or the static extraction wouldn&#x27;t work.</p></div></div><h4 id="translate-props"><a href="#translate-props">Props</a></h4><ul><li><code>children</code>: untranslated string in the default site locale (can contain <a href="#interpolate">interpolation placeholders</a>)</li><li><code>id</code>: optional value to be used as the key in JSON translation files</li><li><code>description</code>: optional text to help the translator</li><li><code>values</code>: optional object containing interpolation placeholder values</li></ul><h4 id="example"><a href="#example">Example</a></h4><pre><code class="language-jsx" metastring="title=&quot;src/pages/index.js&quot;" title="&quot;src/pages/index.js&quot;">import React from &quot;react&quot;;
+import Layout from &quot;@theme/Layout&quot;;
+
+// highlight-start
+import Translate from &quot;@docusaurus/Translate&quot;;
+// highlight-end
+
+export default function Home() {
+  return (
+    &lt;Layout&gt;
+      &lt;h1&gt;
+        {/* highlight-start */}
+        &lt;Translate
+          id=&quot;homepage.title&quot;
+          description=&quot;The homepage welcome message&quot;&gt;
+          Welcome to my website
+        &lt;/Translate&gt;
+        {/* highlight-end */}
+      &lt;/h1&gt;
+      &lt;main&gt;
+        {/* highlight-start */}
+        &lt;Translate values={{ firstName: &quot;Sébastien&quot; }}&gt;
+          {&quot;Welcome, {firstName}! How are you?&quot;}
+        &lt;/Translate&gt;
+        {/* highlight-end */}
+      &lt;/main&gt;
+    &lt;/Layout&gt;
+  );
+}
+</code></pre><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>You can even omit the children prop and specify a translation string in your <code>code.json</code> file manually after running the <code>docusaurus write-translations</code> CLI command.</p><pre><code class="language-jsx">&lt;Translate id=&quot;homepage.title&quot; /&gt;
+</code></pre></div></div><h2 id="hooks"><a href="#hooks">Hooks</a></h2><h3 id="useDocusaurusContext"><a href="#useDocusaurusContext"><code>useDocusaurusContext</code></a></h3><p>React hook to access Docusaurus Context. The context contains the <code>siteConfig</code> object from <a href="/docs/api/docusaurus-config">docusaurus.config.js</a> and some additional site metadata.</p><pre><code class="language-ts">type PluginVersionInformation =
+  | { readonly type: &quot;package&quot;; readonly version?: string }
+  | { readonly type: &quot;project&quot; }
+  | { readonly type: &quot;local&quot; }
+  | { readonly type: &quot;synthetic&quot; };
+
+type SiteMetadata = {
+  readonly docusaurusVersion: string;
+  readonly siteVersion?: string;
+  readonly pluginVersions: Record&lt;string, PluginVersionInformation&gt;;
+};
+
+type I18nLocaleConfig = {
+  label: string;
+  direction: string;
+};
+
+type I18n = {
+  defaultLocale: string;
+  locales: [string, ...string[]];
+  currentLocale: string;
+  localeConfigs: Record&lt;string, I18nLocaleConfig&gt;;
+};
+
+type DocusaurusContext = {
+  siteConfig: DocusaurusConfig;
+  siteMetadata: SiteMetadata;
+  globalData: Record&lt;string, unknown&gt;;
+  i18n: I18n;
+  codeTranslations: Record&lt;string, string&gt;;
+};
+</code></pre><p>Usage example:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+import useDocusaurusContext from &quot;@docusaurus/useDocusaurusContext&quot;;
+
+const MyComponent = () =&gt; {
+  // highlight-next-line
+  const { siteConfig, siteMetadata } = useDocusaurusContext();
+  return (
+    &lt;div&gt;
+      {/* highlight-start */}
+      &lt;h1&gt;{siteConfig.title}&lt;/h1&gt;
+      &lt;div&gt;{siteMetadata.siteVersion}&lt;/div&gt;
+      &lt;div&gt;{siteMetadata.docusaurusVersion}&lt;/div&gt;
+      {/* highlight-end */}
+    &lt;/div&gt;
+  );
+};
+</code></pre><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>The <code>siteConfig</code> object only contains <strong>serializable values</strong> (values that are preserved after <code>JSON.stringify()</code>). Functions, regexes, etc. would be lost on the client side.</p></div></div><h3 id="useIsBrowser"><a href="#useIsBrowser"><code>useIsBrowser</code></a></h3><p>Returns <code>true</code> when the React app has successfully hydrated in the browser.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>Use this hook instead of <code>typeof windows !== &#x27;undefined&#x27;</code> in React rendering logic.</p><p>The first client-side render output (in the browser) <strong>must be exactly the same</strong> as the server-side render output (Node.js). Not following this rule can lead to unexpected hydration behaviors, as described in <a href="https://www.joshwcomeau.com/react/the-perils-of-rehydration/">The Perils of Rehydration</a>.</p></div></div><p>Usage example:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+import useIsBrowser from &quot;@docusaurus/useIsBrowser&quot;;
+
+const MyComponent = () =&gt; {
+  // highlight-start
+  const isBrowser = useIsBrowser();
+  // highlight-end
+  return &lt;div&gt;{isBrowser ? &quot;Client&quot; : &quot;Server&quot;}&lt;/div&gt;;
+};
+</code></pre><h3 id="useBaseUrl"><a href="#useBaseUrl"><code>useBaseUrl</code></a></h3><p>React hook to prepend your site <code>baseUrl</code> to a string.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p><strong>Don&#x27;t use it for regular links!</strong></p><p>The <code>/baseUrl/</code> prefix is automatically added to all <strong>absolute paths</strong> by default:</p><ul><li>Markdown: <code>[link](/my/path)</code> will link to <code>/baseUrl/my/path</code></li><li>React: <code>&lt;Link to=&quot;/my/path/&quot;&gt;link&lt;/Link&gt;</code> will link to <code>/baseUrl/my/path</code></li></ul></div></div><h4 id="options"><a href="#options">Options</a></h4><pre><code class="language-ts">type BaseUrlOptions = {
+  forcePrependBaseUrl: boolean;
+  absolute: boolean;
+};
+</code></pre><h4 id="example-usage"><a href="#example-usage">Example usage:</a></h4><pre><code class="language-jsx">import React from &quot;react&quot;;
+import useBaseUrl from &quot;@docusaurus/useBaseUrl&quot;;
+
+const SomeImage = () =&gt; {
+  // highlight-start
+  const imgSrc = useBaseUrl(&quot;/img/myImage.png&quot;);
+  // highlight-end
+  return &lt;img src={imgSrc} /&gt;;
+};
+</code></pre><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>In most cases, you don&#x27;t need <code>useBaseUrl</code>.</p><p>Prefer a <code>require()</code> call for <a href="/docs/markdown-features/assets">assets</a>:</p><pre><code class="language-jsx">&lt;img src={require(&quot;@site/static/img/myImage.png&quot;).default} /&gt;
+</code></pre></div></div><h3 id="useBaseUrlUtils"><a href="#useBaseUrlUtils"><code>useBaseUrlUtils</code></a></h3><p>Sometimes <code>useBaseUrl</code> is not good enough. This hook return additional utils related to your site&#x27;s base url.</p><ul><li><code>withBaseUrl</code>: useful if you need to add base URLs to multiple URLs at once.</li></ul><pre><code class="language-jsx">import React from &quot;react&quot;;
+import { useBaseUrlUtils } from &quot;@docusaurus/useBaseUrl&quot;;
+
+const Component = () =&gt; {
+  const urls = [&quot;/a&quot;, &quot;/b&quot;];
+  // highlight-start
+  const { withBaseUrl } = useBaseUrlUtils();
+  const urlsWithBaseUrl = urls.map(withBaseUrl);
+  // highlight-end
+  return &lt;div&gt;{/* ... */}&lt;/div&gt;;
+};
+</code></pre><h3 id="useGlobalData"><a href="#useGlobalData"><code>useGlobalData</code></a></h3><p>React hook to access Docusaurus global data created by all the plugins.</p><p>Global data is namespaced by plugin name then by plugin ID.</p><div class="admonition admonition-info alert alert--info"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</h5></div><div class="admonition-content"><p>Plugin ID is only useful when a plugin is used multiple times on the same site. Each plugin instance is able to create its own global data.</p></div></div><pre><code class="language-ts">type GlobalData = Record&lt;
+  PluginName,
+  Record&lt;
+    PluginId, // &quot;default&quot; by default
+    any // plugin-specific data
+  &gt;
+&gt;;
+</code></pre><p>Usage example:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+// highlight-next-line
+import useGlobalData from &quot;@docusaurus/useGlobalData&quot;;
+
+const MyComponent = () =&gt; {
+  // highlight-start
+  const globalData = useGlobalData();
+  const myPluginData = globalData[&quot;my-plugin&quot;][&quot;default&quot;];
+  return &lt;div&gt;{myPluginData.someAttribute}&lt;/div&gt;;
+  // highlight-end
+};
+</code></pre><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Inspect your site&#x27;s global data at <code>./docusaurus/globalData.json</code></p></div></div><h3 id="usePluginData"><a href="#usePluginData"><code>usePluginData</code></a></h3><p>Access global data created by a specific plugin instance.</p><p>This is the most convenient hook to access plugin global data and should be used most of the time.</p><p><code>pluginId</code> is optional if you don&#x27;t use multi-instance plugins.</p><pre><code class="language-ts">function usePluginData(
+  pluginName: string,
+  pluginId?: string,
+  options?: { failfast?: boolean },
+);
+</code></pre><p>Usage example:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+// highlight-next-line
+import { usePluginData } from &quot;@docusaurus/useGlobalData&quot;;
+
+const MyComponent = () =&gt; {
+  // highlight-start
+  const myPluginData = usePluginData(&quot;my-plugin&quot;);
+  return &lt;div&gt;{myPluginData.someAttribute}&lt;/div&gt;;
+  // highlight-end
+};
+</code></pre><h3 id="useAllPluginInstancesData"><a href="#useAllPluginInstancesData"><code>useAllPluginInstancesData</code></a></h3><p>Access global data created by a specific plugin. Given a plugin name, it returns the data of all the plugins instances of that name, by plugin id.</p><pre><code class="language-ts">function useAllPluginInstancesData(
+  pluginName: string,
+  options?: { failfast?: boolean },
+);
+</code></pre><p>Usage example:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+// highlight-next-line
+import { useAllPluginInstancesData } from &quot;@docusaurus/useGlobalData&quot;;
+
+const MyComponent = () =&gt; {
+  // highlight-start
+  const allPluginInstancesData = useAllPluginInstancesData(&quot;my-plugin&quot;);
+  const myPluginData = allPluginInstancesData[&quot;default&quot;];
+  return &lt;div&gt;{myPluginData.someAttribute}&lt;/div&gt;;
+  // highlight-end
+};
+</code></pre><h2 id="functions"><a href="#functions">Functions</a></h2><h3 id="interpolate-1"><a href="#interpolate-1"><code>interpolate</code></a></h3><p>The imperative counterpart of the <a href="#interpolate"><code>&lt;Interpolate&gt;</code></a> component.</p><h4 id="signature"><a href="#signature">Signature</a></h4><pre><code class="language-ts">// Simple string interpolation
+function interpolate(text: string, values: Record&lt;string, string&gt;): string;
+
+// JSX interpolation
+function interpolate(
+  text: string,
+  values: Record&lt;string, ReactNode&gt;,
+): ReactNode;
+</code></pre><h4 id="example-1"><a href="#example-1">Example</a></h4><pre><code class="language-js">// highlight-next-line
+import { interpolate } from &quot;@docusaurus/Interpolate&quot;;
+
+const message = interpolate(&quot;Welcome {firstName}&quot;, { firstName: &quot;Sébastien&quot; });
+</code></pre><h3 id="translate-imperative"><a href="#translate-imperative"><code>translate</code></a></h3><p>The imperative counterpart of the <a href="#translate"><code>&lt;Translate&gt;</code></a> component. Also supporting <a href="#interpolate">placeholders interpolation</a>.</p><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Use the imperative API for the <strong>rare cases</strong> where a <strong>component cannot be used</strong>, such as:</p><ul><li>the page <code>title</code> metadata</li><li>the <code>placeholder</code> props of form inputs</li><li>the <code>aria-label</code> props for accessibility</li></ul></div></div><h4 id="signature-1"><a href="#signature-1">Signature</a></h4><pre><code class="language-ts">function translate(
+  translation: { message: string; id?: string; description?: string },
+  values: Record&lt;string, string&gt;,
+): string;
+</code></pre><h4 id="example-2"><a href="#example-2">Example</a></h4><pre><code class="language-jsx" metastring="title=&quot;src/pages/index.js&quot;" title="&quot;src/pages/index.js&quot;">import React from &quot;react&quot;;
+import Layout from &quot;@theme/Layout&quot;;
+
+// highlight-next-line
+import { translate } from &quot;@docusaurus/Translate&quot;;
+
+export default function Home() {
+  return (
+    &lt;Layout
+      // highlight-next-line
+      title={translate({ message: &quot;My page meta title&quot; })}&gt;
+      &lt;img
+        src={&quot;https://docusaurus.io/logo.png&quot;}
+        aria-label={
+          // highlight-start
+          translate(
+            {
+              message: &quot;The logo of site {siteName}&quot;,
+              // Optional
+              id: &quot;homepage.logo.ariaLabel&quot;,
+              description: &quot;The home page logo aria label&quot;,
+            },
+            { siteName: &quot;Docusaurus&quot; },
+          )
+          // highlight-end
+        }
+      /&gt;
+    &lt;/Layout&gt;
+  );
+}
+</code></pre><h2 id="modules"><a href="#modules">Modules</a></h2><h3 id="executionenvironment"><a href="#executionenvironment"><code>ExecutionEnvironment</code></a></h3><p>A module that exposes a few boolean variables to check the current rendering environment.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>For React rendering logic, use <a href="#useIsBrowser"><code>useIsBrowser()</code></a> or <a href="#browseronly"><code>&lt;BrowserOnly&gt;</code></a> instead.</p></div></div><p>Example:</p><pre><code class="language-js">import ExecutionEnvironment from &quot;@docusaurus/ExecutionEnvironment&quot;;
+
+if (ExecutionEnvironment.canUseDOM) {
+  require(&quot;lib-that-only-works-client-side&quot;);
+}
+</code></pre><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><code>ExecutionEnvironment.canUseDOM</code></td><td><code>true</code> if on client/browser, <code>false</code> on Node.js/prerendering.</td></tr><tr><td><code>ExecutionEnvironment.canUseEventListeners</code></td><td><code>true</code> if on client and has <code>window.addEventListener</code>.</td></tr><tr><td><code>ExecutionEnvironment.canUseIntersectionObserver</code></td><td><code>true</code> if on client and has <code>IntersectionObserver</code>.</td></tr><tr><td><code>ExecutionEnvironment.canUseViewport</code></td><td><code>true</code> if on client and has <code>window.screen</code>.</td></tr></tbody></table><h3 id="constants"><a href="#constants"><code>constants</code></a></h3><p>A module exposing useful constants to client-side theme code.</p><pre><code class="language-js">import { DEFAULT_PLUGIN_ID } from &quot;@docusaurus/constants&quot;;
+</code></pre><table><thead><tr><th>Named export</th><th>Value</th></tr></thead><tbody><tr><td><code>DEFAULT_PLUGIN_ID</code></td><td><code>default</code></td></tr></tbody></table><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/cli">Previous doc: <!-- -->CLI</a></span><span class="nextLink_cubj"><a href="/docs/api/docusaurus-config">Next doc: <!-- -->docusaurus.config.js</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#components">Components</a><ol><li><a href="#errorboundary"><code>&lt;ErrorBoundary /&gt;</code></a></li><li><a href="#head"><code>&lt;Head/&gt;</code></a></li><li><a href="#link"><code>&lt;Link/&gt;</code></a></li><li><a href="#redirect"><code>&lt;Redirect/&gt;</code></a></li><li><a href="#browseronly"><code>&lt;BrowserOnly/&gt;</code></a></li><li><a href="#interpolate"><code>&lt;Interpolate/&gt;</code></a></li><li><a href="#translate"><code>&lt;Translate/&gt;</code></a></li></ol></li><li><a href="#hooks">Hooks</a><ol><li><a href="#useDocusaurusContext"><code>useDocusaurusContext</code></a></li><li><a href="#useIsBrowser"><code>useIsBrowser</code></a></li><li><a href="#useBaseUrl"><code>useBaseUrl</code></a></li><li><a href="#useBaseUrlUtils"><code>useBaseUrlUtils</code></a></li><li><a href="#useGlobalData"><code>useGlobalData</code></a></li><li><a href="#usePluginData"><code>usePluginData</code></a></li><li><a href="#useAllPluginInstancesData"><code>useAllPluginInstancesData</code></a></li></ol></li><li><a href="#functions">Functions</a><ol><li><a href="#interpolate-1"><code>interpolate</code></a></li><li><a href="#translate-imperative"><code>translate</code></a></li></ol></li><li><a href="#modules">Modules</a><ol><li><a href="#executionenvironment"><code>ExecutionEnvironment</code></a></li><li><a href="#constants"><code>constants</code></a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

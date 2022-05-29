@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Client architecture</h1><h1>Client architecture</h1><h2 id="theme-aliases"><a href="#theme-aliases">Theme aliases</a></h2><p>A theme works by exporting a set of components, e.g. <code>Navbar</code>, <code>Layout</code>, <code>Footer</code>, to render the data passed down from plugins. Docusaurus and users use these components by importing them using the <code>@theme</code> webpack alias:</p><pre><code class="language-js">import Navbar from &quot;@theme/Navbar&quot;;
+</code></pre><p>The alias <code>@theme</code> can refer to a few directories, in the following priority:</p><ol><li>A user&#x27;s <code>website/src/theme</code> directory, which is a special directory that has the higher precedence.</li><li>A Docusaurus theme package&#x27;s <code>theme</code> directory.</li><li>Fallback components provided by Docusaurus core (usually not needed).</li></ol><p>This is called a <em>layered architecture</em>: a higher-priority layer providing the component would shadow a lower-priority layer, making swizzling possible. Given the following structure:</p><pre><code>website
+├── node_modules
+│   └── @docusaurus/theme-classic
+│       └── theme
+│           └── Navbar.js
+└── src
+    └── theme
+        └── Navbar.js
+</code></pre><p><code>website/src/theme/Navbar.js</code> takes precedence whenever <code>@theme/Navbar</code> is imported. This behavior is called component swizzling. If you are familiar with Objective C where a function&#x27;s implementation can be swapped during runtime, it&#x27;s the exact same concept here with changing the target <code>@theme/Navbar</code> is pointing to!</p><p>We already talked about how the &quot;userland theme&quot; in <code>src/theme</code> can re-use a theme component through the <a href="#wrapping"><code>@theme-original</code></a> alias. One theme package can also wrap a component from another theme, by importing the component from the initial theme, using the <code>@theme-init</code> import.</p><p>Here&#x27;s an example of using this feature to enhance the default theme <code>CodeBlock</code> component with a <code>react-live</code> playground feature.</p><pre><code class="language-js">import InitialCodeBlock from &quot;@theme-init/CodeBlock&quot;;
+import React from &quot;react&quot;;
+
+export default function CodeBlock(props) {
+  return props.live ? (
+    &lt;ReactLivePlayground {...props} /&gt;
+  ) : (
+    &lt;InitialCodeBlock {...props} /&gt;
+  );
+}
+</code></pre><p>Check the code of <code>@docusaurus/theme-live-codeblock</code> for details.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>Unless you want to publish a re-usable &quot;theme enhancer&quot; (like <code>@docusaurus/theme-live-codeblock</code>), you likely don&#x27;t need <code>@theme-init</code>.</p></div></div><p>It can be quite hard to wrap your mind around these aliases. Let&#x27;s imagine the following case with a super convoluted setup with three themes/plugins and the site itself all trying to define the same component. Internally, Docusaurus loads these themes as a &quot;stack&quot;.</p><pre><code class="language-text">+-------------------------------------------------+
+|        `website/src/theme/CodeBlock.js`         | &lt;-- `@theme/CodeBlock` always points to the top
++-------------------------------------------------+
+| `theme-live-codeblock/theme/CodeBlock/index.js` | &lt;-- `@theme-original/CodeBlock` points to the topmost non-swizzled component
++-------------------------------------------------+
+|  `plugin-awesome-codeblock/theme/CodeBlock.js`  |
++-------------------------------------------------+
+|     `theme-classic/theme/CodeBlock/index.js`    | &lt;-- `@theme-init/CodeBlock` always points to the bottom
++-------------------------------------------------+
+</code></pre><p>The components in this &quot;stack&quot; are pushed in the order of <code>preset plugins &gt; preset themes &gt; plugins &gt; themes &gt; site</code>, so the swizzled component in <code>website/src/theme</code> always comes out on top because it&#x27;s loaded last.</p><p><code>@theme/*</code> always points to the topmost component—when <code>CodeBlock</code> is swizzled, all other components requesting <code>@theme/CodeBlock</code> receive the swizzled version.</p><p><code>@theme-original/*</code> always points to the topmost non-swizzled component. That&#x27;s why you can import <code>@theme-original/CodeBlock</code> in the swizzled component—it points to the next one in the &quot;component stack&quot;, a theme-provided one. Plugin authors should not try to use this because your component could be the topmost component and cause a self-import.</p><p><code>@theme-init/*</code> always points to the bottommost component—usually, this comes from the theme or plugin that first provides this component. Individual plugins / themes trying to enhance code block can safely use <code>@theme-init/CodeBlock</code> to get its basic version. Site creators should generally not use this because you likely want to enhance the <em>topmost</em> instead of the <em>bottommost</em> component. It&#x27;s also possible that the <code>@theme-init/CodeBlock</code> alias does not exist at all—Docusaurus only creates it when it points to a different one from <code>@theme-original/CodeBlock</code>, i.e. when it&#x27;s provided by more than one theme. We don&#x27;t waste aliases!</p><h2 id="client-modules"><a href="#client-modules">Client modules</a></h2><p>Client modules are part of your site&#x27;s bundle, just like theme components. However, they are usually side-effect-ful. Client modules are anything that can be <code>import</code>ed by Webpack—CSS, JS, etc. JS scripts usually work on the global context, like registering event listeners, creating global variables...</p><p>These modules are imported globally before React even renders the initial UI.</p><pre><code class="language-js" metastring="title=&quot;@docusaurus/core/App.tsx&quot;" title="&quot;@docusaurus/core/App.tsx&quot;">// How it works under the hood
+import &quot;@generated/client-modules&quot;;
+</code></pre><p>Plugins and sites can both declare client modules, through <a href="/docs/api/plugin-methods/lifecycle-apis#getClientModules"><code>getClientModules</code></a> and <a href="/docs/api/docusaurus-config#clientModules"><code>siteConfig.clientModules</code></a>, respectively.</p><p>Client modules are called during server-side rendering as well, so remember to check the <a href="/docs/advanced/ssg#escape-hatches">execution environment</a> before accessing client-side globals.</p><pre><code class="language-js" metastring="title=&quot;mySiteGlobalJs.js&quot;" title="&quot;mySiteGlobalJs.js&quot;">import ExecutionEnvironment from &quot;@docusaurus/ExecutionEnvironment&quot;;
+
+if (ExecutionEnvironment.canUseDOM) {
+  // As soon as the site loads in the browser, register a global event listener
+  window.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+    if (e.code === &quot;Period&quot;) {
+      location.assign(location.href.replace(&quot;.com&quot;, &quot;.dev&quot;));
+    }
+  });
+}
+</code></pre><p>CSS stylesheets imported as client modules are <a href="/docs/styling-layout#global-styles">global</a>.</p><pre><code class="language-css" metastring="title=&quot;mySiteGlobalCss.css&quot;" title="&quot;mySiteGlobalCss.css&quot;">/* This stylesheet is global. */
+.globalSelector {
+  color: red;
+}
+</code></pre><h3 id="client-module-lifecycles"><a href="#client-module-lifecycles">Client module lifecycles</a></h3><p>Besides introducing side-effects, client modules can optionally export two lifecycle functions: <code>onRouteUpdate</code> and <code>onRouteDidUpdate</code>.</p><p>Because Docusaurus builds a single-page application, <code>script</code> tags will only be executed the first time the page loads, but will not re-execute on page transitions. These lifecycles are useful if you have some imperative JS logic that should execute every time a new page has loaded, e.g., to manipulate DOM elements, to send analytics data, etc.</p><p>For every route transition, there will be several important timings:</p><ol><li>The user clicks a link, which causes the router to change its current location.</li><li>Docusaurus preloads the next route&#x27;s assets, while keeping displaying the current page&#x27;s content.</li><li>The next route&#x27;s assets have loaded.</li><li>The new location&#x27;s route component gets rendered to DOM.</li></ol><p><code>onRouteUpdate</code> will be called at event (2), and <code>onRouteDidUpdate</code> will be called at (4). They both receive the current location and the previous location (which can be <code>null</code>, if this is the first screen).</p><p><code>onRouteUpdate</code> can optionally return a &quot;cleanup&quot; callback, which will be called at (3). For example, if you want to display a progress bar, you can start a timeout in <code>onRouteUpdate</code>, and clear the timeout in the callback. (The classic theme already provides an <code>nprogress</code> integration this way.)</p><p>Note that the new page&#x27;s DOM is only available during event (4). If you need to manipulate the new page&#x27;s DOM, you&#x27;ll likely want to use <code>onRouteDidUpdate</code>, which will be fired as soon as the DOM on the new page has mounted.</p><pre><code class="language-js" metastring="title=&quot;myClientModule.js&quot;" title="&quot;myClientModule.js&quot;">import type { Location } from &quot;history&quot;;
+
+export function onRouteDidUpdate({ location, previousLocation }) {
+  // Don&#x27;t execute if we are still on the same page; the lifecycle may be fired
+  // because the hash changes (e.g. when navigating between headings)
+  if (location.pathname !== previousLocation?.pathname) {
+    const title = document.getElementsByTagName(&quot;h1&quot;)[0];
+    if (title) {
+      title.innerText += &quot;❤️&quot;;
+    }
+  }
+}
+
+export function onRouteUpdate({ location, previousLocation }) {
+  if (location.pathname !== previousLocation?.pathname) {
+    const progressBarTimeout = window.setTimeout(() =&gt; {
+      nprogress.start();
+    }, delay);
+    return () =&gt; window.clearTimeout(progressBarTimeout);
+  }
+  return undefined;
+}
+</code></pre><p>Or, if you are using TypeScript and you want to leverage contextual typing:</p><pre><code class="language-ts" metastring="title=&quot;myClientModule.ts&quot;" title="&quot;myClientModule.ts&quot;">import type { ClientModule } from &quot;@docusaurus/types&quot;;
+
+const module: ClientModule = {
+  onRouteUpdate({ location, previousLocation }) {
+    // ...
+  },
+  onRouteDidUpdate({ location, previousLocation }) {
+    // ...
+  },
+};
+export default module;
+</code></pre><p>Both lifecycles will fire on first render, but they will not fire on server-side, so you can safely access browser globals in them.</p><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>Prefer using React</h5></div><div class="admonition-content"><p>Client module lifecycles are purely imperative, and you can&#x27;t use React hooks or access React contexts within them. If your operations are state-driven or involve complicated DOM manipulations, you should consider <a href="/docs/swizzling">swizzling components</a> instead.</p></div></div><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/advanced/ssg">Previous doc: <!-- -->Static site generation</a></span><span class="nextLink_cubj"><a href="/docs/migration">Next doc: <!-- -->Migration overview</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#theme-aliases">Theme aliases</a></li><li><a href="#client-modules">Client modules</a><ol><li><a href="#client-module-lifecycles">Client module lifecycles</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

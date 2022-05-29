@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Versioned sites</h1><h1>Versioned sites</h1><p>Read up <a href="https://docusaurus.io/blog/2018/09/11/Towards-Docusaurus-2#versioning">https://docusaurus.io/blog/2018/09/11/Towards-Docusaurus-2#versioning</a> first for problems in v1&#x27;s approach.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>The versioned docs should normally be migrated correctly by the <a href="/docs/next/migration/automated">migration CLI</a></p></div></div><h2 id="migrate-your-versioned_docs-front-matter"><a href="#migrate-your-versioned_docs-front-matter">Migrate your <code>versioned_docs</code> front matter</a></h2><p>Unlike v1, The markdown header for each versioned doc is no longer altered by using <code>version-${version}-${original_id}</code> as the value for the actual id field. See scenario below for better explanation.</p><p>For example, if you have a <code>docs/hello.md</code>.</p><pre><code class="language-md">---
+id: hello
+title: Hello, World !
+---
+
+Hi, Endilie here :)
+</code></pre><p>When you cut a new version 1.0.0, in Docusaurus v1, <code>website/versioned_docs/version-1.0.0/hello.md</code> looks like this:</p><pre><code class="language-md">---
+id: version-1.0.0-hello
+title: Hello, World !
+original_id: hello
+---
+
+Hi, Endilie here :)
+</code></pre><p>In comparison, Docusaurus 2 <code>website/versioned_docs/version-1.0.0/hello.md</code> looks like this (exactly same as original)</p><pre><code class="language-md">---
+id: hello
+title: Hello, World !
+---
+
+Hi, Endilie here :)
+</code></pre><p>Since we&#x27;re going for snapshot and allow people to move (and edit) docs easily inside version. The <code>id</code> front matter is no longer altered and will remain the same. Internally, it is set as <code>version-${version}/${id}</code>.</p><p>Essentially, here are the necessary changes in each versioned_docs file:</p><pre><code class="language-diff" metastring="{2-3,5}">---
+- id: version-1.0.0-hello
++ id: hello
+title: Hello, World !
+- original_id: hello
+---
+Hi, Endilie here :)
+</code></pre><h2 id="migrate-your-versioned_sidebars"><a href="#migrate-your-versioned_sidebars">Migrate your <code>versioned_sidebars</code></a></h2><ul><li>Refer to <code>versioned_docs</code> id as <code>version-${version}/${id}</code> (v2) instead of <code>version-${version}-${original_id}</code> (v1).</li></ul><p>Because in v1 there is a good chance someone created a new file with front matter id <code>&quot;version-${version}-${id}&quot;</code> that can conflict with <code>versioned_docs</code> id.</p><p>For example, Docusaurus 1 can&#x27;t differentiate <code>docs/xxx.md</code></p><pre><code class="language-md">---
+id: version-1.0.0-hello
+---
+
+Another content
+</code></pre><p>vs <code>website/versioned_docs/version-1.0.0/hello.md</code></p><pre><code class="language-md">---
+id: version-1.0.0-hello
+title: Hello, World !
+original_id: hello
+---
+
+Hi, Endilie here :)
+</code></pre><p>Since we don&#x27;t allow <code>/</code> in v1 &amp; v2 for front matter, conflicts are less likely to occur.</p><p>So v1 users need to migrate their versioned_sidebars file</p><p>Example <code>versioned_sidebars/version-1.0.0-sidebars.json</code>:</p><pre><code class="language-diff" metastring="{2-3,5-6,9-10}  title=&quot;versioned_sidebars/version-1.0.0-sidebars.json&quot;" title="&quot;versioned_sidebars/version-1.0.0-sidebars.json&quot;">{
++ &quot;version-1.0.0/docs&quot;: {
+- &quot;version-1.0.0-docs&quot;: {
+    &quot;Test&quot;: [
++    &quot;version-1.0.0/foo/bar&quot;,
+-    &quot;version-1.0.0-foo/bar&quot;,
+    ],
+    &quot;Guides&quot;: [
++    &quot;version-1.0.0/hello&quot;,
+-    &quot;version-1.0.0-hello&quot;
+    ]
+  }
+}
+</code></pre><h2 id="populate-your-versioned_sidebars-and-versioned_docs"><a href="#populate-your-versioned_sidebars-and-versioned_docs">Populate your <code>versioned_sidebars</code> and <code>versioned_docs</code></a></h2><p>In v2, we use snapshot approach for documentation versioning. <strong>Every versioned docs does not depends on other version</strong>. It is possible to have <code>foo.md</code> in <code>version-1.0.0</code> but it doesn&#x27;t exist in <code>version-1.2.0</code>. This is not possible in previous version due to Docusaurus v1 fallback functionality (<a href="https://v1.docusaurus.io/docs/en/versioning#fallback-functionality">https://v1.docusaurus.io/docs/en/versioning#fallback-functionality</a>).</p><p>For example, if your <code>versions.json</code> looks like this in v1</p><pre><code class="language-json" metastring="title=&quot;versions.json&quot;" title="&quot;versions.json&quot;">[&quot;1.1.0&quot;, &quot;1.0.0&quot;]
+</code></pre><p>Docusaurus v1 creates versioned docs <strong>if and only if the doc content is different</strong>. Your docs structure might look like this if the only doc changed from v1.0.0 to v1.1.0 is <code>hello.md</code>.</p><pre><code class="language-bash">website
+├── versioned_docs
+│   ├── version-1.1.0
+│   │   └── hello.md
+│   └── version-1.0.0
+│       ├── foo
+│       │   └── bar.md
+│       └── hello.md
+├── versioned_sidebars
+│   └── version-1.0.0-sidebars.json
+</code></pre><p>In v2, you have to populate the missing <code>versioned_docs</code> and <code>versioned_sidebars</code> (with the right front matter and id reference too).</p><pre><code class="language-bash" metastring="{3-5,12}">website
+├── versioned_docs
+│   ├── version-1.1.0
+│   │   ├── foo
+│   │   │   └── bar.md
+│   │   └── hello.md
+│   └── version-1.0.0
+│       ├── foo
+│       │   └── bar.md
+│       └── hello.md
+├── versioned_sidebars
+│   ├── version-1.1.0-sidebars.json
+│   └── version-1.0.0-sidebars.json
+</code></pre><h2 id="convert-style-attributes-to-style-objects-in-mdx"><a href="#convert-style-attributes-to-style-objects-in-mdx">Convert style attributes to style objects in MDX</a></h2><p>Docusaurus 2 uses JSX for doc files. If you have any style attributes in your Docusaurus 1 docs, convert them to style objects, like this:</p><pre><code class="language-diff">---
+id: demo
+title: Demo
+---
+
+## Section
+
+hello world
+
+- pre style=&quot;background: black&quot;&gt;zzz&lt;/pre&gt;
++ pre style={{background: &#x27;black&#x27;}}&gt;zzz&lt;/pre&gt;
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/next/migration/manual">Previous doc: <!-- -->Manual migration</a></span><span class="nextLink_cubj"><a href="/docs/next/migration/translated-sites">Next doc: <!-- -->Translated sites</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#migrate-your-versioned_docs-front-matter">Migrate your <code>versioned_docs</code> front matter</a></li><li><a href="#migrate-your-versioned_sidebars">Migrate your <code>versioned_sidebars</code></a></li><li><a href="#populate-your-versioned_sidebars-and-versioned_docs">Populate your <code>versioned_sidebars</code> and <code>versioned_docs</code></a></li><li><a href="#convert-style-attributes-to-style-objects-in-mdx">Convert style attributes to style objects in MDX</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

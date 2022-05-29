@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Theme configuration</h1><p>This configuration applies to all <a href="/docs/2.0.0-beta.20/api/themes">main themes</a>.</p><h2 id="common"><a href="#common">Common</a></h2><h3 id="color-mode---dark-mode"><a href="#color-mode---dark-mode">Color mode</a></h3><p>The classic theme provides by default light and dark mode support, with a navbar switch for the user.</p><p>It is possible to customize the color mode support within the <code>colorMode</code> object.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="defaultMode" tabindex="0"><td><code>defaultMode</code></td><td><code>&#x27;light&#x27; <!-- -->|<!-- --> &#x27;dark&#x27;</code></td><td><code>&#x27;light&#x27;</code></td><td>The color mode when user first visits the site.</td></tr><tr id="disableSwitch" tabindex="0"><td><code>disableSwitch</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Hides the switch in the navbar. Useful if you want to support a single color mode.</td></tr><tr id="respectPrefersColorScheme" tabindex="0"><td><code>respectPrefersColorScheme</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether to use the <code>prefers-color-scheme</code> media-query, using user system preferences, instead of the hardcoded <code>defaultMode</code>.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    // highlight-start
+    colorMode: {
+      defaultMode: &quot;light&quot;,
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
+    // highlight-end
+  },
+};
+</code></pre><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>With <code>respectPrefersColorScheme: true</code>, the <code>defaultMode</code> is overridden by user system preferences.</p><p>If you only want to support one color mode, you likely want to ignore user system preferences.</p></div></div><h3 id="meta-image"><a href="#meta-image">Meta image</a></h3><p>You can configure a default image that will be used for your meta tag, in particular <code>og:image</code> and <code>twitter:image</code>.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="image" tabindex="0"><td><code>image</code></td><td><code>string</code></td><td><code>undefined</code></td><td>The meta image URL for the site. Relative to your site&#x27;s &quot;static&quot; directory. Cannot be SVGs. Can be external URLs too.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    // highlight-next-line
+    image: &quot;img/docusaurus.png&quot;,
+  },
+};
+</code></pre><h3 id="metadata"><a href="#metadata">Metadata</a></h3><p>You can configure additional html metadata (and override existing ones).</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="metadata" tabindex="0"><td><code>metadata</code></td><td><code>Metadata[]</code></td><td><code>[]</code></td><td>Any field will be directly passed to the <code>&lt;meta /&gt;</code> tag. Possible fields include <code>id</code>, <code>name</code>, <code>property</code>, <code>content</code>, <code>itemprop</code>, etc.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    // highlight-next-line
+    metadata: [{ name: &quot;twitter:card&quot;, content: &quot;summary&quot; }],
+  },
+};
+</code></pre><h3 id="announcement-bar"><a href="#announcement-bar">Announcement bar</a></h3><p>Sometimes you want to announce something in your website. Just for such a case, you can add an announcement bar. This is a non-fixed and optionally dismissible panel above the navbar. All configuration are in the <code>announcementBar</code> object.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="announcement-bar-id" tabindex="0"><td><code>id</code></td><td><code>string</code></td><td><code>&#x27;announcement-bar&#x27;</code></td><td>Any value that will identify this message.</td></tr><tr id="announcement-bar-content" tabindex="0"><td><code>content</code></td><td><code>string</code></td><td><code>&#x27;&#x27;</code></td><td>The text content of the announcement. HTML will be interpolated.</td></tr><tr id="announcement-bar-backgroundColor" tabindex="0"><td><code>backgroundColor</code></td><td><code>string</code></td><td><code>&#x27;#fff&#x27;</code></td><td>Background color of the entire bar.</td></tr><tr id="announcement-bar-textColor" tabindex="0"><td><code>textColor</code></td><td><code>string</code></td><td><code>&#x27;#000&#x27;</code></td><td>Announcement text color.</td></tr><tr id="announcement-bar-isCloseable" tabindex="0"><td><code>isCloseable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Whether this announcement can be dismissed with a &#x27;×&#x27; button.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    // highlight-start
+    announcementBar: {
+      id: &quot;support_us&quot;,
+      content:
+        &#x27;We are looking to revamp our docs, please fill &lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;#&quot;&gt;this survey&lt;/a&gt;&#x27;,
+      backgroundColor: &quot;#fafbfc&quot;,
+      textColor: &quot;#091E42&quot;,
+      isCloseable: false,
+    },
+    // highlight-end
+  },
+};
+</code></pre><h2 id="navbar"><a href="#navbar">Navbar</a></h2><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-overview-title" tabindex="0"><td><code>title</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Title for the navbar.</td></tr><tr id="navbar-overview-logo" tabindex="0"><td><code>logo</code></td><td><em>See below</em></td><td><code>undefined</code></td><td>Customization of the logo object.</td></tr><tr id="navbar-overview-items" tabindex="0"><td><code>items</code></td><td><code>NavbarItem[]</code></td><td><code>[]</code></td><td>A list of navbar items. See specification below.</td></tr><tr id="navbar-overview-hideOnScroll" tabindex="0"><td><code>hideOnScroll</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the navbar is hidden when the user scrolls down.</td></tr><tr id="navbar-overview-style" tabindex="0"><td><code>style</code></td><td><code>&#x27;primary&#x27; <!-- -->|<!-- --> &#x27;dark&#x27;</code></td><td>Same as theme</td><td>Sets the navbar style, ignoring the dark/light theme.</td></tr></tbody></table><h3 id="navbar-logo"><a href="#navbar-logo">Navbar logo</a></h3><p>The logo can be placed in <a href="/docs/2.0.0-beta.20/static-assets">static folder</a>. Logo URL is set to base URL of your site by default. Although you can specify your own URL for the logo, if it is an external link, it will open in a new tab. In addition, you can override a value for the target attribute of logo link, it can come in handy if you are hosting docs website in a subdirectory of your main website, and in which case you probably do not need a link in the logo to the main website will open in a new tab.</p><p>To improve dark mode support, you can also set a different logo for this mode.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-logo-alt" tabindex="0"><td><code>alt</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Alt tag for the logo image.</td></tr><tr id="navbar-logo-src" tabindex="0"><td><code>src</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>URL to the logo image. Base URL is appended by default.</td></tr><tr id="navbar-logo-srcDark" tabindex="0"><td><code>srcDark</code></td><td><code>string</code></td><td><code>logo.src</code></td><td>An alternative image URL to use in dark mode.</td></tr><tr id="navbar-logo-href" tabindex="0"><td><code>href</code></td><td><code>string</code></td><td><code>siteConfig.baseUrl</code></td><td>Link to navigate to when the logo is clicked.</td></tr><tr id="navbar-logo-width" tabindex="0"><td><code>width</code></td><td><code>string <!-- -->|<!-- --> number</code></td><td><code>undefined</code></td><td>Specifies the <code>width</code> attribute.</td></tr><tr id="navbar-logo-height" tabindex="0"><td><code>height</code></td><td><code>string <!-- -->|<!-- --> number</code></td><td><code>undefined</code></td><td>Specifies the <code>height</code> attribute.</td></tr><tr id="navbar-logo-target" tabindex="0"><td><code>target</code></td><td><code>string</code></td><td>Calculated based on <code>href</code> (external links will open in a new tab, all others in the current one).</td><td>The <code>target</code> attribute of the link; controls whether the link is opened in a new tab, the current one, or otherwise.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      title: &quot;Site Title&quot;,
+      // highlight-start
+      logo: {
+        alt: &quot;Site Logo&quot;,
+        src: &quot;img/logo.svg&quot;,
+        srcDark: &quot;img/logo_dark.svg&quot;,
+        href: &quot;https://docusaurus.io/&quot;,
+        target: &quot;_self&quot;,
+        width: 32,
+        height: 32,
+      },
+      // highlight-end
+    },
+  },
+};
+</code></pre><h3 id="navbar-items"><a href="#navbar-items">Navbar items</a></h3><p>You can add items to the navbar via <code>themeConfig.navbar.items</code>.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      // highlight-start
+      items: [
+        {
+          type: &quot;doc&quot;,
+          position: &quot;left&quot;,
+          docId: &quot;introduction&quot;,
+          label: &quot;Docs&quot;,
+        },
+        { to: &quot;blog&quot;, label: &quot;Blog&quot;, position: &quot;left&quot; },
+        {
+          type: &quot;docsVersionDropdown&quot;,
+          position: &quot;right&quot;,
+        },
+        {
+          type: &quot;localeDropdown&quot;,
+          position: &quot;right&quot;,
+        },
+        {
+          href: &quot;https://github.com/facebook/docusaurus&quot;,
+          position: &quot;right&quot;,
+          className: &quot;header-github-link&quot;,
+          &quot;aria-label&quot;: &quot;GitHub repository&quot;,
+        },
+      ],
+      // highlight-end
+    },
+  },
+};
+</code></pre><p>The items can have different behaviors based on the <code>type</code> field. The sections below will introduce you to all the types of navbar items available.</p><h4 id="navbar-link"><a href="#navbar-link">Navbar link</a></h4><p>By default, Navbar items are regular links (internal or external).</p><p>React Router should automatically apply active link styling to links, but you can use <code>activeBasePath</code> in edge cases. For cases in which a link should be active on several different paths (such as when you have multiple doc folders under the same sidebar), you can use <code>activeBaseRegex</code>. <code>activeBaseRegex</code> is a more flexible alternative to <code>activeBasePath</code> and takes precedence over it -- Docusaurus parses it into a regular expression that is tested against the current URL.</p><p>Outbound (external) links automatically get <code>target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;</code> attributes.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-link-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;default&#x27;</code></td><td>Optional</td><td>Sets the type of this item to a link.</td></tr><tr id="navbar-link-label" tabindex="0"><td><code>label</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>The name to be shown for this item.</td></tr><tr id="navbar-link-html" tabindex="0"><td><code>html</code></td><td><code>string</code></td><td>Optional</td><td>Same as <code>label</code>, but renders pure HTML instead of text content.</td></tr><tr id="navbar-link-to" tabindex="0"><td><code>to</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>Client-side routing, used for navigating within the website. The baseUrl will be automatically prepended to this value.</td></tr><tr id="navbar-link-href" tabindex="0"><td><code>href</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>A full-page navigation, used for navigating outside of the website. <strong>Only one of <code>to</code> or <code>href</code> should be used.</strong></td></tr><tr id="navbar-link-prependBaseUrlToHref" tabindex="0"><td><code>prependBaseUrlToHref</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prepends the baseUrl to <code>href</code> values.</td></tr><tr id="navbar-link-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="navbar-link-activeBasePath" tabindex="0"><td><code>activeBasePath</code></td><td><code>string</code></td><td><code>to</code> / <code>href</code></td><td>To apply the active class styling on all routes starting with this path. This usually isn&#x27;t necessary.</td></tr><tr id="navbar-link-activeBaseRegex" tabindex="0"><td><code>activeBaseRegex</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Alternative to <code>activeBasePath</code> if required.</td></tr><tr id="navbar-link-className" tabindex="0"><td><code>className</code></td><td><code>string</code></td><td><code>&#x27;&#x27;</code></td><td>Custom CSS class (for styling any item).</td></tr></tbody></table><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>In addition to the fields above, you can specify other arbitrary attributes that can be applied to a HTML link.</p></div></div><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          to: &quot;docs/introduction&quot;,
+          // Only one of &quot;to&quot; or &quot;href&quot; should be used
+          // href: &#x27;https://www.facebook.com&#x27;,
+          label: &quot;Introduction&quot;,
+          // Only one of &quot;label&quot; or &quot;html&quot; should be used
+          // html: &#x27;&lt;b&gt;Introduction&lt;/b&gt;&#x27;
+          position: &quot;left&quot;,
+          activeBaseRegex: &quot;docs/(next|v8)&quot;,
+          target: &quot;_blank&quot;,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h4 id="navbar-dropdown"><a href="#navbar-dropdown">Navbar dropdown</a></h4><p>Navbar items of the type <code>dropdown</code> has the additional <code>items</code> field, an inner array of navbar items.</p><p>Navbar dropdown items only accept the following <strong>&quot;link-like&quot; item types</strong>:</p><ul><li><a href="#navbar-link">Navbar link</a></li><li><a href="#navbar-doc-link">Navbar doc link</a></li><li><a href="#navbar-docs-version">Navbar docs version</a></li><li><a href="#navbar-doc-sidebar">Navbar doc sidebar</a></li><li><a href="#navbar-with-custom-html">Navbar with custom HTML</a></li></ul><p>Note that the dropdown base item is a clickable link as well, so this item can receive any of the props of a <a href="#navbar-link">plain navbar link</a>.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-dropdown-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;dropdown&#x27;</code></td><td>Optional</td><td>Sets the type of this item to a dropdown.</td></tr><tr id="navbar-dropdown-label" tabindex="0"><td><code>label</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>The name to be shown for this item.</td></tr><tr id="navbar-dropdown-items" tabindex="0"><td><code>items</code></td><td><code><a href="#navbar-dropdown">LinkLikeItem</a>[]</code></td><td><strong>Required</strong></td><td>The items to be contained in the dropdown.</td></tr><tr id="navbar-dropdown-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;dropdown&quot;,
+          label: &quot;Community&quot;,
+          position: &quot;left&quot;,
+          items: [
+            {
+              label: &quot;Facebook&quot;,
+              href: &quot;https://www.facebook.com&quot;,
+            },
+            {
+              type: &quot;doc&quot;,
+              label: &quot;Social&quot;,
+              docId: &quot;social&quot;,
+            },
+            // ... more items
+          ],
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h4 id="navbar-doc-link"><a href="#navbar-doc-link">Navbar doc link</a></h4><p>If you want to link to a specific doc, this special navbar item type will render the link to the doc of the provided <code>docId</code>. It will get the class <code>navbar__link--active</code> as long as you browse a doc of the same sidebar.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-doc-link-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;doc&#x27;</code></td><td><strong>Required</strong></td><td>Sets the type of this item to a doc link.</td></tr><tr id="navbar-doc-link-docId" tabindex="0"><td><code>docId</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>The ID of the doc that this item links to.</td></tr><tr id="navbar-doc-link-label" tabindex="0"><td><code>label</code></td><td><code>string</code></td><td><code>docId</code></td><td>The name to be shown for this item.</td></tr><tr id="navbar-doc-link-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="navbar-doc-link-docsPluginId" tabindex="0"><td><code>docsPluginId</code></td><td><code>string</code></td><td><code>&#x27;default&#x27;</code></td><td>The ID of the docs plugin that the doc belongs to.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;doc&quot;,
+          position: &quot;left&quot;,
+          docId: &quot;introduction&quot;,
+          label: &quot;Docs&quot;,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h4 id="navbar-doc-sidebar"><a href="#navbar-doc-sidebar">Navbar linked to a sidebar</a></h4><p>You can link a navbar item to the first document link (which can be a doc link or a generated category index) of a given sidebar without having to hardcode a doc ID.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-doc-sidebar-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;docSidebar&#x27;</code></td><td><strong>Required</strong></td><td>Sets the type of this navbar item to a sidebar&#x27;s first document.</td></tr><tr id="navbar-doc-sidebar-sidebarId" tabindex="0"><td><code>sidebarId</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>The ID of the sidebar that this item is linked to.</td></tr><tr id="navbar-doc-sidebar-label" tabindex="0"><td><code>label</code></td><td><code>string</code></td><td>First document link&#x27;s sidebar label</td><td>The name to be shown for this item.</td></tr><tr id="navbar-doc-sidebar-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="navbar-doc-sidebar-docsPluginId" tabindex="0"><td><code>docsPluginId</code></td><td><code>string</code></td><td><code>&#x27;default&#x27;</code></td><td>The ID of the docs plugin that the sidebar belongs to.</td></tr></tbody></table><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Use this navbar item type if your sidebar is updated often and the order is not stable.</p></div></div><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;docSidebar&quot;,
+          position: &quot;left&quot;,
+          sidebarId: &quot;api&quot;,
+          label: &quot;API&quot;,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><pre><code class="language-js" metastring="title=&quot;sidebars.js&quot;" title="&quot;sidebars.js&quot;">module.exports = {
+  tutorial: [
+    {
+      type: &quot;autogenerated&quot;,
+      dirName: &quot;guides&quot;,
+    },
+  ],
+  api: [
+    // highlight-next-line
+    &quot;cli&quot;, // The navbar item will be linking to this doc
+    &quot;docusaurus-core&quot;,
+    {
+      type: &quot;autogenerated&quot;,
+      dirName: &quot;api&quot;,
+    },
+  ],
+};
+</code></pre><h4 id="navbar-docs-version-dropdown"><a href="#navbar-docs-version-dropdown">Navbar docs version dropdown</a></h4><p>If you use docs with versioning, this special navbar item type that will render a dropdown with all your site&#x27;s available versions.</p><p>The user will be able to switch from one version to another, while staying on the same doc (as long as the doc id is constant across versions).</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-docs-version-dropdown-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;docsVersionDropdown&#x27;</code></td><td><strong>Required</strong></td><td>Sets the type of this item to a docs version dropdown.</td></tr><tr id="navbar-docs-version-dropdown-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="navbar-docs-version-dropdown-dropdownItemsBefore" tabindex="0"><td><code>dropdownItemsBefore</code></td><td><code><a href="#navbar-dropdown">LinkLikeItem</a>[]</code></td><td><code>[]</code></td><td>Add additional dropdown items at the beginning of the dropdown.</td></tr><tr id="navbar-docs-version-dropdown-dropdownItemsAfter" tabindex="0"><td><code>dropdownItemsAfter</code></td><td><code><a href="#navbar-dropdown">LinkLikeItem</a>[]</code></td><td><code>[]</code></td><td>Add additional dropdown items at the end of the dropdown.</td></tr><tr id="navbar-docs-version-dropdown-docsPluginId" tabindex="0"><td><code>docsPluginId</code></td><td><code>string</code></td><td><code>&#x27;default&#x27;</code></td><td>The ID of the docs plugin that the doc versioning belongs to.</td></tr><tr id="navbar-docs-version-dropdown-dropdownActiveClassDisabled" tabindex="0"><td><code>dropdownActiveClassDisabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Do not add the link active class when browsing docs.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;docsVersionDropdown&quot;,
+          position: &quot;left&quot;,
+          dropdownItemsAfter: [{ to: &quot;/versions&quot;, label: &quot;All versions&quot; }],
+          dropdownActiveClassDisabled: true,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h4 id="navbar-docs-version"><a href="#navbar-docs-version">Navbar docs version</a></h4><p>If you use docs with versioning, this special navbar item type will link to the active/browsed version of your doc (depends on the current URL), and fallback to the latest version.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-docs-version-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;docsVersion&#x27;</code></td><td><strong>Required</strong></td><td>Sets the type of this item to a doc version link.</td></tr><tr id="navbar-docs-version-label" tabindex="0"><td><code>label</code></td><td><code>string</code></td><td>The active/latest version label.</td><td>The name to be shown for this item.</td></tr><tr id="navbar-docs-version-to" tabindex="0"><td><code>to</code></td><td><code>string</code></td><td>The active/latest version.</td><td>The internal link that this item points to.</td></tr><tr id="navbar-docs-version-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="navbar-docs-version-docsPluginId" tabindex="0"><td><code>docsPluginId</code></td><td><code>string</code></td><td><code>&#x27;default&#x27;</code></td><td>The ID of the docs plugin that the doc versioning belongs to.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;docsVersion&quot;,
+          position: &quot;left&quot;,
+          to: &quot;/path&quot;,
+          label: &quot;label&quot;,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h4 id="navbar-locale-dropdown"><a href="#navbar-locale-dropdown">Navbar locale dropdown</a></h4><p>If you use the <a href="/docs/2.0.0-beta.20/i18n/introduction">i18n feature</a>, this special navbar item type will render a dropdown with all your site&#x27;s available locales.</p><p>The user will be able to switch from one locale to another, while staying on the same page.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-locale-dropdown-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;localeDropdown&#x27;</code></td><td><strong>Required</strong></td><td>Sets the type of this item to a locale dropdown.</td></tr><tr id="navbar-locale-dropdown-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="navbar-locale-dropdown-dropdownItemsBefore" tabindex="0"><td><code>dropdownItemsBefore</code></td><td><code><a href="#navbar-dropdown">LinkLikeItem</a>[]</code></td><td><code>[]</code></td><td>Add additional dropdown items at the beginning of the dropdown.</td></tr><tr id="navbar-locale-dropdown-dropdownItemsAfter" tabindex="0"><td><code>dropdownItemsAfter</code></td><td><code><a href="#navbar-dropdown">LinkLikeItem</a>[]</code></td><td><code>[]</code></td><td>Add additional dropdown items at the end of the dropdown.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;localeDropdown&quot;,
+          position: &quot;left&quot;,
+          dropdownItemsAfter: [
+            {
+              to: &quot;https://my-site.com/help-us-translate&quot;,
+              label: &quot;Help us translate&quot;,
+            },
+          ],
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h4 id="navbar-search"><a href="#navbar-search">Navbar search</a></h4><p>If you use the <a href="/docs/2.0.0-beta.20/search">search</a>, the search bar will be the rightmost element in the navbar.</p><p>However, with this special navbar item type, you can change the default location.</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-search-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;search&#x27;</code></td><td><strong>Required</strong></td><td>Sets the type of this item to a search bar.</td></tr><tr id="navbar-search-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr></tbody></table><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;search&quot;,
+          position: &quot;right&quot;,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h4 id="navbar-with-custom-html"><a href="#navbar-with-custom-html">Navbar with custom HTML</a></h4><p>You can also render your own HTML markup inside a navbar item using this navbar item type.</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="navbar-html-type" tabindex="0"><td><code>type</code></td><td><code>&#x27;html&#x27;</code></td><td><strong>Required</strong></td><td>Sets the type of this item to a HTML element.</td></tr><tr id="navbar-html-position" tabindex="0"><td><code>position</code></td><td><code>&#x27;left&#x27; <!-- -->|<!-- --> &#x27;right&#x27;</code></td><td><code>&#x27;left&#x27;</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="navbar-html-className" tabindex="0"><td><code>className</code></td><td><code>string</code></td><td><code>&#x27;&#x27;</code></td><td>Custom CSS class for this navbar item.</td></tr><tr id="navbar-html-value" tabindex="0"><td><code>value</code></td><td><code>string</code></td><td><code>&#x27;&#x27;</code></td><td>Custom HTML to be rendered inside this navbar item.</td></tr></tbody></table><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        // highlight-start
+        {
+          type: &quot;html&quot;,
+          position: &quot;right&quot;,
+          value: &quot;&lt;button&gt;Give feedback&lt;/button&gt;&quot;,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre><h3 id="auto-hide-sticky-navbar"><a href="#auto-hide-sticky-navbar">Auto-hide sticky navbar</a></h3><p>You can enable this cool UI feature that automatically hides the navbar when a user starts scrolling down the page, and show it again when the user scrolls up.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      // highlight-next-line
+      hideOnScroll: true,
+    },
+  },
+};
+</code></pre><h3 id="navbar-style"><a href="#navbar-style">Navbar style</a></h3><p>You can set the static Navbar style without disabling the theme switching ability. The selected style will always apply no matter which theme user have selected.</p><p>Currently, there are two possible style options: <code>dark</code> and <code>primary</code> (based on the <code>--ifm-color-primary</code> color). You can see the styles preview in the <a href="https://infima.dev/docs/components/navbar/">Infima documentation</a>.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      // highlight-next-line
+      style: &quot;primary&quot;,
+    },
+  },
+};
+</code></pre><h2 id="codeblock"><a href="#codeblock">CodeBlock</a></h2><p>Docusaurus uses <a href="https://github.com/FormidableLabs/prism-react-renderer">Prism React Renderer</a> to highlight code blocks. All configuration are in the <code>prism</code> object.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="codeblock-theme" tabindex="0"><td><code>theme</code></td><td><code>PrismTheme</code></td><td><code>palenight</code></td><td>The Prism theme to use for light-theme code blocks.</td></tr><tr id="codeblock-darkTheme" tabindex="0"><td><code>darkTheme</code></td><td><code>PrismTheme</code></td><td><code>palenight</code></td><td>The Prism theme to use for dark-theme code blocks.</td></tr><tr id="codeblock-defaultLanguage" tabindex="0"><td><code>defaultLanguage</code></td><td><code>string</code></td><td><code>undefined</code></td><td>The side of the navbar this item should appear on.</td></tr><tr id="codeblock-magicComments" tabindex="0"><td><code>magicComments</code></td><td><code>MagicCommentConfig[]</code></td><td><em>see below</em></td><td>The list of <a href="/docs/2.0.0-beta.20/markdown-features/code-blocks#custom-magic-comments">magic comments</a>.</td></tr></tbody></table><pre><code class="language-ts">type MagicCommentConfig = {
+  className: string;
+  line?: string;
+  block?: { start: string; end: string };
+};
+</code></pre><pre><code class="language-js">const defaultMagicComments = [
+  {
+    className: &quot;theme-code-block-highlighted-line&quot;,
+    line: &quot;highlight-next-line&quot;,
+    block: { start: &quot;highlight-start&quot;, end: &quot;highlight-end&quot; },
+  },
+];
+</code></pre><h3 id="theme"><a href="#theme">Theme</a></h3><p>By default, we use <a href="https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes/palenight.js">Palenight</a> as syntax highlighting theme. You can specify a custom theme from the <a href="https://github.com/FormidableLabs/prism-react-renderer/tree/master/src/themes">list of available themes</a>. You may also use a different syntax highlighting theme when the site is in dark mode.</p><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    prism: {
+      // highlight-start
+      theme: require(&quot;prism-react-renderer/themes/github&quot;),
+      darkTheme: require(&quot;prism-react-renderer/themes/dracula&quot;),
+      // highlight-end
+    },
+  },
+};
+</code></pre><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>If you use the line highlighting Markdown syntax, you might need to specify a different highlight background color for the dark mode syntax highlighting theme. Refer to the <a href="/docs/2.0.0-beta.20/markdown-features/code-blocks#line-highlighting">docs for guidance</a>.</p></div></div><h3 id="default-language"><a href="#default-language">Default language</a></h3><p>You can set a default language for code blocks if no language is added after the opening triple backticks (i.e. ```). Note that a valid <a href="https://prismjs.com/#supported-languages">language name</a> must be passed.</p><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    prism: {
+      // highlight-next-line
+      defaultLanguage: &quot;javascript&quot;,
+    },
+  },
+};
+</code></pre><h2 id="footer-1"><a href="#footer-1">Footer</a></h2><p>You can add logo and a copyright to the footer via <code>themeConfig.footer</code>. Logo can be placed in <a href="/docs/2.0.0-beta.20/static-assets">static folder</a>. Logo URL works in the same way of the navbar logo.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="footer-logo" tabindex="0"><td><code>logo</code></td><td><code>Logo</code></td><td><code>undefined</code></td><td>Customization of the logo object. See <a href="#navbar-logo">Navbar logo</a> for details.</td></tr><tr id="footer-copyright" tabindex="0"><td><code>copyright</code></td><td><code>string</code></td><td><code>undefined</code></td><td>The copyright message to be displayed at the bottom.</td></tr><tr id="footer-style" tabindex="0"><td><code>style</code></td><td><code>&#x27;dark&#x27; <!-- -->|<!-- --> &#x27;light&#x27;</code></td><td><code>&#x27;light&#x27;</code></td><td>The color theme of the footer component.</td></tr><tr id="footer-links" tabindex="0"><td><code>links</code></td><td><code>(Column <!-- -->|<!-- --> FooterLink)[]</code></td><td><code>[]</code></td><td>The link groups to be present.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    // highlight-start
+    footer: {
+      logo: {
+        alt: &quot;Facebook Open Source Logo&quot;,
+        src: &quot;img/oss_logo.png&quot;,
+        href: &quot;https://opensource.facebook.com&quot;,
+        width: 160,
+        height: 51,
+      },
+      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+    },
+    // highlight-end
+  },
+};
+</code></pre><h3 id="footer-links"><a href="#footer-links">Footer Links</a></h3><p>You can add links to the footer via <code>themeConfig.footer.links</code>. There are two types of footer configurations: <strong>multi-column footers</strong> and <strong>simple footers</strong>.</p><p>Multi-column footer links have a <code>title</code> and a list of <code>FooterItem</code>s for each column.</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="footer-links-title" tabindex="0"><td><code>title</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Label of the section of these links.</td></tr><tr id="footer-links-items" tabindex="0"><td><code>items</code></td><td><code>FooterItem[]</code></td><td><code>[]</code></td><td>Links in this section.</td></tr></tbody></table><p>Accepted fields of each <code>FooterItem</code>:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="footer-items-label" tabindex="0"><td><code>label</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>Text to be displayed for this link.</td></tr><tr id="footer-items-to" tabindex="0"><td><code>to</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>Client-side routing, used for navigating within the website. The baseUrl will be automatically prepended to this value.</td></tr><tr id="footer-items-href" tabindex="0"><td><code>href</code></td><td><code>string</code></td><td><strong>Required</strong></td><td>A full-page navigation, used for navigating outside of the website. <strong>Only one of <code>to</code> or <code>href</code> should be used.</strong></td></tr><tr id="footer-items-html" tabindex="0"><td><code>html</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Renders the html pass-through instead of a simple link. In case <code>html</code> is used, no other options should be provided.</td></tr></tbody></table><p>Example multi-column configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  footer: {
+    // highlight-start
+    links: [
+      {
+        title: &quot;Docs&quot;,
+        items: [
+          {
+            label: &quot;Style Guide&quot;,
+            to: &quot;docs/&quot;,
+          },
+          {
+            label: &quot;Second Doc&quot;,
+            to: &quot;docs/doc2/&quot;,
+          },
+        ],
+      },
+      {
+        title: &quot;Community&quot;,
+        items: [
+          {
+            label: &quot;Stack Overflow&quot;,
+            href: &quot;https://stackoverflow.com/questions/tagged/docusaurus&quot;,
+          },
+          {
+            label: &quot;Discord&quot;,
+            href: &quot;https://discordapp.com/invite/docusaurus&quot;,
+          },
+          {
+            label: &quot;Twitter&quot;,
+            href: &quot;https://twitter.com/docusaurus&quot;,
+          },
+          {
+            html: `
+                &lt;a href=&quot;https://www.netlify.com&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; aria-label=&quot;Deploys by Netlify&quot;&gt;
+                  &lt;img src=&quot;https://www.netlify.com/img/global/badges/netlify-color-accent.svg&quot; alt=&quot;Deploys by Netlify&quot; width=&quot;114&quot; height=&quot;51&quot; /&gt;
+                &lt;/a&gt;
+              `,
+          },
+        ],
+      },
+    ],
+    // highlight-end
+  },
+};
+</code></pre><p>A simple footer just has a list of <code>FooterItem</code>s displayed in a row.</p><p>Example simple configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  footer: {
+    // highlight-start
+    links: [
+      {
+        label: &quot;Stack Overflow&quot;,
+        href: &quot;https://stackoverflow.com/questions/tagged/docusaurus&quot;,
+      },
+      {
+        label: &quot;Discord&quot;,
+        href: &quot;https://discordapp.com/invite/docusaurus&quot;,
+      },
+      {
+        label: &quot;Twitter&quot;,
+        href: &quot;https://twitter.com/docusaurus&quot;,
+      },
+      {
+        html: `
+            &lt;a href=&quot;https://www.netlify.com&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; aria-label=&quot;Deploys by Netlify&quot;&gt;
+              &lt;img src=&quot;https://www.netlify.com/img/global/badges/netlify-color-accent.svg&quot; alt=&quot;Deploys by Netlify&quot; width=&quot;114&quot; height=&quot;51&quot; /&gt;
+            &lt;/a&gt;
+          `,
+      },
+    ],
+    // highlight-end
+  },
+};
+</code></pre><h2 id="table-of-contents"><a href="#table-of-contents">Table of Contents</a></h2><p>You can adjust the default table of contents via <code>themeConfig.tableOfContents</code>.</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="minHeadingLevel" tabindex="0"><td><code>minHeadingLevel</code></td><td><code>number</code></td><td><code>2</code></td><td>The minimum heading level shown in the table of contents. Must be between 2 and 6 and lower or equal to the max value.</td></tr><tr id="maxHeadingLevel" tabindex="0"><td><code>maxHeadingLevel</code></td><td><code>number</code></td><td><code>3</code></td><td>Max heading level displayed in the TOC. Should be an integer between 2 and 6.</td></tr></tbody></table><p>Example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    // highlight-start
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 5,
+    },
+    // highlight-end
+  },
+};
+</code></pre><h2 id="hooks"><a href="#hooks">Hooks</a></h2><h3 id="use-color-mode"><a href="#use-color-mode"><code>useColorMode</code></a></h3><p>A React hook to access the color context. This context contains functions for setting light and dark mode and exposes boolean variable, indicating which mode is currently in use.</p><p>Usage example:</p><pre><code class="language-jsx">import React from &quot;react&quot;;
+// highlight-next-line
+import { useColorMode } from &quot;@docusaurus/theme-common&quot;;
+
+const Example = () =&gt; {
+  // highlight-next-line
+  const { colorMode, setColorMode } = useColorMode();
+
+  return &lt;h1&gt;Dark mode is now {colorMode === &quot;dark&quot; ? &quot;on&quot; : &quot;off&quot;}&lt;/h1&gt;;
+};
+</code></pre><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>The component calling <code>useColorMode</code> must be a child of the <code>Layout</code> component.</p><pre><code class="language-jsx">function ExamplePage() {
+  return (
+    &lt;Layout&gt;
+      &lt;Example /&gt;
+    &lt;/Layout&gt;
+  );
+}
+</code></pre></div></div><h2 id="i18n"><a href="#i18n">i18n</a></h2><p>Read the <a href="/docs/2.0.0-beta.20/i18n/introduction">i18n introduction</a> first.</p><h3 id="translation-files-location"><a href="#translation-files-location">Translation files location</a></h3><ul><li><strong>Base path</strong>: <code>website/i18n/[locale]/docusaurus-theme-[themeName]</code></li><li><strong>Multi-instance path</strong>: N/A</li><li><strong>JSON files</strong>: extracted with <a href="/docs/2.0.0-beta.20/cli#docusaurus-write-translations-sitedir"><code>docusaurus write-translations</code></a></li><li><strong>Markdown files</strong>: N/A</li></ul><h3 id="example-file-system-structure"><a href="#example-file-system-structure">Example file-system structure</a></h3><pre><code class="language-bash">website/i18n/[locale]/docusaurus-theme-classic
+│
+│ # translations for the theme
+├── navbar.json
+└── footer.json
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/api/themes">Previous doc: <!-- -->Themes overview</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/api/themes/@docusaurus/theme-classic">Next doc: <!-- -->📦 theme-classic</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#common">Common</a><ol><li><a href="#color-mode---dark-mode">Color mode</a></li><li><a href="#meta-image">Meta image</a></li><li><a href="#metadata">Metadata</a></li><li><a href="#announcement-bar">Announcement bar</a></li></ol></li><li><a href="#navbar">Navbar</a><ol><li><a href="#navbar-logo">Navbar logo</a></li><li><a href="#navbar-items">Navbar items</a></li><li><a href="#auto-hide-sticky-navbar">Auto-hide sticky navbar</a></li><li><a href="#navbar-style">Navbar style</a></li></ol></li><li><a href="#codeblock">CodeBlock</a><ol><li><a href="#theme">Theme</a></li><li><a href="#default-language">Default language</a></li></ol></li><li><a href="#footer-1">Footer</a><ol><li><a href="#footer-links">Footer Links</a></li></ol></li><li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#hooks">Hooks</a><ol><li><a href="#use-color-mode"><code>useColorMode</code></a></li></ol></li><li><a href="#i18n">i18n</a><ol><li><a href="#translation-files-location">Translation files location</a></li><li><a href="#example-file-system-structure">Example file-system structure</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

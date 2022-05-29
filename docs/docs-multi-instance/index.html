@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Docs Multi-instance</h1><p>The <code>@docusaurus/plugin-content-docs</code> plugin can support <a href="/docs/using-plugins#multi-instance-plugins-and-plugin-ids">multi-instance</a>.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>This feature is only useful for <a href="/docs/versioning">versioned documentation</a>. It is recommended to be familiar with docs versioning before reading this page. If you just want <a href="/docs/sidebar/multiple-sidebars">multiple sidebars</a>, you can do so within one plugin.</p></div></div><h2 id="use-cases"><a href="#use-cases">Use-cases</a></h2><p>Sometimes you want a Docusaurus site to host 2 distinct sets of documentation (or more).</p><p>These documentations may even have different versioning/release lifecycles.</p><h3 id="mobile-sdks-documentation"><a href="#mobile-sdks-documentation">Mobile SDKs documentation</a></h3><p>If you build a cross-platform mobile SDK, you may have 2 documentations:</p><ul><li>Android SDK documentation (<code>v1.0</code>, <code>v1.1</code>)</li><li>iOS SDK documentation (<code>v1.0</code>, <code>v2.0</code>)</li></ul><p>In this case, you can use a distinct docs plugin instance per mobile SDK documentation.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>If each documentation instance is very large, you should rather create 2 distinct Docusaurus sites.</p><p>If someone edits the iOS documentation, is it really useful to rebuild everything, including the whole Android documentation that did not change?</p></div></div><h3 id="versioned-and-unversioned-doc"><a href="#versioned-and-unversioned-doc">Versioned and unversioned doc</a></h3><p>Sometimes, you want some documents to be versioned, while other documents are more &quot;global&quot;, and it feels useless to version them.</p><p>We use this pattern on the Docusaurus website itself:</p><ul><li>The <a href="/docs">/docs/<!-- -->*</a> section is versioned</li><li>The <a href="/community/support">/community/<!-- -->*</a> section is unversioned</li></ul><h2 id="setup"><a href="#setup">Setup</a></h2><p>Suppose you have 2 documentations:</p><ul><li>Product: some versioned doc about your product</li><li>Community: some unversioned doc about the community around your product</li></ul><p>In this case, you should use the same plugin twice in your site configuration.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p><code>@docusaurus/preset-classic</code> already includes a docs plugin instance for you!</p></div></div><p>When using the preset:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  presets: [
+    [
+      &quot;@docusaurus/preset-classic&quot;,
+      {
+        docs: {
+          // highlight-start
+          // id: &#x27;product&#x27;, // omitted =&gt; default instance
+          // highlight-end
+          path: &quot;product&quot;,
+          routeBasePath: &quot;product&quot;,
+          sidebarPath: require.resolve(&quot;./sidebarsProduct.js&quot;),
+          // ... other options
+        },
+      },
+    ],
+  ],
+  plugins: [
+    [
+      &quot;@docusaurus/plugin-content-docs&quot;,
+      {
+        // highlight-start
+        id: &quot;community&quot;,
+        // highlight-end
+        path: &quot;community&quot;,
+        routeBasePath: &quot;community&quot;,
+        sidebarPath: require.resolve(&quot;./sidebarsCommunity.js&quot;),
+        // ... other options
+      },
+    ],
+  ],
+};
+</code></pre><p>When not using the preset:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  plugins: [
+    [
+      &quot;@docusaurus/plugin-content-docs&quot;,
+      {
+        // highlight-start
+        // id: &#x27;product&#x27;, // omitted =&gt; default instance
+        // highlight-end
+        path: &quot;product&quot;,
+        routeBasePath: &quot;product&quot;,
+        sidebarPath: require.resolve(&quot;./sidebarsProduct.js&quot;),
+        // ... other options
+      },
+    ],
+    [
+      &quot;@docusaurus/plugin-content-docs&quot;,
+      {
+        // highlight-start
+        id: &quot;community&quot;,
+        // highlight-end
+        path: &quot;community&quot;,
+        routeBasePath: &quot;community&quot;,
+        sidebarPath: require.resolve(&quot;./sidebarsCommunity.js&quot;),
+        // ... other options
+      },
+    ],
+  ],
+};
+</code></pre><p>Don&#x27;t forget to assign a unique <code>id</code> attribute to plugin instances.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>We consider that the <code>product</code> instance is the most important one, and make it the &quot;default&quot; instance by not assigning any id.</p></div></div><h2 id="versioned-paths"><a href="#versioned-paths">Versioned paths</a></h2><p>Each plugin instance will store versioned docs in a distinct folder.</p><p>The default plugin instance will use these paths:</p><ul><li><code>website/versions.json</code></li><li><code>website/versioned_docs</code></li><li><code>website/versioned_sidebars</code></li></ul><p>The other plugin instances (with an <code>id</code> attribute) will use these paths:</p><ul><li><code>website/[pluginId]_versions.json</code></li><li><code>website/[pluginId]_versioned_docs</code></li><li><code>website/[pluginId]_versioned_sidebars</code></li></ul><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>You can omit the <code>id</code> attribute (defaults to <code>default</code>) for one of the docs plugin instances.</p><p>The instance paths will be simpler, and retro-compatible with a single-instance setup.</p></div></div><h2 id="tagging-new-versions"><a href="#tagging-new-versions">Tagging new versions</a></h2><p>Each plugin instance will have its own cli command to tag a new version. They will be displayed if you run:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm run docusaurus -- --help
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn run docusaurus -- --help
+</code></pre></div></div></div><p>To version the product/default docs plugin instance:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm run docusaurus docs:version 1.0.0
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn run docusaurus docs:version 1.0.0
+</code></pre></div></div></div><p>To version the non-default/community docs plugin instance:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm run docusaurus docs:version:community 1.0.0
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn run docusaurus docs:version:community 1.0.0
+</code></pre></div></div></div><h2 id="docs-navbar-items"><a href="#docs-navbar-items">Docs navbar items</a></h2><p>Each docs-related <a href="/docs/api/themes/configuration#navbar">theme navbar items</a> take an optional <code>docsPluginId</code> attribute.</p><p>For example, if you want to have one version dropdown for each mobile SDK (iOS and Android), you could do:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    navbar: {
+      items: [
+        {
+          type: &quot;docsVersionDropdown&quot;,
+          // highlight-start
+          docsPluginId: &quot;ios&quot;,
+          // highlight-end
+        },
+        {
+          type: &quot;docsVersionDropdown&quot;,
+          // highlight-start
+          docsPluginId: &quot;android&quot;,
+          // highlight-end
+        },
+      ],
+    },
+  },
+};
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/versioning">Previous doc: <!-- -->Versioning</a></span><span class="nextLink_cubj"><a href="/docs/blog">Next doc: <!-- -->Blog</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#use-cases">Use-cases</a><ol><li><a href="#mobile-sdks-documentation">Mobile SDKs documentation</a></li><li><a href="#versioned-and-unversioned-doc">Versioned and unversioned doc</a></li></ol></li><li><a href="#setup">Setup</a></li><li><a href="#versioned-paths">Versioned paths</a></li><li><a href="#tagging-new-versions">Tagging new versions</a></li><li><a href="#docs-navbar-items">Docs navbar items</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

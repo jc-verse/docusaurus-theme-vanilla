@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Code blocks</h1><h1>Code blocks</h1><p>Code blocks within documentation are super-powered 💪.</p><h2 id="code-title"><a href="#code-title">Code title</a></h2><p>You can add a title to the code block by adding a <code>title</code> key after the language (leave a space between them).</p><pre><code class="language-md">```jsx title=&quot;/src/components/HelloCodeTitle.js&quot;
+function HelloCodeTitle(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+```
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code class="language-jsx" metastring="title=&quot;/src/components/HelloCodeTitle.js&quot;" title="&quot;/src/components/HelloCodeTitle.js&quot;">function HelloCodeTitle(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+</code></pre></div></div><h2 id="syntax-highlighting"><a href="#syntax-highlighting">Syntax highlighting</a></h2><p>Code blocks are text blocks wrapped around by strings of 3 backticks. You may check out <a href="https://github.com/mdx-js/specification">this reference</a> for the specifications of MDX.</p><pre><code class="language-md">```js
+console.log(&quot;Every repo must come with a mascot.&quot;);
+```
+</code></pre><p>Use the matching language meta string for your code block, and Docusaurus will pick up syntax highlighting automatically, powered by <a href="https://github.com/FormidableLabs/prism-react-renderer">Prism React Renderer</a>.</p><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code class="language-js">console.log(&quot;Every repo must come with a mascot.&quot;);
+</code></pre></div></div><h3 id="theming"><a href="#theming">Theming</a></h3><p>By default, the Prism <a href="https://github.com/FormidableLabs/prism-react-renderer#theming">syntax highlighting theme</a> we use is <a href="https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes/palenight.js">Palenight</a>. You can change this to another theme by passing <code>theme</code> field in <code>prism</code> as <code>themeConfig</code> in your docusaurus.config.js.</p><p>For example, if you prefer to use the <code>dracula</code> highlighting theme:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  themeConfig: {
+    prism: {
+      // highlight-next-line
+      theme: require(&quot;prism-react-renderer/themes/dracula&quot;),
+    },
+  },
+};
+</code></pre><p>Because a Prism theme is just a JS object, you can also write your own theme if you are not satisfied with the default. Docusaurus enhances the <code>github</code> and <code>vsDark</code> themes to provide richer highlight, and you can check our implementations for the <a href="https://github.com/facebook/docusaurus/blob/main/website/src/utils/prismLight.mjs">light</a> and <a href="https://github.com/facebook/docusaurus/blob/main/website/src/utils/prismDark.mjs">dark</a> code block themes.</p><h3 id="supported-languages"><a href="#supported-languages">Supported Languages</a></h3><p>By default, Docusaurus comes with a subset of <a href="https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js">commonly used languages</a>.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>Some popular languages like Java, C#, or PHP are not enabled by default.</p></div></div><p>To add syntax highlighting for any of the other <a href="https://prismjs.com/#supported-languages">Prism-supported languages</a>, define it in an array of additional languages.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>Each additional language has to be a valid Prism component name. For example, Prism would map the <em>language</em> <code>cs</code> to <code>csharp</code>, but only <code>prism-csharp.js</code> exists as a <em>component</em>, so you need to use <code>additionalLanguages: [&#x27;csharp&#x27;]</code>. You can look into <code>node_modules/prismjs/components</code> to find all components (languages) available.</p></div></div><p>For example, if you want to add highlighting for the PowerShell language:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  themeConfig: {
+    prism: {
+      // highlight-next-line
+      additionalLanguages: [&quot;powershell&quot;],
+    },
+    // ...
+  },
+};
+</code></pre><p>After adding <code>additionalLanguages</code>, restart Docusaurus.</p><p>If you want to add highlighting for languages not yet supported by Prism, you can swizzle <code>prism-include-languages</code>:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm run swizzle @docusaurus/theme-classic prism-include-languages
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn run swizzle @docusaurus/theme-classic prism-include-languages
+</code></pre></div></div></div><p>It will produce <code>prism-include-languages.js</code> in your <code>src/theme</code> folder. You can add highlighting support for custom languages by editing <code>prism-include-languages.js</code>:</p><pre><code class="language-js" metastring="title=&quot;src/theme/prism-include-languages.js&quot;" title="&quot;src/theme/prism-include-languages.js&quot;">const prismIncludeLanguages = (Prism) =&gt; {
+  // ...
+
+  additionalLanguages.forEach((lang) =&gt; {
+    require(`prismjs/components/prism-${lang}`);
+  });
+
+  // highlight-next-line
+  require(&quot;/path/to/your/prism-language-definition&quot;);
+
+  // ...
+};
+</code></pre><p>You can refer to <a href="https://github.com/PrismJS/prism/tree/master/components">Prism&#x27;s official language definitions</a> when you are writing your own language definitions.</p><h2 id="line-highlighting"><a href="#line-highlighting">Line highlighting</a></h2><h3 id="highlighting-with-comments"><a href="#highlighting-with-comments">Highlighting with comments</a></h3><p>You can use comments with <code>highlight-next-line</code>, <code>highlight-start</code>, and <code>highlight-end</code> to select which lines are highlighted.</p><pre><code class="language-md">```js
+function HighlightSomeText(highlight) {
+  if (highlight) {
+    // highlight-next-line
+    return &quot;This text is highlighted!&quot;;
+  }
+
+  return &quot;Nothing highlighted&quot;;
+}
+
+function HighlightMoreText(highlight) {
+  // highlight-start
+  if (highlight) {
+    return &quot;This range is highlighted!&quot;;
+  }
+  // highlight-end
+
+  return &quot;Nothing highlighted&quot;;
+}
+```
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code class="language-js">function HighlightSomeText(highlight) {
+  if (highlight) {
+    // highlight-next-line
+    return &#x27;This text is highlighted!&#x27;;
+  }
+
+  return &#x27;Nothing highlighted&#x27;;
+}
+
+function HighlightMoreText(highlight) {
+  // highlight-start
+  if (highlight) {
+    return &#x27;This range is highlighted!&#x27;;
+  }
+  // highlight-end
+
+  return &#x27;Nothing highlighted&#x27;;
+}
+</code></pre></div></div><p>Supported commenting syntax:</p><table><thead><tr><th>Style</th><th>Syntax</th></tr></thead><tbody><tr><td>C-style</td><td><code>/* ... */</code> and <code>// ...</code></td></tr><tr><td>JSX-style</td><td><code>{/* ... */}</code></td></tr><tr><td>Bash-style</td><td><code># ...</code></td></tr><tr><td>HTML-style</td><td><code>&lt;!-- ... --&gt;</code></td></tr></tbody></table><p>We will do our best to infer which set of comment styles to use based on the language, and default to allowing <em>all</em> comment styles. If there&#x27;s a comment style that is not currently supported, we are open to adding them! Pull requests welcome. Note that different comment styles have no semantic difference, only their content does.</p><p>You can set your own background color for highlighted code line in your <code>src/css/custom.css</code> which will better fit to your selected syntax highlighting theme. The color given below works for the default highlighting theme (Palenight), so if you are using another theme, you will have to tweak the color accordingly.</p><pre><code class="language-css" metastring="title=&quot;/src/css/custom.css&quot;" title="&quot;/src/css/custom.css&quot;">:root {
+  --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
+}
+
+/* If you have a different syntax highlighting theme for dark mode. */
+[data-theme=&quot;dark&quot;] {
+  /* Color which works with dark mode syntax highlighting theme */
+  --docusaurus-highlighted-code-line-bg: rgb(100, 100, 100);
+}
+</code></pre><p>If you also need to style the highlighted code line in some other way, you can target on <code>theme-code-block-highlighted-line</code> CSS class.</p><h3 id="highlighting-with-metadata-string"><a href="#highlighting-with-metadata-string">Highlighting with metadata string</a></h3><p>You can also specify highlighted line ranges within the language meta string (leave a space after the language). To highlight multiple lines, separate the line numbers by commas or use the range syntax to select a chunk of lines. This feature uses the <code>parse-number-range</code> library and you can find <a href="https://www.npmjs.com/package/parse-numeric-range">more syntax</a> on their project details.</p><pre><code class="language-md">```jsx {1,4-6,11}
+import React from &quot;react&quot;;
+
+function MyComponent(props) {
+  if (props.isBar) {
+    return &lt;div&gt;Bar&lt;/div&gt;;
+  }
+
+  return &lt;div&gt;Foo&lt;/div&gt;;
+}
+
+export default MyComponent;
+```
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code class="language-jsx" metastring="{1,4-6,11}">import React from &#x27;react&#x27;;
+
+function MyComponent(props) {
+  if (props.isBar) {
+    return &lt;div&gt;Bar&lt;/div&gt;;
+  }
+
+  return &lt;div&gt;Foo&lt;/div&gt;;
+}
+
+export default MyComponent;
+</code></pre></div></div><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>prefer comments</h5></div><div class="admonition-content"><p>Prefer highlighting with comments where you can. By inlining highlight in the code, you don&#x27;t have to manually count the lines if your code block becomes long. If you add/remove lines, you also don&#x27;t have to offset your line ranges.</p><pre><code class="language-diff">- ```jsx {3}
++ ```jsx {4}
+  function HighlightSomeText(highlight) {
+    if (highlight) {
++     console.log(&#x27;Highlighted text found&#x27;);
+      return &#x27;This text is highlighted!&#x27;;
+    }
+
+    return &#x27;Nothing highlighted&#x27;;
+  }
+  ```
+</code></pre><p>Below, we will introduce how the magic comment system can be extended to define custom directives and their functionalities. The magic comments would only be parsed if a highlight metastring is not present.</p></div></div><h3 id="custom-magic-comments"><a href="#custom-magic-comments">Custom magic comments</a></h3><p><code>// highlight-next-line</code> and <code>// highlight-start</code> etc. are called &quot;magic comments&quot;, because they will be parsed and removed, and their purposes are to add metadata to the next line, or the section that the pair of start- and end-comments enclose.</p><p>You can declare custom magic comments through theme config. For example, you can register another magic comment that adds a <code>code-block-error-line</code> class name:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">docusaurus.config.js</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">src/css/custom.css</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">myDoc.md</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-js">module.exports = {
+  themeConfig: {
+    prism: {
+      magicComments: [
+        // Remember to extend the default highlight class name as well!
+        {
+          className: &quot;theme-code-block-highlighted-line&quot;,
+          line: &quot;highlight-next-line&quot;,
+          block: { start: &quot;highlight-start&quot;, end: &quot;highlight-end&quot; },
+        },
+        // highlight-start
+        {
+          className: &quot;code-block-error-line&quot;,
+          line: &quot;This will error&quot;,
+        },
+        // highlight-end
+      ],
+    },
+  },
+};
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-css">.code-block-error-line {
+  background-color: #ff000020;
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid #ff000080;
+}
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-md">In JavaScript, trying to access properties on `null` will error.
+
+```js
+const name = null;
+// This will error
+console.log(name.toUpperCase());
+// Uncaught TypeError: Cannot read properties of null (reading &#x27;toUpperCase&#x27;)
+```
+</code></pre></div></div></div><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><p>In JavaScript, trying to access properties on <code>null</code> will error.</p><pre><code class="language-js">const name = null;
+// This will error
+console.log(name.toUpperCase());
+// Uncaught TypeError: Cannot read properties of null (reading &#x27;toUpperCase&#x27;)
+</code></pre></div></div><p>If you use number ranges in metastring (the <code>{1,3-4}</code> syntax), Docusaurus will apply the <strong>first <code>magicComments</code> entry</strong>&#x27;s class name. This, by default, is <code>theme-code-block-highlighted-line</code>, but if you change the <code>magicComments</code> config and use a different entry as the first one, the meaning of the metastring range will change as well.</p><p>You can disable the default line highlighting comments with <code>magicComments: []</code>. If there&#x27;s no magic comment config, but Docusaurus encounters a code block containing a metastring range, it will error because there will be no class name to apply—the highlighting class name, after all, is just a magic comment entry.</p><p>Every magic comment entry will contain three keys: <code>className</code> (required), <code>line</code>, which applies to the directly next line, or <code>block</code> (containing <code>start</code> and <code>end</code>), which applies to the entire block enclosed by the two comments.</p><p>Using CSS to target the class can already do a lot, but you can unlock the full potential of this feature through <a href="/docs/next/swizzling">swizzling</a>.</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm run swizzle @docusaurus/theme-classic CodeBlock/Line
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn run swizzle @docusaurus/theme-classic CodeBlock/Line
+</code></pre></div></div></div><p>The <code>Line</code> component will receive the list of class names, based on which you can conditionally render different markup.</p><h2 id="line-numbering"><a href="#line-numbering">Line numbering</a></h2><p>You can enable line numbering for your code block by using <code>showLineNumbers</code> key within the language meta string (don&#x27;t forget to add space directly before the key).</p><pre><code class="language-md">```jsx {1,4-6,11} showLineNumbers
+import React from &quot;react&quot;;
+
+function MyComponent(props) {
+  if (props.isBar) {
+    return &lt;div&gt;Bar&lt;/div&gt;;
+  }
+
+  return &lt;div&gt;Foo&lt;/div&gt;;
+}
+
+export default MyComponent;
+```
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code class="language-jsx" metastring="{1,4-6,11} showLineNumbers">import React from &#x27;react&#x27;;
+
+function MyComponent(props) {
+  if (props.isBar) {
+    return &lt;div&gt;Bar&lt;/div&gt;;
+  }
+
+  return &lt;div&gt;Foo&lt;/div&gt;;
+}
+
+export default MyComponent;
+</code></pre></div></div><h2 id="interactive-code-editor"><a href="#interactive-code-editor">Interactive code editor</a></h2><p>(Powered by <a href="https://github.com/FormidableLabs/react-live">React Live</a>)</p><p>You can create an interactive coding editor with the <code>@docusaurus/theme-live-codeblock</code> plugin. First, add the plugin to your package.</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install --save @docusaurus/theme-live-codeblock
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add @docusaurus/theme-live-codeblock
+</code></pre></div></div></div><p>You will also need to add the plugin to your <code>docusaurus.config.js</code>.</p><pre><code class="language-js" metastring="{3}">module.exports = {
+  // ...
+  themes: [&quot;@docusaurus/theme-live-codeblock&quot;],
+  // ...
+};
+</code></pre><p>To use the plugin, create a code block with <code>live</code> attached to the language meta string.</p><pre><code class="language-md">```jsx live
+function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  useEffect(() =&gt; {
+    var timerID = setInterval(() =&gt; tick(), 1000);
+
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
+
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;It is {date.toLocaleTimeString()}.&lt;/h2&gt;
+    &lt;/div&gt;
+  );
+}
+```
+</code></pre><p>The code block will be rendered as an interactive editor. Changes to the code will reflect on the result panel live.</p><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code class="language-jsx" metastring="live">function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  useEffect(() =&gt; {
+    var timerID = setInterval(() =&gt; tick(), 1000);
+
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
+
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;It is {date.toLocaleTimeString()}.&lt;/h2&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div></div><h3 id="imports"><a href="#imports">Imports</a></h3><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>react-live and imports</h5></div><div class="admonition-content"><p>It is not possible to import components directly from the react-live code editor, you have to define available imports upfront.</p></div></div><p>By default, all React imports are available. If you need more imports available, swizzle the react-live scope:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm run swizzle @docusaurus/theme-live-codeblock ReactLiveScope
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn run swizzle @docusaurus/theme-live-codeblock ReactLiveScope
+</code></pre></div></div></div><pre><code class="language-jsx" metastring="title=&quot;src/theme/ReactLiveScope/index.js&quot;" title="&quot;src/theme/ReactLiveScope/index.js&quot;">import React from &quot;react&quot;;
+
+// highlight-start
+const ButtonExample = (props) =&gt; (
+  &lt;button
+    {...props}
+    style={{
+      backgroundColor: &quot;white&quot;,
+      color: &quot;black&quot;,
+      border: &quot;solid red&quot;,
+      borderRadius: 20,
+      padding: 10,
+      cursor: &quot;pointer&quot;,
+      ...props.style,
+    }}
+  /&gt;
+);
+// highlight-end
+
+// Add react-live imports you need here
+const ReactLiveScope = {
+  React,
+  ...React,
+  // highlight-next-line
+  ButtonExample,
+};
+
+export default ReactLiveScope;
+</code></pre><p>The <code>ButtonExample</code> component is now available to use:</p><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code class="language-jsx" metastring="live">function MyPlayground(props) {
+  return (
+    &lt;div&gt;
+      &lt;ButtonExample onClick={() =&gt; alert(&#x27;hey!&#x27;)}&gt;Click me&lt;/ButtonExample&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div></div><h2 id="using-jsx-markup"><a href="#using-jsx-markup">Using JSX markup in code blocks</a></h2><p>Code block in Markdown always preserves its content as plain text, meaning you can&#x27;t do something like:</p><pre><code class="language-ts">type EditUrlFunction = (params: {
+  // This doesn&#x27;t turn into a link (for good reason!)
+  version: &lt;a href=&quot;/docs/versioning&quot;&gt;Version&lt;/a&gt;;
+  versionDocsDirPath: string;
+  docPath: string;
+  permalink: string;
+  locale: string;
+}) =&gt; string | undefined;
+</code></pre><p>If you want to embed HTML markup such as anchor links or bold type, you can use the <code>&lt;pre&gt;</code> tag, <code>&lt;code&gt;</code> tag, or <code>&lt;CodeBlock&gt;</code> component.</p><pre><code class="language-jsx">&lt;pre&gt;
+  &lt;b&gt;Input: &lt;/b&gt;1 2 3 4{&quot;\n&quot;}
+  &lt;b&gt;Output: &lt;/b&gt;&quot;366300745&quot;{&quot;\n&quot;}
+&lt;/pre&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><b>Input: </b>1 2 3 4<!-- -->
+<b>Output: </b>&quot;366300745&quot;<!-- -->
+</pre></div></div><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>MDX is whitespace insensitive</h5></div><div class="admonition-content"><p>MDX is in line with JSX behavior: line break characters, even when inside <code>&lt;pre&gt;</code>, are turned into spaces. You have to explicitly write the new line character for it to be printed out.</p></div></div><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>Syntax highlighting only works on plain strings. Docusaurus will not attempt to parse code block content containing JSX children.</p></div></div><h2 id="multi-language-support-code-blocks"><a href="#multi-language-support-code-blocks">Multi-language support code blocks</a></h2><p>With MDX, you can easily create interactive components within your documentation, for example, to display code in multiple programming languages and switch between them using a tabs component.</p><p>Instead of implementing a dedicated component for multi-language support code blocks, we&#x27;ve implemented a general-purpose <a href="/docs/next/markdown-features/tabs"><code>&lt;Tabs&gt;</code></a> component in the classic theme so that you can use it for other non-code scenarios as well.</p><p>The following example is how you can have multi-language code tabs in your docs. Note that the empty lines above and below each language block are <strong>intentional</strong>. This is a <a href="/docs/next/markdown-features/react#markdown-and-jsx-interoperability">current limitation of MDX</a>: you have to leave empty lines around Markdown syntax for the MDX parser to know that it&#x27;s Markdown syntax and not JSX.</p><pre><code class="language-jsx">import Tabs from &#x27;@theme/Tabs&#x27;;
+import TabItem from &#x27;@theme/TabItem&#x27;;
+
+&lt;Tabs&gt;
+&lt;TabItem value=&quot;js&quot; label=&quot;JavaScript&quot;&gt;
+
+```js
+function helloWorld() {
+  console.log(&#x27;Hello, world!&#x27;);
+}
+```
+
+&lt;/TabItem&gt;
+&lt;TabItem value=&quot;py&quot; label=&quot;Python&quot;&gt;
+
+```py
+def hello_world():
+  print(&quot;Hello, world!&quot;)
+```
+
+&lt;/TabItem&gt;
+&lt;TabItem value=&quot;java&quot; label=&quot;Java&quot;&gt;
+
+```java
+class HelloWorld {
+  public static void main(String args[]) {
+    System.out.println(&quot;Hello, World&quot;);
+  }
+}
+```
+
+&lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><p>And you will get the following:</p><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">JavaScript</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Python</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Java</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-js">function helloWorld() {
+  console.log(&#x27;Hello, world!&#x27;);
+}
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-py">def hello_world():
+  print(&quot;Hello, world!&quot;)
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-java">class HelloWorld {
+  public static void main(String args[]) {
+    System.out.println(&quot;Hello, World&quot;);
+  }
+}
+</code></pre></div></div></div></div></div><p>If you have multiple of these multi-language code tabs, and you want to sync the selection across the tab instances, refer to the <a href="/docs/next/markdown-features/tabs#syncing-tab-choices">Syncing tab choices section</a>.</p><h3 id="npm2yarn-remark-plugin"><a href="#npm2yarn-remark-plugin">Docusaurus npm2yarn remark plugin</a></h3><p>Displaying CLI commands in both npm and Yarn is a very common need, for example:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install @docusaurus/remark-plugin-npm2yarn
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add @docusaurus/remark-plugin-npm2yarn
+</code></pre></div></div></div><p>Docusaurus provides such a utility out of the box, freeing you from using the <code>Tabs</code> component every time. To enable this feature, first install the <code>@docusaurus/remark-plugin-npm2yarn</code> package as above, and then in <code>docusaurus.config.js</code>, for the plugins where you need this feature (doc, blog, pages, etc.), register it in the <code>remarkPlugins</code> option. (See <a href="/docs/next/api/plugins/@docusaurus/plugin-content-docs#ex-config">Docs configuration</a> for more details on configuration format)</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  presets: [
+    [
+      &quot;@docusaurus/preset-classic&quot;,
+      {
+        docs: {
+          // highlight-start
+          remarkPlugins: [
+            [require(&quot;@docusaurus/remark-plugin-npm2yarn&quot;), { sync: true }],
+          ],
+          // highlight-end
+        },
+        pages: {
+          // highlight-next-line
+          remarkPlugins: [require(&quot;@docusaurus/remark-plugin-npm2yarn&quot;)],
+        },
+        blog: {
+          // ...
+        },
+      },
+    ],
+  ],
+};
+</code></pre><p>And then use it by adding the <code>npm2yarn</code> key to the code block:</p><pre><code class="language-md">```bash npm2yarn
+npm install @docusaurus/remark-plugin-npm2yarn
+```
+</code></pre><p>Using the <code>{sync: true}</code> option would make all tab choices synced. Because the choice is stored under the same namespace <code>npm2yarn</code>, different <code>npm2yarn</code> plugin instances would also sync their choices.</p><h2 id="usage-in-jsx"><a href="#usage-in-jsx">Usage in JSX</a></h2><p>Outside of Markdown, you can use the <code>@theme/CodeBlock</code> component to get the same output.</p><pre><code class="language-jsx">import CodeBlock from &quot;@theme/CodeBlock&quot;;
+
+export default function MyReactPage() {
+  return (
+    &lt;div&gt;
+      {/* highlight-start */}
+      &lt;CodeBlock
+        language=&quot;jsx&quot;
+        title=&quot;/src/components/HelloCodeTitle.js&quot;
+        showLineNumbers&gt;
+        {`function HelloCodeTitle(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}`}
+      &lt;/CodeBlock&gt;
+      {/* highlight-end */}
+    &lt;/div&gt;
+  );
+}
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code>function HelloCodeTitle(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}</code></pre></div></div><p>The props accepted are <code>language</code>, <code>title</code> and <code>showLineNumbers</code>, in the same way as you write Markdown code blocks.</p><p>Although discouraged, you can also pass in a <code>metastring</code> prop like <code>metastring=&#x27;{1-2} title=&quot;/src/components/HelloCodeTitle.js&quot; showLineNumbers&#x27;</code>, which is how Markdown code blocks are handled under the hood. However, we recommend you <a href="#highlighting-with-comments">use comments for highlighting lines</a>.</p><p>As <a href="#using-jsx-markup">previously stated</a>, syntax highlighting is only applied when the children is a simple string.</p><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/next/markdown-features/tabs">Previous doc: <!-- -->Tabs</a></span><span class="nextLink_cubj"><a href="/docs/next/markdown-features/admonitions">Next doc: <!-- -->Admonitions</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#code-title">Code title</a></li><li><a href="#syntax-highlighting">Syntax highlighting</a><ol><li><a href="#theming">Theming</a></li><li><a href="#supported-languages">Supported Languages</a></li></ol></li><li><a href="#line-highlighting">Line highlighting</a><ol><li><a href="#highlighting-with-comments">Highlighting with comments</a></li><li><a href="#highlighting-with-metadata-string">Highlighting with metadata string</a></li><li><a href="#custom-magic-comments">Custom magic comments</a></li></ol></li><li><a href="#line-numbering">Line numbering</a></li><li><a href="#interactive-code-editor">Interactive code editor</a><ol><li><a href="#imports">Imports</a></li></ol></li><li><a href="#using-jsx-markup">Using JSX markup in code blocks</a></li><li><a href="#multi-language-support-code-blocks">Multi-language support code blocks</a><ol><li><a href="#npm2yarn-remark-plugin">Docusaurus npm2yarn remark plugin</a></li></ol></li><li><a href="#usage-in-jsx">Usage in JSX</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

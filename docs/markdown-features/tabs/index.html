@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Tabs</h1><p>Docusaurus provides the <code>&lt;Tabs&gt;</code> component that you can use in Markdown thanks to <a href="/docs/markdown-features/react">MDX</a>:</p><pre><code class="language-jsx">import Tabs from &#x27;@theme/Tabs&#x27;;
+import TabItem from &#x27;@theme/TabItem&#x27;;
+
+&lt;Tabs&gt;
+  &lt;TabItem value=&quot;apple&quot; label=&quot;Apple&quot; default&gt;
+    This is an apple 🍎
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;orange&quot; label=&quot;Orange&quot;&gt;
+    This is an orange 🍊
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;banana&quot; label=&quot;Banana&quot;&gt;
+    This is a banana 🍌
+  &lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Apple</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Orange</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Banana</li></ul><div class="margin-top--md"><div role="tabpanel">This is an apple 🍎</div><div role="tabpanel" hidden="">This is an orange 🍊</div><div role="tabpanel" hidden="">This is a banana 🍌</div></div></div></div></div><hr><p>It is also possible to provide <code>values</code> and <code>defaultValue</code> props to <code>Tabs</code>:</p><pre><code class="language-jsx">&lt;Tabs
+  defaultValue=&quot;apple&quot;
+  values={[
+    { label: &quot;Apple&quot;, value: &quot;apple&quot; },
+    { label: &quot;Orange&quot;, value: &quot;orange&quot; },
+    { label: &quot;Banana&quot;, value: &quot;banana&quot; },
+  ]}&gt;
+  &lt;TabItem value=&quot;apple&quot;&gt;This is an apple 🍎&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;orange&quot;&gt;This is an orange 🍊&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;banana&quot;&gt;This is a banana 🍌&lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Apple</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Orange</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Banana</li></ul><div class="margin-top--md"><div role="tabpanel">This is an apple 🍎</div><div role="tabpanel" hidden="">This is an orange 🍊</div><div role="tabpanel" hidden="">This is a banana 🍌</div></div></div></div></div><details><summary><code>Tabs</code> props take precedence over the <code>TabItem</code> props:</summary><pre><code class="language-jsx">&lt;Tabs
+  defaultValue=&quot;apple&quot;
+  values={[
+    { label: &quot;Apple 1&quot;, value: &quot;apple&quot; },
+    { label: &quot;Orange 1&quot;, value: &quot;orange&quot; },
+    { label: &quot;Banana 1&quot;, value: &quot;banana&quot; },
+  ]}&gt;
+  &lt;TabItem value=&quot;apple&quot; label=&quot;Apple 2&quot;&gt;
+    This is an apple 🍎
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;orange&quot; label=&quot;Orange 2&quot;&gt;
+    This is an orange 🍊
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;banana&quot; label=&quot;Banana 2&quot; default&gt;
+    This is a banana 🍌
+  &lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Apple 1</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Orange 1</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Banana 1</li></ul><div class="margin-top--md"><div role="tabpanel">This is an apple 🍎</div><div role="tabpanel" hidden="">This is an orange 🍊</div><div role="tabpanel" hidden="">This is a banana 🍌</div></div></div></div></div></details><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>By default, all tabs are rendered eagerly during the build process, and search engines can index hidden tabs.</p><p>It is possible to only render the default tab with <code>&lt;Tabs lazy /&gt;</code>.</p></div></div><h2 id="displaying-a-default-tab"><a href="#displaying-a-default-tab">Displaying a default tab</a></h2><p>The first tab is displayed by default, and to override this behavior, you can specify a default tab by adding <code>default</code> to one of the tab items. You can also set the <code>defaultValue</code> prop of the <code>Tabs</code> component to the label value of your choice. For example, in the example above, either setting <code>default</code> for the <code>value=&quot;apple&quot;</code> tab or setting <code>defaultValue=&quot;apple&quot;</code> for the tabs forces the &quot;Apple&quot; tab to be open by default.</p><p>Docusaurus will throw an error if a <code>defaultValue</code> is provided for the <code>Tabs</code> but it refers to a non-existing value. If you want none of the tabs to be shown by default, use <code>defaultValue={null}</code>.</p><h2 id="syncing-tab-choices"><a href="#syncing-tab-choices">Syncing tab choices</a></h2><p>You may want choices of the same kind of tabs to sync with each other. For example, you might want to provide different instructions for users on Windows vs users on macOS, and you want to change all OS-specific instructions tabs in one click. To achieve that, you can give all related tabs the same <code>groupId</code> prop. Note that doing this will persist the choice in <code>localStorage</code> and all <code>&lt;Tab&gt;</code> instances with the same <code>groupId</code> will update automatically when the value of one of them is changed. Note that group IDs are globally namespaced.</p><pre><code class="language-jsx">// highlight-next-line
+&lt;Tabs groupId=&quot;operating-systems&quot;&gt;
+  &lt;TabItem value=&quot;win&quot; label=&quot;Windows&quot;&gt;Use Ctrl + C to copy.&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;mac&quot; label=&quot;macOS&quot;&gt;Use Command + C to copy.&lt;/TabItem&gt;
+&lt;/Tabs&gt;
+
+// highlight-next-line
+&lt;Tabs groupId=&quot;operating-systems&quot;&gt;
+  &lt;TabItem value=&quot;win&quot; label=&quot;Windows&quot;&gt;Use Ctrl + V to paste.&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;mac&quot; label=&quot;macOS&quot;&gt;Use Command + V to paste.&lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Windows</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">macOS</li></ul><div class="margin-top--md"><div role="tabpanel">Use Ctrl + C to copy.</div><div role="tabpanel" hidden="">Use Command + C to copy.</div></div></div><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Windows</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">macOS</li></ul><div class="margin-top--md"><div role="tabpanel">Use Ctrl + V to paste.</div><div role="tabpanel" hidden="">Use Command + V to paste.</div></div></div></div></div><p>For all tab groups that have the same <code>groupId</code>, the possible values do not need to be the same. If one tab group is chosen a value that does not exist in another tab group with the same <code>groupId</code>, the tab group with the missing value won&#x27;t change its tab. You can see that from the following example. Try to select Linux, and the above tab groups don&#x27;t change.</p><pre><code class="language-jsx">&lt;Tabs groupId=&quot;operating-systems&quot;&gt;
+  &lt;TabItem value=&quot;win&quot; label=&quot;Windows&quot;&gt;
+    I am Windows.
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;mac&quot; label=&quot;macOS&quot;&gt;
+    I am macOS.
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;linux&quot; label=&quot;Linux&quot;&gt;
+    I am Linux.
+  &lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Windows</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">macOS</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Linux</li></ul><div class="margin-top--md"><div role="tabpanel">I am Windows.</div><div role="tabpanel" hidden="">I am macOS.</div><div role="tabpanel" hidden="">I am Linux.</div></div></div></div></div><hr><p>Tab choices with different group IDs will not interfere with each other:</p><pre><code class="language-jsx">// highlight-next-line
+&lt;Tabs groupId=&quot;operating-systems&quot;&gt;
+  &lt;TabItem value=&quot;win&quot; label=&quot;Windows&quot;&gt;Windows in windows.&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;mac&quot; label=&quot;macOS&quot;&gt;macOS is macOS.&lt;/TabItem&gt;
+&lt;/Tabs&gt;
+
+// highlight-next-line
+&lt;Tabs groupId=&quot;non-mac-operating-systems&quot;&gt;
+  &lt;TabItem value=&quot;win&quot; label=&quot;Windows&quot;&gt;Windows is windows.&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;unix&quot; label=&quot;Unix&quot;&gt;Unix is unix.&lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Windows</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">macOS</li></ul><div class="margin-top--md"><div role="tabpanel">Windows in windows.</div><div role="tabpanel" hidden="">macOS is macOS.</div></div></div><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Windows</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Unix</li></ul><div class="margin-top--md"><div role="tabpanel">Windows is windows.</div><div role="tabpanel" hidden="">Unix is unix.</div></div></div></div></div><h2 id="customizing-tabs"><a href="#customizing-tabs">Customizing tabs</a></h2><p>You might want to customize the appearance of a certain set of tabs. You can pass the string in <code>className</code> prop, and the specified CSS class will be added to the <code>Tabs</code> component:</p><pre><code class="language-jsx">// highlight-next-line
+&lt;Tabs className=&quot;unique-tabs&quot;&gt;
+  &lt;TabItem value=&quot;Apple&quot;&gt;This is an apple 🍎&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;Orange&quot;&gt;This is an orange 🍊&lt;/TabItem&gt;
+  &lt;TabItem value=&quot;Banana&quot;&gt;This is a banana 🍌&lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs unique-tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Apple</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Orange</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Banana</li></ul><div class="margin-top--md"><div role="tabpanel">This is an apple 🍎</div><div role="tabpanel" hidden="">This is an orange 🍊</div><div role="tabpanel" hidden="">This is a banana 🍌</div></div></div></div></div><h3 id="customizing-tab-headings"><a href="#customizing-tab-headings">Customizing tab headings</a></h3><p>You can also customize each tab heading independently by using the <code>attributes</code> field. The extra props can be passed to the headings either through the <code>values</code> prop in <code>Tabs</code>, or props of each <code>TabItem</code>—in the same way as you declare <code>label</code>.</p><pre><code class="language-jsx" metastring="title=&quot;some-doc.mdx&quot;" title="&quot;some-doc.mdx&quot;">import styles from &#x27;./styles.module.css&#x27;;
+
+&lt;Tabs&gt;
+  &lt;TabItem value=&quot;apple&quot; label=&quot;Apple&quot; attributes={{className: styles.red}}&gt;
+    This is an apple 🍎
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;orange&quot; label=&quot;Orange&quot; attributes={{className: styles.orange}}&gt;
+    This is an orange 🍊
+  &lt;/TabItem&gt;
+  &lt;TabItem value=&quot;banana&quot; label=&quot;Banana&quot; attributes={{className: styles.yellow}}&gt;
+    This is a banana 🍌
+  &lt;/TabItem&gt;
+&lt;/Tabs&gt;
+</code></pre><pre><code class="language-css" metastring="title=&quot;styles.module.css&quot;" title="&quot;styles.module.css&quot;">.red {
+  color: red;
+}
+.red[aria-selected=&quot;true&quot;] {
+  border-bottom-color: red;
+}
+
+.orange {
+  color: orange;
+}
+.orange[aria-selected=&quot;true&quot;] {
+  border-bottom-color: orange;
+}
+
+.yellow {
+  color: yellow;
+}
+.yellow[aria-selected=&quot;true&quot;] {
+  border-bottom-color: yellow;
+}
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item red_Uyzo tabs__item--active">Apple</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item orange_euPP">Orange</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item yellow_yKDe">Banana</li></ul><div class="margin-top--md"><div role="tabpanel">This is an apple 🍎</div><div role="tabpanel" hidden="">This is an orange 🍊</div><div role="tabpanel" hidden="">This is a banana 🍌</div></div></div></div></div><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p><code>className</code> would be merged with other default class names. You may also use a custom <code>data-value</code> field (<code>{&#x27;data-value&#x27;: &#x27;apple&#x27;}</code>) paired with CSS attribute selectors:</p><pre><code class="language-css" metastring="title=&quot;styles.module.css&quot;" title="&quot;styles.module.css&quot;">li[role=&quot;tab&quot;][data-value=&quot;apple&quot;] {
+  color: red;
+}
+</code></pre></div></div><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/markdown-features/react">Previous doc: <!-- -->MDX and React</a></span><span class="nextLink_cubj"><a href="/docs/markdown-features/code-blocks">Next doc: <!-- -->Code blocks</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#displaying-a-default-tab">Displaying a default tab</a></li><li><a href="#syncing-tab-choices">Syncing tab choices</a></li><li><a href="#customizing-tabs">Customizing tabs</a><ol><li><a href="#customizing-tab-headings">Customizing tab headings</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

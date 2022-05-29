@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>📦 plugin-debug</h1><h1>📦 plugin-debug</h1><p>The debug plugin will display useful debug information at <a href="http://localhost:3000/__docusaurus/debug">http://localhost:3000/<!-- -->_<!-- -->_<!-- -->docusaurus/debug</a>.</p><p>It is mostly useful for plugin authors, that will be able to inspect more easily the content of the <code>.docusaurus</code> folder (like the creates routes), but also be able to inspect data structures that are never written to disk, like the plugin data loaded through the <code>contentLoaded</code> lifecycle.</p><div class="admonition admonition-info alert alert--info"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</h5></div><div class="admonition-content"><p>If you use the plugin via the classic preset, the preset will <strong>enable the plugin in development and disable it in production</strong> by default (<code>debug: undefined</code>) to avoid exposing potentially sensitive information. You can use <code>debug: true</code> to always enable it or <code>debug: false</code> to always disable it.</p><p>If you use a standalone plugin, you may need to achieve the same effect by checking the environment:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  plugins: [
+    // highlight-next-line
+    process.env.NODE_ENV === &quot;production&quot; &amp;&amp; &quot;@docusaurus/plugin-debug&quot;,
+  ].filter(Boolean),
+};
+</code></pre></div></div><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>If you report a bug, we will probably ask you to have this plugin turned on in the production, so that we can inspect your deployment config more easily.</p><p>If you don&#x27;t have any sensitive information, you can keep it on in production <a href="/__docusaurus/debug">like we do</a>.</p></div></div><h2 id="installation"><a href="#installation">Installation</a></h2><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install --save @docusaurus/plugin-debug
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add @docusaurus/plugin-debug
+</code></pre></div></div></div><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>If you use the preset <code>@docusaurus/preset-classic</code>, you don&#x27;t need to install this plugin as a dependency.</p><p>You can configure this plugin through the preset options.</p></div></div><h2 id="configuration"><a href="#configuration">Configuration</a></h2><p>This plugin currently has no options.</p><h3 id="ex-config"><a href="#ex-config">Example configuration</a></h3><p>You can configure this plugin through preset options or plugin options.</p><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Most Docusaurus users configure this plugin through the preset options.</p></div></div><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Preset Options</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Plugin Options</li></ul><div class="margin-top--md"><div role="tabpanel"><p>If you use a preset, configure this plugin through the <a href="/docs/next/using-plugins#docusauruspreset-classic">preset options</a>:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  presets: [
+    [
+      &quot;@docusaurus/preset-classic&quot;,
+      {
+        // highlight-next-line
+        debug: true, // This will enable the plugin in production
+      },
+    ],
+  ],
+};
+</code></pre></div><div role="tabpanel" hidden=""><p>If you are using a standalone plugin, provide options directly to the plugin:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // highlight-next-line
+  plugins: [&quot;@docusaurus/plugin-debug&quot;],
+};
+</code></pre></div></div></div><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/next/api/plugins/@docusaurus/plugin-client-redirects">Previous doc: <!-- -->📦 plugin-client-redirects</a></span><span class="nextLink_cubj"><a href="/docs/next/api/plugins/@docusaurus/plugin-google-analytics">Next doc: <!-- -->📦 plugin-google-analytics</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#ex-config">Example configuration</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

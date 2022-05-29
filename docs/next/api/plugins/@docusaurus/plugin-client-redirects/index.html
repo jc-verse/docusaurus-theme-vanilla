@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>📦 plugin-client-redirects</h1><h1>📦 plugin-client-redirects</h1><p>Docusaurus Plugin to generate <strong>client-side redirects</strong>.</p><p>This plugin will write additional HTML pages to your static site that redirect the user to your existing Docusaurus pages with JavaScript.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>production only</h5></div><div class="admonition-content"><p>This plugin is always inactive in development and <strong>only active in production</strong> because it works on the build output.</p></div></div><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>It is better to use server-side redirects whenever possible.</p><p>Before using this plugin, you should look if your hosting provider doesn&#x27;t offer this feature.</p></div></div><h2 id="installation"><a href="#installation">Installation</a></h2><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install --save @docusaurus/plugin-client-redirects
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add @docusaurus/plugin-client-redirects
+</code></pre></div></div></div><h2 id="configuration"><a href="#configuration">Configuration</a></h2><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="fromExtensions" tabindex="0"><td><code>fromExtensions</code></td><td><code>string[]</code></td><td><code>[]</code></td><td>The extensions to be removed from the route after redirecting.</td></tr><tr id="toExtensions" tabindex="0"><td><code>toExtensions</code></td><td><code>string[]</code></td><td><code>[]</code></td><td>The extensions to be appended to the route after redirecting.</td></tr><tr id="redirects" tabindex="0"><td><code>redirects</code></td><td><code><a href="#RedirectRule">RedirectRule</a>[]</code></td><td><code>[]</code></td><td>The list of redirect rules.</td></tr><tr id="createRedirects" tabindex="0"><td><code>createRedirects</code></td><td><code><a href="#CreateRedirectsFn">CreateRedirectsFn</a></code></td><td><code>undefined</code></td><td>A callback to create a redirect rule.</td></tr></tbody></table><h3 id="types"><a href="#types">Types</a></h3><h4 id="RedirectRule"><a href="#RedirectRule"><code>RedirectRule</code></a></h4><pre><code class="language-ts">type RedirectRule = {
+  to: string;
+  from: string | string[];
+};
+</code></pre><h4 id="CreateRedirectsFn"><a href="#CreateRedirectsFn"><code>CreateRedirectsFn</code></a></h4><pre><code class="language-ts">type CreateRedirectsFn = (path: string) =&gt; string[] | string | null | undefined;
+</code></pre><h3 id="ex-config"><a href="#ex-config">Example configuration</a></h3><p>Here&#x27;s an example configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  plugins: [
+    [
+      &quot;@docusaurus/plugin-client-redirects&quot;,
+      // highlight-start
+      {
+        fromExtensions: [&quot;html&quot;, &quot;htm&quot;], // /myPage.html -&gt; /myPage
+        toExtensions: [&quot;exe&quot;, &quot;zip&quot;], // /myAsset -&gt; /myAsset.zip (if latter exists)
+        redirects: [
+          // /docs/oldDoc -&gt; /docs/newDoc
+          {
+            to: &quot;/docs/newDoc&quot;,
+            from: &quot;/docs/oldDoc&quot;,
+          },
+          // Redirect from multiple old paths to the new path
+          {
+            to: &quot;/docs/newDoc2&quot;,
+            from: [&quot;/docs/oldDocFrom2019&quot;, &quot;/docs/legacyDocFrom2016&quot;],
+          },
+        ],
+        createRedirects(existingPath) {
+          if (existingPath.includes(&quot;/community&quot;)) {
+            // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
+            return [
+              existingPath.replace(&quot;/community&quot;, &quot;/docs/team&quot;),
+              existingPath.replace(&quot;/community&quot;, &quot;/docs/support&quot;),
+            ];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        },
+      },
+      // highlight-end
+    ],
+  ],
+};
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/next/api/plugins/@docusaurus/plugin-content-pages">Previous doc: <!-- -->📦 plugin-content-pages</a></span><span class="nextLink_cubj"><a href="/docs/next/api/plugins/@docusaurus/plugin-debug">Next doc: <!-- -->📦 plugin-debug</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#types">Types</a></li><li><a href="#ex-config">Example configuration</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

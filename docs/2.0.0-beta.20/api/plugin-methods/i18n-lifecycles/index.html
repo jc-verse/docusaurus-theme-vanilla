@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>I18n lifecycles</h1><h1>I18n lifecycles</h1><p>Plugins use these lifecycles to load i18n-related data.</p><h2 id="getTranslationFiles"><a href="#getTranslationFiles"><code>getTranslationFiles({content})</code></a></h2><p>Plugins declare the JSON translation files they want to use.</p><p>Returns translation files <code>{path: string, content: ChromeI18nJSON}</code>:</p><ul><li><code>path</code>: relative to the plugin localized folder <code>i18n/[locale]/[pluginName]</code>. Extension <code>.json</code> should be omitted to remain generic.</li><li><code>content</code>: using the Chrome i18n JSON format.</li></ul><p>These files will be written by the <a href="/docs/2.0.0-beta.20/cli#docusaurus-write-translations-sitedir"><code>write-translations</code> CLI</a> to the plugin i18n subfolder, and will be read in the appropriate locale before calling <a href="#translateContent"><code>translateContent()</code></a> and <a href="#translateThemeConfig"><code>translateThemeConfig()</code></a></p><p>Example:</p><pre><code class="language-js">module.exports = function (context, options) {
+  return {
+    name: &quot;my-plugin&quot;,
+    // highlight-start
+    async getTranslationFiles({ content }) {
+      return [
+        {
+          path: &quot;sidebar-labels&quot;,
+          content: {
+            someSidebarLabel: {
+              message: &quot;Some Sidebar Label&quot;,
+              description: &quot;A label used in my plugin in the sidebar&quot;,
+            },
+            someLabelFromContent: content.myLabel,
+          },
+        },
+      ];
+    },
+    // highlight-end
+  };
+};
+</code></pre><h2 id="translateContent"><a href="#translateContent"><code>translateContent({content,translationFiles})</code></a></h2><p>Translate the plugin content, using the localized translation files.</p><p>Returns the localized plugin content.</p><p>The <code>contentLoaded()</code> lifecycle will be called with the localized plugin content returned by <code>translateContent()</code>.</p><p>Example:</p><pre><code class="language-js">module.exports = function (context, options) {
+  return {
+    name: &quot;my-plugin&quot;,
+    // highlight-start
+    translateContent({ content, translationFiles }) {
+      const myTranslationFile = translationFiles.find(
+        (f) =&gt; f.path === &quot;myTranslationFile&quot;,
+      );
+      return {
+        ...content,
+        someContentLabel: myTranslationFile.someContentLabel.message,
+      };
+    },
+    // highlight-end
+  };
+};
+</code></pre><h2 id="translateThemeConfig"><a href="#translateThemeConfig"><code>translateThemeConfig({themeConfig,translationFiles})</code></a></h2><p>Translate the site <code>themeConfig</code> labels, using the localized translation files.</p><p>Returns the localized <code>themeConfig</code>.</p><p>Example:</p><pre><code class="language-js">module.exports = function (context, options) {
+  return {
+    name: &quot;my-theme&quot;,
+    // highlight-start
+    translateThemeConfig({ themeConfig, translationFiles }) {
+      const myTranslationFile = translationFiles.find(
+        (f) =&gt; f.path === &quot;myTranslationFile&quot;,
+      );
+      return {
+        ...themeConfig,
+        someThemeConfigLabel: myTranslationFile.someThemeConfigLabel.message,
+      };
+    },
+    // highlight-end
+  };
+};
+</code></pre><h2 id="getDefaultCodeTranslationMessages"><a href="#getDefaultCodeTranslationMessages"><code>async getDefaultCodeTranslationMessages()</code></a></h2><p>Themes using the <code>&lt;Translate&gt;</code> API can provide default code translation messages.</p><p>It should return messages in <code>Record&lt;string, string&gt;</code>, where keys are translation ids and values are messages (without the description) localized using the site&#x27;s current locale.</p><p>Example:</p><pre><code class="language-js">module.exports = function (context, options) {
+  return {
+    name: &quot;my-theme&quot;,
+    // highlight-start
+    async getDefaultCodeTranslationMessages() {
+      return readJsonFile(`${context.i18n.currentLocale}.json`);
+    },
+    // highlight-end
+  };
+};
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/api/plugin-methods/extend-infrastructure">Previous doc: <!-- -->Extending infrastructure</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/api/plugin-methods/static-methods">Next doc: <!-- -->Static methods</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#getTranslationFiles"><code>getTranslationFiles({content})</code></a></li><li><a href="#translateContent"><code>translateContent({content,translationFiles})</code></a></li><li><a href="#translateThemeConfig"><code>translateThemeConfig({themeConfig,translationFiles})</code></a></li><li><a href="#getDefaultCodeTranslationMessages"><code>async getDefaultCodeTranslationMessages()</code></a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Styling and Layout</h1><h1>Styling and Layout</h1><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>This section is focused on styling through stylesheets. For more advanced customizations (DOM structure, React code...), refer to the <a href="/docs/next/swizzling">swizzling guide</a>.</p></div></div><p>A Docusaurus site is a single-page React application. You can style it the way you style React apps.</p><p>There are a few approaches/frameworks which will work, depending on your preferences and the type of website you are trying to build. Websites that are highly interactive and behave more like web apps will benefit from more modern styling approaches that co-locate styles with the components. Component styling can also be particularly useful when you wish to customize or swizzle a component.</p><h2 id="global-styles"><a href="#global-styles">Global styles</a></h2><p>This is the most traditional way of styling that most developers (including non-front-end developers) would be familiar with. It works fine for small websites that do not have much customization.</p><p>If you&#x27;re using <code>@docusaurus/preset-classic</code>, you can create your own CSS files (e.g. <code>/src/css/custom.css</code>) and import them globally by passing them as an option of the classic theme.</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  presets: [
+    [
+      &quot;@docusaurus/preset-classic&quot;,
+      {
+        // highlight-start
+        theme: {
+          customCss: [require.resolve(&quot;./src/css/custom.css&quot;)],
+        },
+        // highlight-end
+      },
+    ],
+  ],
+};
+</code></pre><p>Any CSS you write within that file will be available globally and can be referenced directly using string literals.</p><pre><code class="language-css" metastring="title=&quot;/src/css/custom.css&quot;" title="&quot;/src/css/custom.css&quot;">.purple-text {
+  color: rebeccapurple;
+}
+</code></pre><pre><code class="language-jsx">function MyComponent() {
+  return (
+    &lt;main&gt;
+      &lt;h1 className=&quot;purple-text&quot;&gt;Purple Heading!&lt;/h1&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre><p>If you want to add CSS to any element, you can open the DevTools in your browser to inspect its class names. Class names come in several kinds:</p><ul><li><strong>Theme class names</strong>. These class names are listed exhaustively in <a href="#theme-class-names">the next subsection</a>. They don&#x27;t have any default properties. You should always prioritize targeting those stable class names in your custom CSS.</li><li><strong>Infima class names</strong>. These class names are found in the classic theme and usually follow the <a href="http://getbem.com/naming/">BEM convention</a> of <code>block__element--modifier</code>. They are usually stable but are still considered implementation details, so you should generally avoid targeting them. However, you can <a href="#styling-your-site-with-infima">modify Infima CSS variables</a>.</li><li><strong>CSS module class names</strong>. These class names have a hash in production (<code>codeBlockContainer_RIuc</code>) and are appended with a long file path in development. They are considered implementation details and you should almost always avoid targeting them in your custom CSS. If you must, you can use an <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors">attribute selector</a> (<code>[class*=&#x27;codeBlockContainer&#x27;]</code>) that ignores the hash.</li></ul><h3 id="theme-class-names"><a href="#theme-class-names">Theme Class Names</a></h3><p>We provide some stable CSS class names for robust and maintainable global layout styling. These names are theme-agnostic and meant to be targeted by custom CSS.</p><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>If you can&#x27;t find a way to create a robust CSS selector, please <a href="https://github.com/facebook/docusaurus/discussions/5468">report your customization use-case</a> and we will consider adding new class names.</p></div></div><h3 id="styling-your-site-with-infima"><a href="#styling-your-site-with-infima">Styling your site with Infima</a></h3><p><code>@docusaurus/preset-classic</code> uses <a href="https://infima.dev/">Infima</a> as the underlying styling framework. Infima provides a flexible layout and common UI components styling suitable for content-centric websites (blogs, documentation, landing pages). For more details, check out the <a href="https://infima.dev/">Infima website</a>.</p><p>When you scaffold your Docusaurus project with <code>create-docusaurus</code>, the website will be generated with basic Infima stylesheets and default styling. You can override Infima CSS variables globally.</p><pre><code class="language-css" metastring="title=&quot;/src/css/custom.css&quot;" title="&quot;/src/css/custom.css&quot;">:root {
+  --ifm-color-primary: #25c2a0;
+  --ifm-code-font-size: 95%;
+}
+</code></pre><p>Infima uses 7 shades of each color. We recommend using <a href="https://www.colorbox.io/">ColorBox</a> to find the different shades of colors for your chosen primary color.</p><p>Alternatively, use the following tool to generate the different shades for your website and copy the variables into <code>/src/css/custom.css</code>.</p><h3 id="dark-mode"><a href="#dark-mode">Dark Mode</a></h3><p>In light mode, the <code>&lt;html&gt;</code> element has a <code>data-theme=&quot;light&quot;</code> attribute; in dark mode, it&#x27;s <code>data-theme=&quot;dark&quot;</code>. Therefore, you can scope your CSS to dark-mode-only by targeting <code>html</code> with a specific attribute.</p><pre><code class="language-css">/* Overriding root Infima variables */
+[data-theme=&quot;dark&quot;] {
+  --ifm-color-primary: #4e89e8;
+}
+/* Styling one class specially in dark mode */
+[data-theme=&quot;dark&quot;] .purple-text {
+  color: plum;
+}
+</code></pre><h3 id="mobile-view"><a href="#mobile-view">Mobile View</a></h3><p>Docusaurus uses <code>996px</code> as the cutoff between mobile screen width and desktop. If you want your layout to be different in the mobile view, you can use media queries.</p><pre><code class="language-css">.banner {
+  padding: 4rem;
+}
+/** In mobile view, reduce the padding */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+</code></pre><h2 id="css-modules"><a href="#css-modules">CSS modules</a></h2><p>To style your components using <a href="https://github.com/css-modules/css-modules">CSS Modules</a>, name your stylesheet files with the <code>.module.css</code> suffix (e.g. <code>welcome.module.css</code>). Webpack will load such CSS files as CSS modules and you have to reference the class names as properties of the imported CSS module (as opposed to using plain strings). This is similar to the convention used in <a href="https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet">Create React App</a>.</p><pre><code class="language-css" metastring="title=&quot;styles.module.css&quot;" title="&quot;styles.module.css&quot;">.main {
+  padding: 12px;
+}
+
+.heading {
+  font-weight: bold;
+}
+
+.contents {
+  color: #ccc;
+}
+</code></pre><pre><code class="language-jsx">import styles from &quot;./styles.module.css&quot;;
+
+function MyComponent() {
+  return (
+    &lt;main className={styles.main}&gt;
+      &lt;h1 className={styles.heading}&gt;Hello!&lt;/h1&gt;
+      &lt;article className={styles.contents}&gt;Lorem Ipsum&lt;/article&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre><p>The class names will be processed by webpack into a globally unique class name during build.</p><h2 id="css-in-js"><a href="#css-in-js">CSS-in-JS</a></h2><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>CSS-in-JS support is a work in progress, so libs like MUI may have display quirks. <a href="https://github.com/facebook/docusaurus/issues/1640">Welcoming PRs</a>.</p></div></div><h2 id="sassscss"><a href="#sassscss">Sass/SCSS</a></h2><p>To use Sass/SCSS as your CSS preprocessor, install the unofficial Docusaurus 2 plugin <a href="https://github.com/rlamana/docusaurus-plugin-sass"><code>docusaurus-plugin-sass</code></a>. This plugin works for both global styles and the CSS modules approach:</p><ol><li>Install <a href="https://github.com/rlamana/docusaurus-plugin-sass"><code>docusaurus-plugin-sass</code></a>:</li></ol><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install --save docusaurus-plugin-sass sass
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add docusaurus-plugin-sass sass
+</code></pre></div></div></div><ol start="2"><li>Include the plugin in your <code>docusaurus.config.js</code> file:</li></ol><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  // highlight-next-line
+  plugins: [&quot;docusaurus-plugin-sass&quot;],
+  // ...
+};
+</code></pre><ol start="3"><li>Write and import your stylesheets in Sass/SCSS as normal.</li></ol><h3 id="global-styles-using-sassscss"><a href="#global-styles-using-sassscss">Global styles using Sass/SCSS</a></h3><p>You can now set the <code>customCss</code> property of <code>@docusaurus/preset-classic</code> to point to your Sass/SCSS file:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  presets: [
+    [
+      &quot;@docusaurus/preset-classic&quot;,
+      {
+        // ...
+        theme: {
+          // highlight-next-line
+          customCss: [require.resolve(&quot;./src/css/custom.scss&quot;)],
+        },
+        // ...
+      },
+    ],
+  ],
+};
+</code></pre><h3 id="modules-using-sassscss"><a href="#modules-using-sassscss">Modules using Sass/SCSS</a></h3><p>Name your stylesheet files with the <code>.module.scss</code> suffix (e.g. <code>welcome.module.scss</code>) instead of <code>.css</code>. Webpack will use <code>sass-loader</code> to preprocess your stylesheets and load them as CSS modules.</p><pre><code class="language-scss" metastring="title=&quot;styles.module.scss&quot;" title="&quot;styles.module.scss&quot;">.main {
+  padding: 12px;
+
+  article {
+    color: #ccc;
+  }
+}
+</code></pre><pre><code class="language-jsx">import styles from &quot;./styles.module.scss&quot;;
+
+function MyComponent() {
+  return (
+    &lt;main className={styles.main}&gt;
+      &lt;article&gt;Lorem Ipsum&lt;/article&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/next/markdown-features/head-metadata">Previous doc: <!-- -->Head metadata</a></span><span class="nextLink_cubj"><a href="/docs/next/swizzling">Next doc: <!-- -->Swizzling</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#global-styles">Global styles</a><ol><li><a href="#theme-class-names">Theme Class Names</a></li><li><a href="#styling-your-site-with-infima">Styling your site with Infima</a></li><li><a href="#dark-mode">Dark Mode</a></li><li><a href="#mobile-view">Mobile View</a></li></ol></li><li><a href="#css-modules">CSS modules</a></li><li><a href="#css-in-js">CSS-in-JS</a></li><li><a href="#sassscss">Sass/SCSS</a><ol><li><a href="#global-styles-using-sassscss">Global styles using Sass/SCSS</a></li><li><a href="#modules-using-sassscss">Modules using Sass/SCSS</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

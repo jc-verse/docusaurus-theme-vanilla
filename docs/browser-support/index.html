@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Browser support</h1><p>Docusaurus allows sites to define the list of supported browsers through a <a href="https://github.com/browserslist/browserslist">browserslist configuration</a>.</p><h2 id="purpose"><a href="#purpose">Purpose</a></h2><p>Websites need to balance between backward compatibility and bundle size. As old browsers do not support modern APIs or syntax, more code is needed to implement the same functionality.</p><p>For example, you may use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining">optional chaining syntax</a>:</p><pre><code class="language-js">const value = obj?.prop?.val;
+</code></pre><p>...which unfortunately is only recognized by browser versions released after 2020. To be compatible with earlier browser versions, when building your site for production, our JS loader will transpile your code to a more verbose syntax:</p><pre><code class="language-js">var _obj, _obj$prop;
+
+const value =
+  (_obj = obj) === null || _obj === void 0
+    ? void 0
+    : (_obj$prop = _obj.prop) === null || _obj$prop === void 0
+    ? void 0
+    : _obj$prop.val;
+</code></pre><p>However, this penalizes all other users with increased site load time because the 29-character line now becomes 168 characters—a 6-fold increase! (In practice, it will be better because the names used will be shorter.) As a tradeoff, the JS loader only transpiles the syntax to the degree that&#x27;s supported by all browser versions defined in the browser list.</p><p>The browser list by default is provided through the <code>package.json</code> file as a root <code>browserslist</code> field.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>On old browsers, the compiled output will use unsupported (too recent) JS syntax, causing React to fail to initialize and end up with a static website with only HTML/CSS and no JS.</p></div></div><h2 id="default-values"><a href="#default-values">Default values</a></h2><p>Websites initialized with the default classic template has the following in <code>package.json</code>:</p><pre><code class="language-json" metastring="title=&quot;package.json&quot;" title="&quot;package.json&quot;">{
+  &quot;name&quot;: &quot;docusaurus&quot;,
+  // ...
+  // highlight-start
+  &quot;browserslist&quot;: {
+    &quot;production&quot;: [&quot;&gt;0.5%&quot;, &quot;not dead&quot;, &quot;not op_mini all&quot;],
+    &quot;development&quot;: [
+      &quot;last 1 chrome version&quot;,
+      &quot;last 1 firefox version&quot;,
+      &quot;last 1 safari version&quot;
+    ]
+  }
+  // highlight-end
+  // ...
+}
+</code></pre><p>Explained in natural language, the browsers supported in production are those:</p><ul><li>With more than 0.5% of market share; <em>and</em></li><li>Has official support or updates in the past 24 months (the opposite of &quot;dead&quot;); <em>and</em></li><li>Is not Opera Mini.</li></ul><p>And browsers used in development are:</p><ul><li>The latest version of Chrome <em>or</em> Firefox <em>or</em> Safari.</li></ul><p>You can &quot;evaluate&quot; any config with the <code>browserslist</code> cli to obtain the actual list:</p><pre><code class="language-bash">npx browserslist --env=&quot;production&quot;
+</code></pre><p>The output is all browsers supported in production. Below is the output in January 2022:</p><pre><code class="language-text">and_chr 96
+and_uc 12.12
+chrome 96
+chrome 95
+chrome 94
+edge 96
+firefox 95
+firefox 94
+ie 11
+ios_saf 15.2
+ios_saf 15.0-15.1
+ios_saf 14.5-14.8
+ios_saf 14.0-14.4
+ios_saf 12.2-12.5
+opera 82
+opera 81
+safari 15.1
+safari 14.1
+safari 13.1
+</code></pre><h2 id="read-more"><a href="#read-more">Read more</a></h2><p>You may wish to visit the <a href="https://github.com/browserslist/browserslist/blob/main/README.md">browserslist documentation</a> for more specifications, especially the accepted <a href="https://github.com/browserslist/browserslist/blob/main/README.md#queries">query values</a> and <a href="https://github.com/browserslist/browserslist/blob/main/README.md#best-practices">best practices</a>.</p><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/search">Previous doc: <!-- -->Search</a></span><span class="nextLink_cubj"><a href="/docs/seo">Next doc: <!-- -->SEO</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#purpose">Purpose</a></li><li><a href="#default-values">Default values</a></li><li><a href="#read-more">Read more</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

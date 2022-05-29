@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>MDX and React</h1><h1>MDX and React</h1><h2 id="using-jsx-in-markdown"><a href="#using-jsx-in-markdown">Using JSX in Markdown</a></h2><p>Docusaurus has built-in support for <a href="https://mdxjs.com/">MDX v1</a>, which allows you to write JSX within your Markdown files and render them as React components.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>While Docusaurus parses both <code>.md</code> and <code>.mdx</code> files using MDX, some of the syntaxes are treated slightly differently by third-party tools. For the most accurate parsing and better editor support, we recommend using the <code>.mdx</code> extension for files containing MDX syntax.</p></div></div><p>Check out the <a href="https://mdxjs.com/">MDX docs</a> to see what other fancy stuff you can do with MDX.</p><h3 id="exporting-components"><a href="#exporting-components">Exporting components</a></h3><p>To define any custom component within an MDX file, you have to export it: only paragraphs that start with <code>export</code> will be parsed as components instead of prose.</p><pre><code class="language-jsx">export const Highlight = ({children, color}) =&gt; (
+  &lt;span
+    style={{
+      backgroundColor: color,
+      borderRadius: &#x27;2px&#x27;,
+      color: &#x27;#fff&#x27;,
+      padding: &#x27;0.2rem&#x27;,
+    }}&gt;
+    {children}
+  &lt;/span&gt;
+);
+
+&lt;Highlight color=&quot;#25c2a0&quot;&gt;Docusaurus green&lt;/Highlight&gt; and &lt;Highlight color=&quot;#1877F2&quot;&gt;Facebook blue&lt;/Highlight&gt; are my favorite colors.
+
+I can write **Markdown** alongside my _JSX_!
+</code></pre><p>Notice how it renders both the markup from your React component and the Markdown syntax:</p><div class="browserWindow_my1Q" style="min-height:240px"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><span style="background-color:#25c2a0;border-radius:2px;color:#fff;padding:0.2rem">Docusaurus green</span> <!-- -->and <span style="background-color:#1877F2;border-radius:2px;color:#fff;padding:0.2rem">Facebook blue</span> are my favorite colors.<p>I can write <strong>Markdown</strong> alongside my <em>JSX</em>!</p></div></div><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>MDX is JSX</h5></div><div class="admonition-content"><p>Since all doc files are parsed using MDX, anything that looks like HTML is actually JSX. Therefore, if you need to inline-style a component, follow JSX flavor and provide style objects.</p><pre><code class="language-jsx">/* Instead of this: */
+&lt;span style=&quot;background-color: red&quot;&gt;Foo&lt;/span&gt;
+/* Use this: */
+&lt;span style={{backgroundColor: &#x27;red&#x27;}}&gt;Foo&lt;/span&gt;
+</code></pre><p>This behavior is different from Docusaurus 1. See also <a href="/docs/next/migration/manual#convert-style-attributes-to-style-objects-in-mdx">Migrating from v1 to v2</a>.</p><p>In addition, MDX is not <a href="https://github.com/facebook/docusaurus/issues/3018">100% compatible with CommonMark</a>. Use the <strong><a href="https://mdx-git-renovate-babel-monorepo-mdx.vercel.app/playground">MDX playground</a></strong> to ensure that your syntax is valid MDX.</p></div></div><h3 id="importing-components"><a href="#importing-components">Importing components</a></h3><p>You can also import your own components defined in other files or third-party components installed via npm.</p><pre><code class="language-md">&lt;!-- Docusaurus theme component --&gt;
+import TOCInline from &#x27;@theme/TOCInline&#x27;;
+&lt;!-- External component --&gt;
+import Button from &#x27;@mui/material/Button&#x27;;
+&lt;!-- Custom component --&gt;
+import BrowserWindow from &#x27;@site/src/components/BrowserWindow&#x27;;
+</code></pre><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>The <code>@site</code> alias points to your website&#x27;s directory, usually where the <code>docusaurus.config.js</code> file is. Using an alias instead of relative paths (<code>&#x27;../../src/components/BrowserWindow&#x27;</code>) saves you from updating import paths when moving files around, or when <a href="/docs/next/versioning">versioning docs</a> and <a href="/docs/next/i18n/tutorial">translating</a>.</p></div></div><p>While declaring components within Markdown is very convenient for simple cases, it becomes hard to maintain because of limited editor support, risks of parsing errors, and low reusability. Use a separate <code>.js</code> file when your component involves complex JS logic:</p><pre><code class="language-jsx" metastring="title=&quot;src/components/Highlight.js&quot;" title="&quot;src/components/Highlight.js&quot;">import React from &quot;react&quot;;
+
+export default function Highlight({ children, color }) {
+  return (
+    &lt;span
+      style={{
+        backgroundColor: color,
+        borderRadius: &quot;2px&quot;,
+        color: &quot;#fff&quot;,
+        padding: &quot;0.2rem&quot;,
+      }}&gt;
+      {children}
+    &lt;/span&gt;
+  );
+}
+</code></pre><pre><code class="language-md" metastring="title=&quot;markdown-file.mdx&quot;" title="&quot;markdown-file.mdx&quot;">import Highlight from &#x27;@site/src/components/Highlight&#x27;;
+
+&lt;Highlight color=&quot;#25c2a0&quot;&gt;Docusaurus green&lt;/Highlight&gt;
+</code></pre><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>If you use the same component across a lot of files, you don&#x27;t need to import it everywhere—consider adding it to the global scope. <a href="#mdx-component-scope">See below</a></p></div></div><h3 id="mdx-component-scope"><a href="#mdx-component-scope">MDX component scope</a></h3><p>Apart from <a href="#importing-components">importing a component</a> and <a href="#exporting-components">exporting a component</a>, a third way to use a component in MDX is to <strong>register it to the global scope</strong>, which will make it automatically available in every MDX file, without any import statements.</p><p>For example, given this MDX file:</p><pre><code class="language-md">- a
+- list!
+
+And some &lt;highlight&gt;custom markup&lt;/highlight&gt;...
+</code></pre><p>It will be compiled to a React component containing <code>ul</code>, <code>li</code>, <code>p</code>, and <code>highlight</code> tags. Now, you can optionally provide your own implementation for any of these tags in the form of React components. (<code>highlight</code> isn&#x27;t even an intrinsic element: it needs an implementation!)</p><p>In Docusaurus, this MDX component scope is provided by the <code>@theme/MDXComponents</code> component. It&#x27;s not a React component, <em>per se</em>, unlike most other exports under the <code>@theme/</code> alias: it is a record from tag names like <code>ul</code> and <code>img</code> to their custom implementations.</p><p>If you <a href="/docs/next/swizzling">swizzle</a> this component, you will find all tags that have been re-implemented, and you can further customize our implementation by swizzling the respective sub-component, like <code>@theme/MDXComponents/Head</code> (which is used to implement the <a href="/docs/next/markdown-features/head-metadata"><code>&lt;head&gt;</code></a> feature).</p><p>If you want to register extra tag names (like the <code>&lt;highlight&gt;</code> tag above), you should consider <a href="/docs/next/swizzling#wrapping">wrapping <code>@theme/MDXComponents</code></a>, so you don&#x27;t have to maintain all the existing mappings. Since the swizzle CLI doesn&#x27;t allow wrapping non-component files yet, you should manually create the wrapper:</p><pre><code class="language-js" metastring="title=&quot;src/theme/MDXComponents.js&quot;" title="&quot;src/theme/MDXComponents.js&quot;">import React from &quot;react&quot;;
+// Import the original mapper
+import MDXComponents from &quot;@theme-original/MDXComponents&quot;;
+// highlight-next-line
+import Highlight from &quot;@site/src/components/Highlight&quot;;
+
+export default {
+  // Re-use the default mapping
+  ...MDXComponents,
+  // Map the &quot;highlight&quot; tag to our &lt;Highlight /&gt; component!
+  // `Highlight` will receive all props that were passed to `highlight` in MDX
+  // highlight-next-line
+  highlight: Highlight,
+};
+</code></pre><p>And now, you can freely use <code>&lt;highlight&gt;</code> in every page, without writing the import statement:</p><pre><code class="language-md">I can conveniently use &lt;highlight color=&quot;#25c2a0&quot;&gt;Docusaurus green&lt;/highlight&gt; everywhere!
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><p>I can conveniently use <highlight color="#25c2a0">Docusaurus green</highlight> everywhere!</p></div></div><div class="admonition admonition-info alert alert--info"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</h5></div><div class="admonition-content"><p>We use lower-case tag names like <code>highlight</code> to &quot;pretend&quot; that they are intrinsic elements, but you can use capitalized ones like <code>Highlight</code> as well.</p></div></div><h3 id="markdown-and-jsx-interoperability"><a href="#markdown-and-jsx-interoperability">Markdown and JSX interoperability</a></h3><p>Docusaurus v2 is using MDX v1, which has a lot of known cases where the content fails to be correctly parsed as Markdown. Use the <strong><a href="https://mdx-git-renovate-babel-monorepo-mdx.vercel.app/playground">MDX playground</a></strong> to ensure that your syntax is valid MDX.</p><details><summary>Samples of parsing failures</summary><p><strong>A paragraph starting with a JSX tag will be seen entirely as a JSX string:</strong></p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Problem</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Workaround</li></ul><div class="margin-top--md"><div role="tabpanel"><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;span style={{color: &#x27;red&#x27;}}&gt;Highlighted text&lt;/span&gt; but afterwards _Markdown_ **doesn&#x27;t work**
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><span style="color:red">Highlighted text</span> but afterwards _Markdown_ **doesn&#x27;t work**</div></div></div></div><div role="tabpanel" hidden=""><p>Use JSX for the rest of the line, or prefix the line with some plain text:</p><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;span style={{color: &#x27;red&#x27;}}&gt;Use JSX for the paragraph&lt;/span&gt; to stop &lt;i&gt;worrying about&lt;/i&gt; &lt;b&gt;Markdown&lt;/b&gt;
+
+&amp;#8203;&lt;span style={{color: &#x27;red&#x27;}}&gt;← This is a zero-width space&lt;/span&gt; and afterwards &lt;i&gt;Markdown&lt;/i&gt; &lt;b&gt;works&lt;/b&gt;
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><span style="color:red">Use JSX for the paragraph</span> to stop <i>worrying about</i> <b>Markdown</b><p>​<span style="color:red">← This is a zero-width space</span> and afterwards <i>Markdown</i> <b>works</b></p></div></div></div></div></div></div><p><strong>Markdown within a JSX tag never works:</strong></p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Problem</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Workaround</li></ul><div class="margin-top--md"><div role="tabpanel"><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;span style={{color: &#x27;red&#x27;}}&gt;**Bold doesn&#x27;t work**&lt;/span&gt;
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><span style="color:red">**Bold doesn&#x27;t work**</span></div></div></div></div><div role="tabpanel" hidden=""><p>Use JSX within JSX tag, or move the Markdown to the outer layer:</p><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;span style={{color: &#x27;red&#x27;}}&gt;&lt;b&gt;Bold now works&lt;/b&gt;&lt;/span&gt;
+
+**&lt;span style={{color: &#x27;red&#x27;}}&gt;Bold now works&lt;/span&gt;**
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><span style="color:red"><b>Bold now works</b></span><p><strong><span style="color:red">Bold now works</span></strong></p></div></div></div></div></div></div><p><strong>Text immediately below a JSX tag will be seen as JSX text:</strong></p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Problem</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Workaround</li></ul><div class="margin-top--md"><div role="tabpanel"><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;div style={{color: &#x27;red&#x27;}}&gt;
+**Bold still doesn&#x27;t work**
+&lt;/div&gt;
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div style="color:red">**Bold still doesn&#x27;t work**</div></div></div></div></div><div role="tabpanel" hidden=""><p>Add an empty new line:</p><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;div style={{color: &#x27;red&#x27;}}&gt;
+
+**Bold now works**
+
+&lt;/div&gt;
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div style="color:red"><p><strong>Bold now works</strong></p></div></div></div></div></div></div></div><p><strong>Markdown text indented by four spaces will be seen as a code block:</strong></p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">Problem</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Workaround</li></ul><div class="margin-top--md"><div role="tabpanel"><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;div style={{color: &#x27;red&#x27;}}&gt;
+
+    You may think I&#x27;m just some text...
+
+&lt;/div&gt;
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div style="color:red"><pre><code>You may think I&#x27;m just some text...
+</code></pre></div></div></div></div></div><div role="tabpanel" hidden=""><p>Don&#x27;t indent:</p><div class="wrappingBlock_S4U4"><pre><code class="language-jsx">&lt;div style={{color: &#x27;red&#x27;}}&gt;
+
+Now I&#x27;m actually just text
+
+&lt;/div&gt;
+</code></pre></div><div class="wrappingBlock_S4U4"><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><div style="color:red"><p>Now I&#x27;m actually just text</p></div></div></div></div></div></div></div></details><h2 id="importing-code-snippets"><a href="#importing-code-snippets">Importing code snippets</a></h2><p>You can not only import a file containing a component definition, but also import any code file as raw text, and then insert it in a code block, thanks to <a href="https://webpack.js.org/loaders/raw-loader/">Webpack raw-loader</a>. In order to use <code>raw-loader</code>, you first need to install it in your project:</p><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install --save raw-loader
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add raw-loader
+</code></pre></div></div></div><p>Now you can import code snippets from another file as it is:</p><pre><code class="language-jsx" metastring="title=&quot;myMarkdownFile.mdx&quot;" title="&quot;myMarkdownFile.mdx&quot;">import CodeBlock from &#x27;@theme/CodeBlock&#x27;;
+import MyComponentSource from &#x27;!!raw-loader!./myComponent&#x27;;
+
+&lt;CodeBlock language=&quot;jsx&quot;&gt;{MyComponentSource}&lt;/CodeBlock&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><pre><code>/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import React, { useState } from &quot;react&quot;;
+
+export default function MyComponent() {
+  const [bool, setBool] = useState(false);
+  return (
+    &lt;div&gt;
+      &lt;p&gt;MyComponent rendered !&lt;/p&gt;
+      &lt;p&gt;bool={bool ? &quot;true&quot; : &quot;false&quot;}&lt;/p&gt;
+      &lt;p&gt;
+        &lt;button onClick={() =&gt; setBool((b) =&gt; !b)}&gt;toggle bool&lt;/button&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div></div><p>See <a href="/docs/next/markdown-features/code-blocks#usage-in-jsx">using code blocks in JSX</a> for more details of the <code>&lt;CodeBlock&gt;</code> component.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>You have to use <code>&lt;CodeBlock&gt;</code> rather than the Markdown triple-backtick <code>```</code>, because the latter will ship out any of its content as-is, but you want to interpolate the imported text here.</p></div></div><div class="admonition admonition-warning alert alert--danger"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>warning</h5></div><div class="admonition-content"><p>This feature is experimental and might be subject to breaking API changes in the future.</p></div></div><h2 id="importing-markdown"><a href="#importing-markdown">Importing Markdown</a></h2><p>You can use Markdown files as components and import them elsewhere, either in Markdown files or in React pages.</p><p>By convention, using the <strong><code>_</code> filename prefix</strong> will not create any doc page and means the markdown file is a <strong>&quot;partial&quot;</strong>, to be imported by other files.</p><pre><code class="language-md" metastring="title=&quot;_markdown-partial-example.mdx&quot;" title="&quot;_markdown-partial-example.mdx&quot;">&lt;span&gt;Hello {props.name}&lt;/span&gt;
+
+This is text some content from `_markdown-partial-example.mdx`.
+</code></pre><pre><code class="language-jsx" metastring="title=&quot;someOtherDoc.mdx&quot;" title="&quot;someOtherDoc.mdx&quot;">import PartialExample from &quot;./_markdown-partial-example.mdx&quot;;
+
+&lt;PartialExample name=&quot;Sebastien&quot; /&gt;;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><span>Hello <!-- -->Sebastien</span><p>This is text some content from <code>_markdown-partial-example.md</code>.</p></div></div><p>This way, you can reuse content among multiple pages and avoid duplicating materials.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>Currently, the table of contents does not contain the imported Markdown headings. This is a technical limitation that we are trying to solve (<a href="https://github.com/facebook/docusaurus/issues/3915">issue</a>).</p></div></div><h2 id="available-exports"><a href="#available-exports">Available exports</a></h2><p>Within the MDX page, the following variables are available as globals:</p><ul><li><code>frontMatter</code>: the front matter as a record of string keys and values;</li><li><code>toc</code>: the table of contents, as a tree of headings. See also <a href="/docs/next/markdown-features/toc#inline-table-of-contents">Inline TOC</a> for a more concrete use-case.</li><li><code>contentTitle</code>: the Markdown title, which is the first <code>h1</code> heading in the Markdown text. It&#x27;s <code>undefined</code> if there isn&#x27;t one (e.g. title specified in the front matter).</li></ul><pre><code class="language-jsx">import TOCInline from &#x27;@theme/TOCInline&#x27;;
+import CodeBlock from &#x27;@theme/CodeBlock&#x27;;
+
+The table of contents for this page, serialized:
+
+&lt;CodeBlock className=&quot;language-json&quot;&gt;{JSON.stringify(toc, null, 2)}&lt;/CodeBlock&gt;
+
+The front matter of this page:
+
+&lt;ul&gt;
+  {Object.entries(frontMatter).map(([key, value]) =&gt; &lt;li key={key}&gt;&lt;b&gt;{key}&lt;/b&gt;: {value}&lt;/li&gt;)}
+&lt;/ul&gt;
+
+&lt;p&gt;The title of this page is: &lt;b&gt;{contentTitle}&lt;/b&gt;&lt;/p&gt;
+</code></pre><div class="browserWindow_my1Q"><div class="browserWindowHeader_jXSR"><div class="buttons_uHc7"><span class="dot_giz1" style="background:#f25f58"></span><span class="dot_giz1" style="background:#fbbe3c"></span><span class="dot_giz1" style="background:#58cb42"></span></div><div class="browserWindowAddressBar_Pd8y text--truncate">http://localhost:3000</div><div class="browserWindowMenuIcon_Vhuh"><div><span class="bar_rrRL"></span><span class="bar_rrRL"></span><span class="bar_rrRL"></span></div></div></div><div class="browserWindowBody_Idgs"><p>The table of contents for this page, serialized:</p><pre class="language-json"><code>[
+  {
+    &quot;value&quot;: &quot;Using JSX in Markdown&quot;,
+    &quot;id&quot;: &quot;using-jsx-in-markdown&quot;,
+    &quot;level&quot;: 2
+  },
+  {
+    &quot;value&quot;: &quot;Exporting components&quot;,
+    &quot;id&quot;: &quot;exporting-components&quot;,
+    &quot;level&quot;: 3
+  },
+  {
+    &quot;value&quot;: &quot;Importing components&quot;,
+    &quot;id&quot;: &quot;importing-components&quot;,
+    &quot;level&quot;: 3
+  },
+  {
+    &quot;value&quot;: &quot;MDX component scope&quot;,
+    &quot;id&quot;: &quot;mdx-component-scope&quot;,
+    &quot;level&quot;: 3
+  },
+  {
+    &quot;value&quot;: &quot;Markdown and JSX interoperability&quot;,
+    &quot;id&quot;: &quot;markdown-and-jsx-interoperability&quot;,
+    &quot;level&quot;: 3
+  },
+  {
+    &quot;value&quot;: &quot;Importing code snippets&quot;,
+    &quot;id&quot;: &quot;importing-code-snippets&quot;,
+    &quot;level&quot;: 2
+  },
+  {
+    &quot;value&quot;: &quot;Importing Markdown&quot;,
+    &quot;id&quot;: &quot;importing-markdown&quot;,
+    &quot;level&quot;: 2
+  },
+  {
+    &quot;value&quot;: &quot;Available exports&quot;,
+    &quot;id&quot;: &quot;available-exports&quot;,
+    &quot;level&quot;: 2
+  }
+]</code></pre><p>The front matter of this page:</p><ul><li><b>id</b>: <!-- -->react</li><li><b>description</b>: <!-- -->Using the power of React in Docusaurus Markdown documents, thanks to MDX</li><li><b>slug</b>: <!-- -->/markdown-features/react</li></ul><p>The title of this page is: <b>MDX and React</b></p></div></div><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/next/markdown-features">Previous doc: <!-- -->Markdown Features</a></span><span class="nextLink_cubj"><a href="/docs/next/markdown-features/tabs">Next doc: <!-- -->Tabs</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#using-jsx-in-markdown">Using JSX in Markdown</a><ol><li><a href="#exporting-components">Exporting components</a></li><li><a href="#importing-components">Importing components</a></li><li><a href="#mdx-component-scope">MDX component scope</a></li><li><a href="#markdown-and-jsx-interoperability">Markdown and JSX interoperability</a></li></ol></li><li><a href="#importing-code-snippets">Importing code snippets</a></li><li><a href="#importing-markdown">Importing Markdown</a></li><li><a href="#available-exports">Available exports</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

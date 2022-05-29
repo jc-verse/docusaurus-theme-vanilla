@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Lifecycle APIs</h1><h1>Lifecycle APIs</h1><p>During the build, plugins are loaded in parallel to fetch their own contents and render them to routes. Plugins may also configure webpack or post-process the generated files.</p><h2 id="loadContent"><a href="#loadContent"><code>async loadContent()</code></a></h2><p>Plugins should use this lifecycle to fetch from data sources (filesystem, remote API, headless CMS, etc.) or do some server processing. The return value is the content it needs.</p><p>For example, this plugin below return a random integer between 1 to 10 as content.</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">module.exports = function (context, options) {
+  return {
+    name: &quot;docusaurus-plugin&quot;,
+    // highlight-start
+    async loadContent() {
+      return 1 + Math.floor(Math.random() * 10);
+    },
+    // highlight-end
+  };
+};
+</code></pre><h2 id="contentLoaded"><a href="#contentLoaded"><code>async contentLoaded({content, actions})</code></a></h2><p>The data that was loaded in <code>loadContent</code> will be consumed in <code>contentLoaded</code>. It can be rendered to routes, registered as global data, etc.</p><h3 id="content"><a href="#content"><code>content</code></a></h3><p><code>contentLoaded</code> will be called <em>after</em> <code>loadContent</code> is done. The return value of <code>loadContent()</code> will be passed to <code>contentLoaded</code> as <code>content</code>.</p><h3 id="actions"><a href="#actions"><code>actions</code></a></h3><p><code>actions</code> contain three functions:</p><h4 id="addRoute"><a href="#addRoute"><code>addRoute(config: RouteConfig): void</code></a></h4><p>Create a route to add to the website.</p><pre><code class="language-ts">type RouteConfig = {
+  path: string;
+  component: string;
+  modules?: RouteModules;
+  routes?: RouteConfig[];
+  exact?: boolean;
+  priority?: number;
+};
+type RouteModules = {
+  [module: string]: Module | RouteModules | RouteModules[];
+};
+type Module =
+  | {
+      path: string;
+      __import?: boolean;
+      query?: ParsedUrlQueryInput;
+    }
+  | string;
+</code></pre><h4 id="createData"><a href="#createData"><code>createData(name: string, data: any): Promise&lt;string&gt;</code></a></h4><p>A declarative callback to create static data (generally JSON or string) which can later be provided to your routes as props. Takes the file name and data to be stored, and returns the actual data file&#x27;s path.</p><p>For example, this plugin below creates a <code>/friends</code> page which displays <code>Your friends are: Yangshun, Sebastien</code>:</p><pre><code class="language-jsx" metastring="title=&quot;website/src/components/Friends.js&quot;" title="&quot;website/src/components/Friends.js&quot;">import React from &quot;react&quot;;
+
+export default function FriendsComponent({ friends }) {
+  return &lt;div&gt;Your friends are {friends.join(&quot;,&quot;)}&lt;/div&gt;;
+}
+</code></pre><pre><code class="language-js" metastring="title=&quot;docusaurus-friends-plugin/src/index.js&quot;" title="&quot;docusaurus-friends-plugin/src/index.js&quot;">export default function friendsPlugin(context, options) {
+  return {
+    name: &quot;docusaurus-friends-plugin&quot;,
+    // highlight-start
+    async contentLoaded({ content, actions }) {
+      const { createData, addRoute } = actions;
+      // Create friends.json
+      const friends = [&quot;Yangshun&quot;, &quot;Sebastien&quot;];
+      const friendsJsonPath = await createData(
+        &quot;friends.json&quot;,
+        JSON.stringify(friends),
+      );
+
+      // Add the &#x27;/friends&#x27; routes, and ensure it receives the friends props
+      addRoute({
+        path: &quot;/friends&quot;,
+        component: &quot;@site/src/components/Friends.js&quot;,
+        modules: {
+          // propName -&gt; JSON file path
+          friends: friendsJsonPath,
+        },
+        exact: true,
+      });
+    },
+    // highlight-end
+  };
+}
+</code></pre><h4 id="setGlobalData"><a href="#setGlobalData"><code>setGlobalData(data: any): void</code></a></h4><p>This function permits one to create some global plugin data that can be read from any page, including the pages created by other plugins, and your theme layout.</p><p>This data becomes accessible to your client-side/theme code through the <a href="/docs/2.0.0-beta.20/docusaurus-core#useGlobalData"><code>useGlobalData</code></a> and <a href="/docs/2.0.0-beta.20/docusaurus-core#usePluginData"><code>usePluginData</code></a> hooks.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>Global data is... global: its size affects the loading time of all pages of your site, so try to keep it small. Prefer <code>createData</code> and page-specific data whenever possible.</p></div></div><p>For example, this plugin below creates a <code>/friends</code> page which displays <code>Your friends are: Yangshun, Sebastien</code>:</p><pre><code class="language-jsx" metastring="title=&quot;website/src/components/Friends.js&quot;" title="&quot;website/src/components/Friends.js&quot;">import React from &quot;react&quot;;
+import { usePluginData } from &quot;@docusaurus/useGlobalData&quot;;
+
+export default function FriendsComponent() {
+  const { friends } = usePluginData(&quot;my-friends-plugin&quot;);
+  return &lt;div&gt;Your friends are {friends.join(&quot;,&quot;)}&lt;/div&gt;;
+}
+</code></pre><pre><code class="language-js" metastring="title=&quot;docusaurus-friends-plugin/src/index.js&quot;" title="&quot;docusaurus-friends-plugin/src/index.js&quot;">export default function friendsPlugin(context, options) {
+  return {
+    name: &quot;docusaurus-friends-plugin&quot;,
+    // highlight-start
+    async contentLoaded({ content, actions }) {
+      const { setGlobalData, addRoute } = actions;
+      // Create friends global data
+      setGlobalData({ friends: [&quot;Yangshun&quot;, &quot;Sebastien&quot;] });
+
+      // Add the &#x27;/friends&#x27; routes
+      addRoute({
+        path: &quot;/friends&quot;,
+        component: &quot;@site/src/components/Friends.js&quot;,
+        exact: true,
+      });
+    },
+    // highlight-end
+  };
+}
+</code></pre><h2 id="configureWebpack"><a href="#configureWebpack"><code>configureWebpack(config, isServer, utils, content)</code></a></h2><p>Modifies the internal webpack config. If the return value is a JavaScript object, it will be merged into the final config using <a href="https://github.com/survivejs/webpack-merge"><code>webpack-merge</code></a>. If it is a function, it will be called and receive <code>config</code> as the first argument and an <code>isServer</code> flag as the second argument.</p><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>The API of <code>configureWebpack</code> will be modified in the future to accept an object (<code>configureWebpack({config, isServer, utils, content})</code>)</p></div></div><h3 id="config"><a href="#config"><code>config</code></a></h3><p><code>configureWebpack</code> is called with <code>config</code> generated according to client/server build. You may treat this as the base config to be merged with.</p><h3 id="isServer"><a href="#isServer"><code>isServer</code></a></h3><p><code>configureWebpack</code> will be called both in server build and in client build. The server build receives <code>true</code> and the client build receives <code>false</code> as <code>isServer</code>.</p><h3 id="utils"><a href="#utils"><code>utils</code></a></h3><p><code>configureWebpack</code> also receives an util object:</p><ul><li><code>getStyleLoaders(isServer: boolean, cssOptions: {[key: string]: any}): Loader[]</code></li><li><code>getJSLoader(isServer: boolean, cacheOptions?: {}): Loader | null</code></li></ul><p>You may use them to return your webpack configures conditionally.</p><p>For example, this plugin below modify the webpack config to transpile <code>.foo</code> files.</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">module.exports = function (context, options) {
+  return {
+    name: &quot;custom-docusaurus-plugin&quot;,
+    // highlight-start
+    configureWebpack(config, isServer, utils) {
+      const { getJSLoader } = utils;
+      return {
+        module: {
+          rules: [
+            {
+              test: /\.foo$/,
+              use: [getJSLoader(isServer), &quot;my-custom-webpack-loader&quot;],
+            },
+          ],
+        },
+      };
+    },
+    // highlight-end
+  };
+};
+</code></pre><h3 id="content-1"><a href="#content-1"><code>content</code></a></h3><p><code>configureWebpack</code> will be called both with the content loaded by the plugin.</p><h3 id="merge-strategy"><a href="#merge-strategy">Merge strategy</a></h3><p>We merge the Webpack configuration parts of plugins into the global Webpack config using <a href="https://github.com/survivejs/webpack-merge">webpack-merge</a>.</p><p>It is possible to specify the merge strategy. For example, if you want a webpack rule to be prepended instead of appended:</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">module.exports = function (context, options) {
+  return {
+    name: &quot;custom-docusaurus-plugin&quot;,
+    configureWebpack(config, isServer, utils) {
+      return {
+        // highlight-start
+        mergeStrategy: { &quot;module.rules&quot;: &quot;prepend&quot; },
+        module: { rules: [myRuleToPrepend] },
+        // highlight-end
+      };
+    },
+  };
+};
+</code></pre><p>Read the <a href="https://github.com/survivejs/webpack-merge#merging-with-strategies">webpack-merge strategy doc</a> for more details.</p><h3 id="configuring-dev-server"><a href="#configuring-dev-server">Configuring dev server</a></h3><p>The dev server can be configured through returning a <code>devServer</code> field.</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">module.exports = function (context, options) {
+  return {
+    name: &quot;custom-docusaurus-plugin&quot;,
+    configureWebpack(config, isServer, utils) {
+      return {
+        // highlight-start
+        devServer: {
+          open: &quot;/docs&quot;, // Opens localhost:3000/docs instead of localhost:3000/
+        },
+        // highlight-end
+      };
+    },
+  };
+};
+</code></pre><h2 id="configurePostCss"><a href="#configurePostCss"><code>configurePostCss(options)</code></a></h2><p>Modifies <a href="https://webpack.js.org/loaders/postcss-loader/#postcssoptions"><code>postcssOptions</code> of <code>postcss-loader</code></a> during the generation of the client bundle.</p><p>Should return the mutated <code>postcssOptions</code>.</p><p>By default, <code>postcssOptions</code> looks like this:</p><pre><code class="language-js">const postcssOptions = {
+  ident: &quot;postcss&quot;,
+  plugins: [require(&quot;autoprefixer&quot;)],
+};
+</code></pre><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">module.exports = function (context, options) {
+  return {
+    name: &quot;docusaurus-plugin&quot;,
+    // highlight-start
+    configurePostCss(postcssOptions) {
+      // Appends new PostCSS plugin.
+      postcssOptions.plugins.push(require(&quot;postcss-import&quot;));
+      return postcssOptions;
+    },
+    // highlight-end
+  };
+};
+</code></pre><h2 id="postBuild"><a href="#postBuild"><code>postBuild(props)</code></a></h2><p>Called when a (production) build finishes.</p><pre><code class="language-ts">interface Props {
+  siteDir: string;
+  generatedFilesDir: string;
+  siteConfig: DocusaurusConfig;
+  outDir: string;
+  baseUrl: string;
+  headTags: string;
+  preBodyTags: string;
+  postBodyTags: string;
+  routesPaths: string[];
+  plugins: Plugin&lt;any&gt;[];
+  content: Content;
+}
+</code></pre><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">module.exports = function (context, options) {
+  return {
+    name: &quot;docusaurus-plugin&quot;,
+    // highlight-start
+    async postBuild({ siteConfig = {}, routesPaths = [], outDir }) {
+      // Print out to console all the rendered routes.
+      routesPaths.map((route) =&gt; {
+        console.log(route);
+      });
+    },
+    // highlight-end
+  };
+};
+</code></pre><h2 id="injectHtmlTags"><a href="#injectHtmlTags"><code>injectHtmlTags({content})</code></a></h2><p>Inject head and/or body HTML tags to Docusaurus generated HTML.</p><p><code>injectHtmlTags</code> will be called both with the content loaded by the plugin.</p><pre><code class="language-ts">function injectHtmlTags(): {
+  headTags?: HtmlTags;
+  preBodyTags?: HtmlTags;
+  postBodyTags?: HtmlTags;
+};
+
+type HtmlTags = string | HtmlTagObject | (string | HtmlTagObject)[];
+
+type HtmlTagObject = {
+  /**
+   * Attributes of the HTML tag
+   * E.g. `{&#x27;disabled&#x27;: true, &#x27;value&#x27;: &#x27;demo&#x27;, &#x27;rel&#x27;: &#x27;preconnect&#x27;}`
+   */
+  attributes?: {
+    [attributeName: string]: string | boolean;
+  };
+  /**
+   * The tag name e.g. `div`, `script`, `link`, `meta`
+   */
+  tagName: string;
+  /**
+   * The inner HTML
+   */
+  innerHTML?: string;
+};
+</code></pre><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">module.exports = function (context, options) {
+  return {
+    name: &quot;docusaurus-plugin&quot;,
+    loadContent: async () =&gt; {
+      return { remoteHeadTags: await fetchHeadTagsFromAPI() };
+    },
+    // highlight-start
+    injectHtmlTags({ content }) {
+      return {
+        headTags: [
+          {
+            tagName: &quot;link&quot;,
+            attributes: {
+              rel: &quot;preconnect&quot;,
+              href: &quot;https://www.github.com&quot;,
+            },
+          },
+          ...content.remoteHeadTags,
+        ],
+        preBodyTags: [
+          {
+            tagName: &quot;script&quot;,
+            attributes: {
+              charset: &quot;utf-8&quot;,
+              src: &quot;/noflash.js&quot;,
+            },
+          },
+        ],
+        postBodyTags: [`&lt;div&gt; This is post body &lt;/div&gt;`],
+      };
+    },
+    // highlight-end
+  };
+};
+</code></pre><h2 id="getClientModules"><a href="#getClientModules"><code>getClientModules()</code></a></h2><p>Returns an array of paths to the <a href="/docs/2.0.0-beta.20/advanced/client#client-modules">client modules</a> that are to be imported into the client bundle.</p><p>As an example, to make your theme load a <code>customCss</code> or <code>customJs</code> file path from <code>options</code> passed in by the user:</p><pre><code class="language-js" metastring="title=&quot;my-theme/src/index.js&quot;" title="&quot;my-theme/src/index.js&quot;">const path = require(&quot;path&quot;);
+
+module.exports = function (context, options) {
+  const { customCss, customJs } = options || {};
+  return {
+    name: &quot;name-of-my-theme&quot;,
+    // highlight-start
+    getClientModules() {
+      return [customCss, customJs];
+    },
+    // highlight-end
+  };
+};
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/api/plugin-methods/">Previous doc: <!-- -->Plugin Method References</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/api/plugin-methods/extend-infrastructure">Next doc: <!-- -->Extending infrastructure</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#loadContent"><code>async loadContent()</code></a></li><li><a href="#contentLoaded"><code>async contentLoaded({content, actions})</code></a><ol><li><a href="#content"><code>content</code></a></li><li><a href="#actions"><code>actions</code></a></li></ol></li><li><a href="#configureWebpack"><code>configureWebpack(config, isServer, utils, content)</code></a><ol><li><a href="#config"><code>config</code></a></li><li><a href="#isServer"><code>isServer</code></a></li><li><a href="#utils"><code>utils</code></a></li><li><a href="#content-1"><code>content</code></a></li><li><a href="#merge-strategy">Merge strategy</a></li><li><a href="#configuring-dev-server">Configuring dev server</a></li></ol></li><li><a href="#configurePostCss"><code>configurePostCss(options)</code></a></li><li><a href="#postBuild"><code>postBuild(props)</code></a></li><li><a href="#injectHtmlTags"><code>injectHtmlTags({content})</code></a></li><li><a href="#getClientModules"><code>getClientModules()</code></a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

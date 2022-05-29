@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Docs Introduction</h1><p>The docs feature provides users with a way to organize Markdown files in a hierarchical format.</p><div class="admonition admonition-info alert alert--info"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</h5></div><div class="admonition-content"><p>Check the <a href="/docs/2.0.0-beta.20/api/plugins/@docusaurus/plugin-content-docs">Docs Plugin API Reference documentation</a> for an exhaustive list of options.</p></div></div><h2 id="document-id"><a href="#document-id">Document ID</a></h2><p>Every document has a unique <code>id</code>. By default, a document <code>id</code> is the name of the document (without the extension) relative to the root docs directory.</p><p>For example, <code>greeting.md</code> id is <code>greeting</code> and <code>guide/hello.md</code> id is <code>guide/hello</code>.</p><pre><code class="language-bash">website # Root directory of your site
+└── docs
+   ├── greeting.md
+   └── guide
+      └── hello.md
+</code></pre><p>However, the <strong>last part</strong> of the <code>id</code> can be defined by the user in the front matter. For example, if <code>guide/hello.md</code>&#x27;s content is defined as below, its final <code>id</code> is <code>guide/part1</code>.</p><pre><code class="language-md">---
+id: part1
+---
+
+Lorem ipsum
+</code></pre><h3 id="customizing-doc-urls"><a href="#customizing-doc-urls">Customizing doc URLs</a></h3><p>By default, a document&#x27;s URL location is its file path relative to the <code>docs</code> folder. Use the <code>slug</code> front matter to change a document&#x27;s URL.</p><p>For example, suppose your site structure looks like this:</p><pre><code class="language-bash">website # Root directory of your site
+└── docs
+    └── guide
+        └── hello.md
+</code></pre><p>By default <code>hello.md</code> will be available at <code>/docs/guide/hello</code>. You can change its URL location to <code>/docs/bonjour</code>:</p><pre><code class="language-md">---
+slug: /bonjour
+---
+
+Lorem ipsum
+</code></pre><p><code>slug</code> will be appended to the doc plugin&#x27;s <code>routeBasePath</code>, which is <code>/docs</code> by default. See <a href="#docs-only-mode">Docs-only mode</a> for how to remove the <code>/docs</code> part from the URL.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>It is possible to use:</p><ul><li>absolute slugs: <code>slug: /mySlug</code>, <code>slug: /</code>...</li><li>relative slugs: <code>slug: mySlug</code>, <code>slug: ./../mySlug</code>...</li></ul></div></div><h2 id="home-page-docs"><a href="#home-page-docs">Home page docs</a></h2><p>If you want a document to be available at the root, and have a path like <code>https://docusaurus.io/docs/</code>, you can use the slug front matter:</p><pre><code class="language-md">---
+id: my-home-doc
+slug: /
+---
+
+Lorem ipsum
+</code></pre><h2 id="docs-only-mode"><a href="#docs-only-mode">Docs-only mode</a></h2><p>A freshly initialized Docusaurus site has the following structure:</p><pre><code>example.com/                                -&gt; generated from `src/pages/index.js`
+
+example.com/docs/intro                      -&gt; generated from `docs/intro.md`
+example.com/docs/tutorial-basics/...        -&gt; generated from `docs/tutorial-basics/...`
+...
+
+example.com/blog/2021/08/26/welcome         -&gt; generated from `blog/2021-08-26-welcome/index.md`
+example.com/blog/2021/08/01/mdx-blog-post   -&gt; generated from `blog/2021-08-01-mdx-blog-post.mdx`
+...
+</code></pre><p>All docs will be served under the subroute <code>docs/</code>. But what if <strong>your site only has docs</strong>, or you want to prioritize your docs by putting them at the root?</p><p>Assume that you have the following in your configuration:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  presets: [
+    &quot;@docusaurus/preset-classic&quot;,
+    {
+      docs: {
+        /* docs plugin options */
+      },
+      blog: {
+        /* blog plugin options */
+      },
+      // ...
+    },
+  ],
+};
+</code></pre><p>To enter docs-only mode, change it to like this:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  presets: [
+    &quot;@docusaurus/preset-classic&quot;,
+    {
+      docs: {
+        // highlight-next-line
+        routeBasePath: &quot;/&quot;, // Serve the docs at the site&#x27;s root
+        /* other docs plugin options */
+      },
+      // highlight-next-line
+      blog: false, // Optional: disable the blog plugin
+      // ...
+    },
+  ],
+};
+</code></pre><p>Note that you <strong>don&#x27;t necessarily have to give up on using the blog</strong> or other plugins; all that <code>routeBasePath: &#x27;/&#x27;</code> does is that instead of serving the docs through <code>https://example.com/docs/some-doc</code>, they are now at the site root: <code>https://example.com/some-doc</code>. The blog, if enabled, can still be accessed through the <code>blog/</code> subroute.</p><p>Don&#x27;t forget to put some page at the root (<code>https://example.com/</code>) through adding the front matter:</p><pre><code class="language-md" metastring="title=&quot;docs/intro.md&quot;" title="&quot;docs/intro.md&quot;">---
+# highlight-next-line
+slug: /
+---
+
+This page will be the home page when users visit https://example.com/.
+</code></pre><div class="admonition admonition-caution alert alert--warning"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>caution</h5></div><div class="admonition-content"><p>If you added <code>slug: /</code> to a doc to make it the homepage, you should delete the existing homepage at <code>./src/pages/index.js</code>, or else there will be two files mapping to the same route!</p></div></div><p>Now, the site&#x27;s structure will be like the following:</p><pre><code>example.com/                       -&gt; generated from `docs/intro.md`
+example.com/tutorial-basics/...    -&gt; generated from `docs/tutorial-basics/...`
+...
+</code></pre><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>There&#x27;s also a &quot;blog-only mode&quot; for those who only want to use the blog feature of Docusaurus 2. You can use the same method detailed above. Follow the setup instructions on <a href="/docs/2.0.0-beta.20/blog#blog-only-mode">Blog-only mode</a>.</p></div></div><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/creating-pages">Previous doc: <!-- -->Pages</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/create-doc">Next doc: <!-- -->Create a doc</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#document-id">Document ID</a><ol><li><a href="#customizing-doc-urls">Customizing doc URLs</a></li></ol></li><li><a href="#home-page-docs">Home page docs</a></li><li><a href="#docs-only-mode">Docs-only mode</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

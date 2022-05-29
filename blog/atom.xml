@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://your-docusaurus-test-site.com/blog</id>
+    <title>My Site Blog</title>
+    <updated>2022-01-24T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://your-docusaurus-test-site.com/blog"/>
+    <subtitle>My Site Blog</subtitle>
+    <icon>https://your-docusaurus-test-site.com/img/favicon.ico</icon>
+    <rights>Copyright © 2022 Facebook, Inc.</rights>
+    <entry>
+        <title type="html"><![CDATA[Docusaurus 2021 Recap]]></title>
+        <id>/2022/01/24/docusaurus-2021-recap</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2022/01/24/docusaurus-2021-recap"/>
+        <updated>2022-01-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Docusaurus has made great progress in 2021! We've seen a lot of traction and just crossed 30k stars on GitHub!]]></summary>
+        <author>
+            <name>Joshua Chen</name>
+            <email>sidachen2003@gmail.com</email>
+            <uri>https://joshcena.com/</uri>
+        </author>
+        <category label="recap" term="recap"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DocSearch migration]]></title>
+        <id>/2021/11/21/algolia-docsearch-migration</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2021/11/21/algolia-docsearch-migration"/>
+        <updated>2021-11-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[DocSearch is migrating to a new, more powerful system, which gives users their own Algolia application and new credentials.]]></summary>
+        <author>
+            <name>Clément Vannicatte</name>
+            <uri>https://github.com/shortcuts</uri>
+        </author>
+        <author>
+            <name>Sébastien Lorber</name>
+            <email>lorber.sebastien@gmail.com</email>
+            <uri>https://sebastienlorber.com</uri>
+        </author>
+        <category label="search" term="search"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Announcing Docusaurus 2 Beta]]></title>
+        <id>/2021/05/12/announcing-docusaurus-two-beta</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2021/05/12/announcing-docusaurus-two-beta"/>
+        <updated>2021-05-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[After a lengthy alpha stage in order to ensure feature parity and quality, we are excited to officially release the first Docusaurus 2 beta.]]></summary>
+        <author>
+            <name>Sébastien Lorber</name>
+            <email>lorber.sebastien@gmail.com</email>
+            <uri>https://sebastienlorber.com</uri>
+        </author>
+        <author>
+            <name>Joel Marcey</name>
+            <email>jimarcey@gmail.com</email>
+            <uri>http://twitter.com/JoelMarcey</uri>
+        </author>
+        <author>
+            <name>Yangshun Tay</name>
+            <email>tay.yang.shun@gmail.com</email>
+            <uri>https://github.com/yangshun</uri>
+        </author>
+        <author>
+            <name>Alexey Pyltsyn</name>
+            <email>lex@php.net</email>
+            <uri>https://github.com/lex111</uri>
+        </author>
+        <category label="release" term="release"/>
+        <category label="beta" term="beta"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Releasing Docusaurus i18n]]></title>
+        <id>/2021/03/09/releasing-docusaurus-i18n</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2021/03/09/releasing-docusaurus-i18n"/>
+        <updated>2021-03-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Today, we officially release Docusaurus 2 i18n (internationalization), as part of 2.0.0-alpha.71.]]></summary>
+        <author>
+            <name>Sébastien Lorber</name>
+            <email>lorber.sebastien@gmail.com</email>
+            <uri>https://sebastienlorber.com</uri>
+        </author>
+        <category label="release" term="release"/>
+        <category label="i18n" term="i18n"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docusaurus 2020 Recap]]></title>
+        <id>/2021/01/19/docusaurus-2020-recap</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2021/01/19/docusaurus-2020-recap"/>
+        <updated>2021-01-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[2020 was great for Docusaurus, despite a regrettable start and a tumultuous year for everyone.]]></summary>
+        <author>
+            <name>Sébastien Lorber</name>
+            <email>lorber.sebastien@gmail.com</email>
+            <uri>https://sebastienlorber.com</uri>
+        </author>
+        <category label="recap" term="recap"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Tribute to Endi]]></title>
+        <id>/2020/01/07/tribute-to-endi</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2020/01/07/tribute-to-endi"/>
+        <updated>2020-01-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[It is with great sadness to announce that our primary external Docusaurus contributor, Endilie Yacop Sucipto (Endi to those who knew him), passed away over the weekend after an illness associated with his bout with cancer.]]></summary>
+        <author>
+            <name>Joel Marcey</name>
+            <email>jimarcey@gmail.com</email>
+            <uri>http://twitter.com/JoelMarcey</uri>
+        </author>
+        <category label="endi" term="endi"/>
+        <category label="tribute" term="tribute"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Docusaurus 2019 Recap]]></title>
+        <id>/2019/12/30/docusaurus-2019-recap</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2019/12/30/docusaurus-2019-recap"/>
+        <updated>2019-12-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[2019 was a great year for Docusaurus - we've made tremendous progress on Docusaurus 2. Current Docusaurus 1 users who aren't using the translations feature can feel free to check it out and migrate to it! Otherwise we will work with you to make that happen in 2020 :)]]></summary>
+        <author>
+            <name>Yangshun Tay</name>
+            <email>tay.yang.shun@gmail.com</email>
+            <uri>https://github.com/yangshun</uri>
+        </author>
+        <category label="recap" term="recap"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Happy 1st Birthday Slash!]]></title>
+        <id>/2018/12/14/Happy-First-Birthday-Slash</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2018/12/14/Happy-First-Birthday-Slash"/>
+        <updated>2018-12-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[First Birthday Slash]]></summary>
+        <author>
+            <name>Joel Marcey</name>
+            <email>jimarcey@gmail.com</email>
+            <uri>http://twitter.com/JoelMarcey</uri>
+        </author>
+        <category label="birth" term="birth"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Towards Docusaurus 2]]></title>
+        <id>/2018/09/11/Towards-Docusaurus-2</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2018/09/11/Towards-Docusaurus-2"/>
+        <updated>2018-09-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Docusaurus was officially announced over nine months ago as a way to easily build open source documentation websites. Since then, it has amassed over 8,600 GitHub Stars, and is used by many popular open source projects such as React Native, Babel, Jest, Reason and Prettier.]]></summary>
+        <author>
+            <name>Endilie Yacop Sucipto</name>
+            <uri>https://github.com/endiliey</uri>
+        </author>
+        <category label="new" term="new"/>
+        <category label="adoption" term="adoption"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How I Converted Profilo to Docusaurus in Under 2 Hours]]></title>
+        <id>/2018/04/30/How-I-Converted-Profilo-To-Docusaurus</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2018/04/30/How-I-Converted-Profilo-To-Docusaurus"/>
+        <updated>2018-04-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[“Joel and I were discussing having a website and how it would have been great to launch with it. So I challenged myself to add Docusaurus support. It took just over an hour and a half. I'm going to send you a PR with the addition so you can take a look and see if you like it. Your workflow for adding docs wouldn't be much different from editing those markdown files.”]]></summary>
+        <author>
+            <name>Christine Abernathy</name>
+            <uri>http://twitter.com/abernathyca</uri>
+        </author>
+        <category label="profilo" term="profilo"/>
+        <category label="adoption" term="adoption"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing Docusaurus]]></title>
+        <id>/2017/12/14/introducing-docusaurus</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2017/12/14/introducing-docusaurus"/>
+        <updated>2017-12-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Introducing Slash]]></summary>
+        <author>
+            <name>Joel Marcey</name>
+            <email>jimarcey@gmail.com</email>
+            <uri>http://twitter.com/JoelMarcey</uri>
+        </author>
+        <category label="documentation" term="documentation"/>
+        <category label="blog" term="blog"/>
+        <category label="docusaurus" term="docusaurus"/>
+    </entry>
+</feed>

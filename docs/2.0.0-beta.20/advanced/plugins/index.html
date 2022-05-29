@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Plugins</h1><h1>Plugins</h1><p>Plugins are the building blocks of features in a Docusaurus 2 site. Each plugin handles its own individual feature. Plugins may work and be distributed as part of a bundle via presets.</p><h2 id="creating-plugins"><a href="#creating-plugins">Creating plugins</a></h2><p>A plugin is a function that takes two parameters: <code>context</code> and <code>options</code>. It returns a plugin instance object (or a promise). You can create plugins as functions or modules. For more information, refer to the <a href="/docs/2.0.0-beta.20/api/plugin-methods/">plugin method references section</a>.</p><h3 id="function-definition"><a href="#function-definition">Function definition</a></h3><p>You can use a plugin as a function directly included in the Docusaurus config file:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  plugins: [
+    // highlight-start
+    async function myPlugin(context, options) {
+      // ...
+      return {
+        name: &quot;my-plugin&quot;,
+        async loadContent() {
+          // ...
+        },
+        async contentLoaded({ content, actions }) {
+          // ...
+        },
+        /* other lifecycle API */
+      };
+    },
+    // highlight-end
+  ],
+};
+</code></pre><h3 id="module-definition"><a href="#module-definition">Module definition</a></h3><p>You can use a plugin as a module path referencing a separate file or npm package:</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // ...
+  plugins: [
+    // without options:
+    &quot;./my-plugin&quot;,
+    // or with options:
+    [&quot;./my-plugin&quot;, options],
+  ],
+};
+</code></pre><p>Then in the folder <code>my-plugin</code>, you can create an <code>index.js</code> such as this:</p><pre><code class="language-js" metastring="title=&quot;my-plugin/index.js&quot;" title="&quot;my-plugin/index.js&quot;">module.exports = async function myPlugin(context, options) {
+  // ...
+  return {
+    name: &quot;my-plugin&quot;,
+    async loadContent() {
+      /* ... */
+    },
+    async contentLoaded({ content, actions }) {
+      /* ... */
+    },
+    /* other lifecycle API */
+  };
+};
+</code></pre><hr><p>You can view all plugins installed in your site using the <a href="/__docusaurus/debug/metadata">debug plugin&#x27;s metadata panel</a>.</p><p>Plugins come as several types:</p><ul><li><code>package</code>: an external package you installed</li><li><code>project</code>: a plugin you created in your project, given to Docusaurus as a local file path</li><li><code>local</code>: a plugin created using the function definition</li><li><code>synthetic</code>: a &quot;fake plugin&quot; Docusaurus created internally, so we take advantage of our modular architecture and don&#x27;t let the core do much special work. You won&#x27;t see this in the metadata because it&#x27;s an implementation detail.</li></ul><p>You can access them on the client side with <code>useDocusaurusContext().siteMetadata.pluginVersions</code>.</p><h2 id="plugin-design"><a href="#plugin-design">Plugin design</a></h2><p>Docusaurus&#x27; implementation of the plugins system provides us with a convenient way to hook into the website&#x27;s lifecycle to modify what goes on during development/build, which involves (but is not limited to) extending the webpack config, modifying the data loaded, and creating new components to be used in a page.</p><h3 id="theme-design"><a href="#theme-design">Theme design</a></h3><p>When plugins have loaded their content, the data is made available to the client side through actions like <a href="/docs/2.0.0-beta.20/api/plugin-methods/lifecycle-apis#addRoute"><code>createData</code> + <code>addRoute</code></a> or <a href="/docs/2.0.0-beta.20/api/plugin-methods/lifecycle-apis#setGlobalData"><code>setGlobalData</code></a>. This data has to be <em>serialized</em> to plain strings, because <a href="/docs/2.0.0-beta.20/advanced/architecture">plugins and themes run in different environments</a>. Once the data arrives on the client side, the rest becomes familiar to React developers: data is passed along components, components are bundled with Webpack, and rendered to the window through <code>ReactDOM.render</code>...</p><p><strong>Themes provide the set of UI components to render the content.</strong> Most content plugins need to be paired with a theme in order to be actually useful. The UI is a separate layer from the data schema, which makes swapping designs easy.</p><p>For example, a Docusaurus blog may consist of a blog plugin and a blog theme.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>This is a contrived example: in practice, <code>@docusaurus/theme-classic</code> provides the theme for docs, blog, and layouts.</p></div></div><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // highlight-next-line
+  themes: [&quot;theme-blog&quot;],
+  plugins: [&quot;plugin-content-blog&quot;],
+};
+</code></pre><p>And if you want to use Bootstrap styling, you can swap out the theme with <code>theme-blog-bootstrap</code> (another fictitious non-existing theme):</p><pre><code class="language-js" metastring="title=&quot;docusaurus.config.js&quot;" title="&quot;docusaurus.config.js&quot;">module.exports = {
+  // highlight-next-line
+  themes: [&quot;theme-blog-bootstrap&quot;],
+  plugins: [&quot;plugin-content-blog&quot;],
+};
+</code></pre><p>Now, although the theme receives the same data from the plugin, how the theme chooses to <em>render</em> the data as UI can be drastically different.</p><p>While themes share the exact same lifecycle methods with plugins, themes&#x27; implementations can look very different from those of plugins based on themes&#x27; designed objectives.</p><p>Themes are designed to complete the build of your Docusaurus site and supply the components used by your site, plugins, and the themes themselves. A theme still acts like a plugin and exposes some lifecycle methods, but most likely they would not use <a href="/docs/2.0.0-beta.20/api/plugin-methods/lifecycle-apis#loadContent"><code>loadContent</code></a>, since they only receive data from plugins, but don&#x27;t generate data themselves; themes are typically also accompanied by an <code>src/theme</code> directory full of components, which are made known to the core through the <a href="/docs/2.0.0-beta.20/api/plugin-methods/extend-infrastructure#getThemePath"><code>getThemePath</code></a> lifecycle.</p><p>To summarize:</p><ul><li>Themes share the same lifecycle methods with Plugins</li><li>Themes are run after all existing Plugins</li><li>Themes add component aliases by providing <code>getThemePath</code>.</li></ul><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/advanced/architecture">Previous doc: <!-- -->Architecture</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/advanced/routing">Next doc: <!-- -->Routing</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#creating-plugins">Creating plugins</a><ol><li><a href="#function-definition">Function definition</a></li><li><a href="#module-definition">Module definition</a></li></ol></li><li><a href="#plugin-design">Plugin design</a><ol><li><a href="#theme-design">Theme design</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

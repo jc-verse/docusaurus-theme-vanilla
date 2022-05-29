@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>📦 eslint-plugin</h1><p><a href="https://eslint.org/">ESLint</a> is a tool that statically analyzes your code and reports problems or suggests best practices through editor hints and command line. Docusaurus provides an ESLint plugin to enforce best Docusaurus practices.</p><h2 id="installation"><a href="#installation">Installation</a></h2><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install --save-dev @docusaurus/eslint-plugin
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add --dev @docusaurus/eslint-plugin
+</code></pre></div></div></div><h2 id="usage"><a href="#usage">Usage</a></h2><p>Add <code>@docusaurus</code> to the plugins section of your <code>.eslintrc</code> configuration file:</p><pre><code class="language-json" metastring="title=&quot;.eslintrc&quot;" title="&quot;.eslintrc&quot;">{
+  &quot;plugins&quot;: [&quot;@docusaurus&quot;]
+}
+</code></pre><p>Then, you can extend one of the configs (e.g. the <code>recommended</code> config):</p><pre><code class="language-json" metastring="title=&quot;.eslintrc&quot;" title="&quot;.eslintrc&quot;">{
+  &quot;extends&quot;: [&quot;plugin:@docusaurus/recommended&quot;]
+}
+</code></pre><p>Each config contains a set of rules. For more fine-grained control, you can also configure the rules you want to use directly:</p><pre><code class="language-json" metastring="title=&quot;.eslintrc&quot;" title="&quot;.eslintrc&quot;">{
+  &quot;rules&quot;: {
+    &quot;@docusaurus/string-literal-i18n-messages&quot;: &quot;error&quot;,
+    &quot;@docusaurus/no-untranslated-text&quot;: &quot;warn&quot;
+  }
+}
+</code></pre><h2 id="supported-configs"><a href="#supported-configs">Supported Configs</a></h2><ul><li>Recommended: recommended rule set for most Docusaurus sites that should be extended from.</li><li>All: <strong>all</strong> rules enabled. This will change between minor versions, so you should not use this if you want to avoid unexpected breaking changes.</li></ul><h2 id="supported-rules"><a href="#supported-rules">Supported Rules</a></h2><table><thead><tr><th>Name</th><th>Description</th><th></th></tr></thead><tbody><tr><td><a href="/docs/2.0.0-beta.20/api/misc/@docusaurus/eslint-plugin/no-untranslated-text"><code>@docusaurus/no-untranslated-text</code></a></td><td>Enforce text labels in JSX to be wrapped by translate calls</td><td></td></tr><tr><td><a href="/docs/2.0.0-beta.20/api/misc/@docusaurus/eslint-plugin/string-literal-i18n-messages"><code>@docusaurus/string-literal-i18n-messages</code></a></td><td>Enforce translate APIs to be called on plain text labels</td><td>✅</td></tr></tbody></table><p>✅ = recommended</p><h2 id="example-configuration"><a href="#example-configuration">Example configuration</a></h2><p>Here&#x27;s an example configuration:</p><pre><code class="language-js" metastring="title=&quot;.eslintrc.js&quot;" title="&quot;.eslintrc.js&quot;">module.exports = {
+  extends: [&quot;plugin:@docusaurus/recommended&quot;],
+  plugins: [&quot;@docusaurus&quot;],
+  rules: {
+    &quot;@docusaurus/no-untranslated-text&quot;: [
+      &quot;warn&quot;,
+      { ignoredStrings: [&quot;·&quot;, &quot;—&quot;, &quot;×&quot;] },
+    ],
+  },
+};
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/api/misc/create-docusaurus">Previous doc: <!-- -->📦 create-docusaurus</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/api/misc/@docusaurus/eslint-plugin/no-untranslated-text">Next doc: <!-- -->no-untranslated-text</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a></li><li><a href="#supported-configs">Supported Configs</a></li><li><a href="#supported-rules">Supported Rules</a></li><li><a href="#example-configuration">Example configuration</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Migration overview</h1><p>This doc guides you through migrating an existing Docusaurus 1 site to Docusaurus 2.</p><p>We try to make this as easy as possible, and provide a migration cli.</p><h2 id="main-differences"><a href="#main-differences">Main differences</a></h2><p>Docusaurus 1 is a pure documentation site generator, using React as a server-side template engine, but not loading React on the browser.</p><p>Docusaurus 2, rebuilt from the ground up, generates a single-page-application, using the full power of React in the browser. It allows for more customizability but preserved the best parts of Docusaurus 1 - easy to get started, versioned docs, and i18n.</p><p>Beyond that, Docusaurus 2 is a <strong>performant static site generator</strong> and can be used to create common content-driven websites (e.g. Documentation, Blogs, Product Landing and Marketing Pages, etc) extremely quickly.</p><p>While our main focus will still be helping you get your documentations right and well, it is possible to build any kind of website using Docusaurus 2 as it is just a React application. <strong>Docusaurus can now be used to build any website, not just documentation websites.</strong></p><h2 id="docusaurus-1-structure"><a href="#docusaurus-1-structure">Docusaurus 1 structure</a></h2><p>Your Docusaurus 1 site should have the following structure:</p><pre><code class="language-bash">├── docs
+└── website
+    ├── blog
+    ├── core
+    │   └── Footer.js
+    ├── package.json
+    ├── pages
+    ├── sidebars.json
+    ├── siteConfig.js
+    └── static
+</code></pre><h2 id="docusaurus-2-structure"><a href="#docusaurus-2-structure">Docusaurus 2 structure</a></h2><p>After the migration, your Docusaurus 2 site could look like:</p><pre><code class="language-sh">├── docs
+└── website
+    ├── blog
+    ├── src
+    │   ├── components
+    │   ├── css
+    │   └── pages
+    ├── static
+    ├── package.json
+    ├── sidebars.json
+    ├── docusaurus.config.js
+</code></pre><div class="admonition admonition-info alert alert--info"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</h5></div><div class="admonition-content"><p>This migration does not change the <code>/docs</code> folder location, but Docusaurus v2 sites generally have the <code>/docs</code> folder inside <code>/website</code></p><p>You are free to put the <code>/docs</code> folder anywhere you want after having migrated to v2.</p></div></div><h2 id="migration-process"><a href="#migration-process">Migration process</a></h2><p>There are multiple things to migrate to obtain a fully functional Docusaurus 2 website:</p><ul><li>packages</li><li>cli commands</li><li>site configuration</li><li>markdown files</li><li>sidebars file</li><li>pages, components and CSS</li><li>versioned docs</li><li>i18n support 🚧</li></ul><h2 id="automated-migration-process"><a href="#automated-migration-process">Automated migration process</a></h2><p>The <a href="/docs/2.0.0-beta.20/migration/automated">migration cli</a> will handle many things of the migration for you.</p><p>However, some parts can&#x27;t easily be automated, and you will have to fallback to the manual process.</p><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>We recommend running the migration cli, and complete the missing parts thanks to the manual migration process.</p></div></div><h2 id="manual-migration-process"><a href="#manual-migration-process">Manual migration process</a></h2><p>Some parts of the migration can&#x27;t be automated (particularly the pages), and you will have to migrate them manually.</p><p>The <a href="/docs/2.0.0-beta.20/migration/manual">manual migration guide</a> will give you all the manual steps.</p><h2 id="support"><a href="#support">Support</a></h2><p>For any questions, you can ask in the <a href="https://discord.gg/C3P6CxMMxY"><code>#migration-v1-to-v2</code> Discord channel</a>.</p><p>Feel free to tag <a href="https://github.com/slorber">@slorber</a> in any migration PRs if you would like us to have a look.</p><p>We also have volunteers willing to <a href="https://github.com/facebook/docusaurus/issues/1834">help you migrate your v1 site</a>.</p><h2 id="example-migration-prs"><a href="#example-migration-prs">Example migration PRs</a></h2><p>You might want to refer to our migration PRs for <a href="https://github.com/facebook/create-react-app/pull/7785">Create React App</a> and <a href="https://github.com/facebook/flux/pull/471">Flux</a> as examples of how a migration for a basic Docusaurus v1 site can be done.</p><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/2.0.0-beta.20/advanced/client">Previous doc: <!-- -->Client architecture</a></span><span class="nextLink_cubj"><a href="/docs/2.0.0-beta.20/migration/automated">Next doc: <!-- -->Automated migration</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#main-differences">Main differences</a></li><li><a href="#docusaurus-1-structure">Docusaurus 1 structure</a></li><li><a href="#docusaurus-2-structure">Docusaurus 2 structure</a></li><li><a href="#migration-process">Migration process</a></li><li><a href="#automated-migration-process">Automated migration process</a></li><li><a href="#manual-migration-process">Manual migration process</a></li><li><a href="#support">Support</a></li><li><a href="#example-migration-prs">Example migration PRs</a></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

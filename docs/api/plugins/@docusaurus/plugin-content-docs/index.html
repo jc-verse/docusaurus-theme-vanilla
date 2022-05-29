@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-docs plugin-id-default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.21">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="My Site RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="My Site Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="My Site JSON Feed">
+
+
+
+<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">My Site</title><meta data-rh="true" property="og:title" content="My Site"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="/assets/css/styles.e0663130.css">
+<link rel="preload" href="/assets/js/runtime~main.7597a360.js" as="script">
+<link rel="preload" href="/assets/js/main.5ffb9fe3.js" as="script">
+</head>
+<body>
+<div id="__docusaurus">
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>📦 plugin-content-docs</h1><p>Provides the <a href="/docs/docs-introduction">Docs</a> functionality and is the default docs plugin for Docusaurus.</p><h2 id="installation"><a href="#installation">Installation</a></h2><div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabs__item--active">npm</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item">Yarn</li></ul><div class="margin-top--md"><div role="tabpanel"><pre><code class="language-bash">npm install --save @docusaurus/plugin-content-docs
+</code></pre></div><div role="tabpanel" hidden=""><pre><code class="language-bash">yarn add @docusaurus/plugin-content-docs
+</code></pre></div></div></div><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>If you use the preset <code>@docusaurus/preset-classic</code>, you don&#x27;t need to install this plugin as a dependency.</p><p>You can configure this plugin through the preset options.</p></div></div><h2 id="configuration"><a href="#configuration">Configuration</a></h2><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="path" tabindex="0"><td><code>path</code></td><td><code>string</code></td><td><code>&#x27;docs&#x27;</code></td><td>Path to the docs content directory on the file system, relative to site directory.</td></tr><tr id="editUrl" tabindex="0"><td><code>editUrl</code></td><td><code>string <!-- -->|<!-- --> <a href="#EditUrlFunction">EditUrlFunction</a></code></td><td><code>undefined</code></td><td>Base URL to edit your site. The final URL is computed by <code>editUrl + relativeDocPath</code>. Using a function allows more nuanced control for each file. Omitting this variable entirely will disable edit links.</td></tr><tr id="editLocalizedFiles" tabindex="0"><td><code>editLocalizedFiles</code></td><td><code>boolean</code></td><td><code>false</code></td><td>The edit URL will target the localized file, instead of the original unlocalized file. Ignored when <code>editUrl</code> is a function.</td></tr><tr id="editCurrentVersion" tabindex="0"><td><code>editCurrentVersion</code></td><td><code>boolean</code></td><td><code>false</code></td><td>The edit URL will always target the current version doc instead of older versions. Ignored when <code>editUrl</code> is a function.</td></tr><tr id="routeBasePath" tabindex="0"><td><code>routeBasePath</code></td><td><code>string</code></td><td><code>&#x27;docs&#x27;</code></td><td>URL route for the docs section of your site. <strong>DO NOT</strong> include a trailing slash. Use <code>/</code> for shipping docs without base path.</td></tr><tr id="tagsBasePath" tabindex="0"><td><code>tagsBasePath</code></td><td><code>string</code></td><td><code>&#x27;tags&#x27;</code></td><td>URL route for the tags list page of your site. It is prepended to the <code>routeBasePath</code>.</td></tr><tr id="include" tabindex="0"><td><code>include</code></td><td><code>string[]</code></td><td><code>[&#x27;**/*.{md,mdx}&#x27;]</code></td><td>Array of glob patterns matching Markdown files to be built, relative to the content path.</td></tr><tr id="exclude" tabindex="0"><td><code>exclude</code></td><td><code>string[]</code></td><td><em>See example configuration</em></td><td>Array of glob patterns matching Markdown files to be excluded. Serves as refinement based on the <code>include</code> option.</td></tr><tr id="sidebarPath" tabindex="0"><td><code>sidebarPath</code></td><td><code>false <!-- -->|<!-- --> string</code></td><td><code>undefined</code></td><td>Path to sidebar configuration. Use <code>false</code> to disable sidebars, or <code>undefined</code> to create a fully autogenerated sidebar.</td></tr><tr id="sidebarCollapsible" tabindex="0"><td><code>sidebarCollapsible</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Whether sidebar categories are collapsible by default. See also <a href="/docs/sidebar#collapsible-categories">Collapsible categories</a></td></tr><tr id="sidebarCollapsed" tabindex="0"><td><code>sidebarCollapsed</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Whether sidebar categories are collapsed by default. See also <a href="/docs/sidebar#expanded-categories-by-default">Expanded categories by default</a></td></tr><tr id="sidebarItemsGenerator" tabindex="0"><td><code>sidebarItemsGenerator</code></td><td><a href="#SidebarGenerator"><code>SidebarGenerator</code></a></td><td><em>Omitted</em></td><td>Function used to replace the sidebar items of type <code>&#x27;autogenerated&#x27;</code> with real sidebar items (docs, categories, links...). See also <a href="/docs/sidebar#customize-the-sidebar-items-generator">Customize the sidebar items generator</a></td></tr><tr id="numberPrefixParser" tabindex="0"><td><code>numberPrefixParser</code></td><td><code>boolean <!-- -->|</code> <a href="#PrefixParser"><code>PrefixParser</code></a></td><td><em>Omitted</em></td><td>Custom parsing logic to extract number prefixes from file names. Use <code>false</code> to disable this behavior and leave the docs untouched, and <code>true</code> to use the default parser. See also <a href="/docs/sidebar#using-number-prefixes">Using number prefixes</a></td></tr><tr id="docLayoutComponent" tabindex="0"><td><code>docLayoutComponent</code></td><td><code>string</code></td><td><code>&#x27;@theme/DocPage&#x27;</code></td><td>Root layout component of each doc page. Provides the version data context, and is not unmounted when switching docs.</td></tr><tr id="docItemComponent" tabindex="0"><td><code>docItemComponent</code></td><td><code>string</code></td><td><code>&#x27;@theme/DocItem&#x27;</code></td><td>Main doc container, with TOC, pagination, etc.</td></tr><tr id="docTagsListComponent" tabindex="0"><td><code>docTagsListComponent</code></td><td><code>string</code></td><td><code>&#x27;@theme/DocTagsListPage&#x27;</code></td><td>Root component of the tags list page</td></tr><tr id="docTagDocListComponent" tabindex="0"><td><code>docTagDocListComponent</code></td><td><code>string</code></td><td><code>&#x27;@theme/DocTagDocListPage&#x27;</code></td><td>Root component of the &quot;docs containing tag X&quot; page.</td></tr><tr id="docCategoryGeneratedIndexComponent" tabindex="0"><td><code>docCategoryGeneratedIndexComponent</code></td><td><code>string</code></td><td><code>&#x27;@theme/DocCategoryGeneratedIndexPage&#x27;</code></td><td>Root component of the generated category index page.</td></tr><tr id="remarkPlugins" tabindex="0"><td><code>remarkPlugins</code></td><td><code>any[]</code></td><td><code>[]</code></td><td>Remark plugins passed to MDX.</td></tr><tr id="rehypePlugins" tabindex="0"><td><code>rehypePlugins</code></td><td><code>any[]</code></td><td><code>[]</code></td><td>Rehype plugins passed to MDX.</td></tr><tr id="beforeDefaultRemarkPlugins" tabindex="0"><td><code>beforeDefaultRemarkPlugins</code></td><td><code>any[]</code></td><td><code>[]</code></td><td>Custom Remark plugins passed to MDX before the default Docusaurus Remark plugins.</td></tr><tr id="beforeDefaultRehypePlugins" tabindex="0"><td><code>beforeDefaultRehypePlugins</code></td><td><code>any[]</code></td><td><code>[]</code></td><td>Custom Rehype plugins passed to MDX before the default Docusaurus Rehype plugins.</td></tr><tr id="showLastUpdateAuthor" tabindex="0"><td><code>showLastUpdateAuthor</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether to display the author who last updated the doc.</td></tr><tr id="showLastUpdateTime" tabindex="0"><td><code>showLastUpdateTime</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether to display the last date the doc was updated.</td></tr><tr id="breadcrumbs" tabindex="0"><td><code>breadcrumbs</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enable or disable the breadcrumbs on doc pages.</td></tr><tr id="disableVersioning" tabindex="0"><td><code>disableVersioning</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Explicitly disable versioning even when multiple versions exist. This will make the site only include the current version. Will error if <code>includeCurrentVersion: false</code> and <code>disableVersioning: true</code>.</td></tr><tr id="includeCurrentVersion" tabindex="0"><td><code>includeCurrentVersion</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Include the current version of your docs.</td></tr><tr id="lastVersion" tabindex="0"><td><code>lastVersion</code></td><td><code>string</code></td><td>First version in <code>versions.json</code></td><td>The version navigated to in priority and displayed by default for docs navbar items.</td></tr><tr id="onlyIncludeVersions" tabindex="0"><td><code>onlyIncludeVersions</code></td><td><code>string[]</code></td><td>All versions available</td><td>Only include a subset of all available versions.</td></tr><tr id="versions" tabindex="0"><td><code>versions</code></td><td><a href="#VersionsConfig"><code>VersionsConfig</code></a></td><td><code>{}</code></td><td>Independent customization of each version&#x27;s properties.</td></tr></tbody></table><h3 id="types"><a href="#types">Types</a></h3><h4 id="EditUrlFunction"><a href="#EditUrlFunction"><code>EditUrlFunction</code></a></h4><pre><code class="language-ts">type EditUrlFunction = (params: {
+  version: string;
+  versionDocsDirPath: string;
+  docPath: string;
+  permalink: string;
+  locale: string;
+}) =&gt; string | undefined;
+</code></pre><h4 id="PrefixParser"><a href="#PrefixParser"><code>PrefixParser</code></a></h4><pre><code class="language-ts">type PrefixParser = (filename: string) =&gt; {
+  filename: string;
+  numberPrefix?: number;
+};
+</code></pre><h4 id="SidebarGenerator"><a href="#SidebarGenerator"><code>SidebarGenerator</code></a></h4><pre><code class="language-ts">type SidebarGenerator = (generatorArgs: {
+  /** The sidebar item with type &quot;autogenerated&quot; to be transformed. */
+  item: { type: &quot;autogenerated&quot;; dirName: string };
+  /** Useful metadata for the version this sidebar belongs to. */
+  version: { contentPath: string; versionName: string };
+  /** All the docs of that version (unfiltered). */
+  docs: {
+    id: string;
+    title: string;
+    frontMatter: DocFrontMatter &amp; Record&lt;string, unknown&gt;;
+    source: string;
+    sourceDirName: string;
+    sidebarPosition?: number | undefined;
+  }[];
+  /** Number prefix parser configured for this plugin. */
+  numberPrefixParser: PrefixParser;
+  /** The default category index matcher which you can override. */
+  isCategoryIndex: CategoryIndexMatcher;
+  /**
+   * key is the path relative to the doc content directory, value is the
+   * category metadata file&#x27;s content.
+   */
+  categoriesMetadata: { [filePath: string]: CategoryMetadata };
+  /**
+   * Useful to re-use/enhance the default sidebar generation logic from
+   * Docusaurus.
+   */
+  defaultSidebarItemsGenerator: SidebarGenerator;
+  // Returns an array of sidebar items — same as what you can declare in
+  // sidebars.js, except for shorthands. See https://docusaurus.io/docs/sidebar/items
+}) =&gt; Promise&lt;SidebarItem[]&gt;;
+
+type CategoryIndexMatcher = (param: {
+  /** The file name, without extension */
+  fileName: string;
+  /**
+   * The list of directories, from lowest level to highest.
+   * If there&#x27;s no dir name, directories is [&#x27;.&#x27;]
+   */
+  directories: string[];
+  /** The extension, with a leading dot */
+  extension: string;
+}) =&gt; boolean;
+</code></pre><h4 id="VersionsConfig"><a href="#VersionsConfig"><code>VersionsConfig</code></a></h4><pre><code class="language-ts">type VersionsConfig = {
+  [versionName: string]: {
+    /**
+     * The base path of the version, will be appended to `baseUrl` +
+     * `routeBasePath`.
+     */
+    path?: string;
+    /** The label of the version to be used in badges, dropdowns, etc. */
+    label?: string;
+    /** The banner to show at the top of a doc of that version. */
+    banner?: &quot;none&quot; | &quot;unreleased&quot; | &quot;unmaintained&quot;;
+    /** Show a badge with the version label at the top of each doc. */
+    badge?: boolean;
+    /** Add a custom class name to the &lt;html&gt; element of each doc */
+    className?: string;
+  };
+};
+</code></pre><h3 id="ex-config"><a href="#ex-config">Example configuration</a></h3><p>You can configure this plugin through preset options or plugin options.</p><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>Most Docusaurus users configure this plugin through the preset options.</p></div></div><pre><code class="language-js" metastring="config-tabs">// Preset Options: docs
+// Plugin Options: @docusaurus/plugin-content-docs
+
+const config = {
+  path: &quot;docs&quot;,
+  breadcrumbs: true,
+  // Simple use-case: string editUrl
+  // editUrl: &#x27;https://github.com/facebook/docusaurus/edit/main/website/&#x27;,
+  // Advanced use-case: functional editUrl
+  editUrl: ({ versionDocsDirPath, docPath }) =&gt;
+    `https://github.com/facebook/docusaurus/edit/main/website/${versionDocsDirPath}/${docPath}`,
+  editLocalizedFiles: false,
+  editCurrentVersion: false,
+  routeBasePath: &quot;docs&quot;,
+  include: [&quot;**/*.md&quot;, &quot;**/*.mdx&quot;],
+  exclude: [
+    &quot;**/_*.{js,jsx,ts,tsx,md,mdx}&quot;,
+    &quot;**/_*/**&quot;,
+    &quot;**/*.test.{js,jsx,ts,tsx}&quot;,
+    &quot;**/__tests__/**&quot;,
+  ],
+  sidebarPath: &quot;sidebars.js&quot;,
+  async sidebarItemsGenerator({
+    defaultSidebarItemsGenerator,
+    numberPrefixParser,
+    item,
+    version,
+    docs,
+    isCategoryIndex,
+  }) {
+    // Use the provided data to generate a custom sidebar slice
+    return [
+      { type: &quot;doc&quot;, id: &quot;intro&quot; },
+      {
+        type: &quot;category&quot;,
+        label: &quot;Tutorials&quot;,
+        items: [
+          { type: &quot;doc&quot;, id: &quot;tutorial1&quot; },
+          { type: &quot;doc&quot;, id: &quot;tutorial2&quot; },
+        ],
+      },
+    ];
+  },
+  numberPrefixParser(filename) {
+    // Implement your own logic to extract a potential number prefix
+    const numberPrefix = findNumberPrefix(filename);
+    // Prefix found: return it with the cleaned filename
+    if (numberPrefix) {
+      return {
+        numberPrefix,
+        filename: filename.replace(prefix, &quot;&quot;),
+      };
+    }
+    // No number prefix found
+    return { numberPrefix: undefined, filename };
+  },
+  docLayoutComponent: &quot;@theme/DocPage&quot;,
+  docItemComponent: &quot;@theme/DocItem&quot;,
+  remarkPlugins: [require(&quot;remark-math&quot;)],
+  rehypePlugins: [],
+  beforeDefaultRemarkPlugins: [],
+  beforeDefaultRehypePlugins: [],
+  showLastUpdateAuthor: false,
+  showLastUpdateTime: false,
+  disableVersioning: false,
+  includeCurrentVersion: true,
+  lastVersion: undefined,
+  versions: {
+    current: {
+      label: &quot;Android SDK v2.0.0 (WIP)&quot;,
+      path: &quot;android-2.0.0&quot;,
+      banner: &quot;none&quot;,
+    },
+    &quot;1.0.0&quot;: {
+      label: &quot;Android SDK v1.0.0&quot;,
+      path: &quot;android-1.0.0&quot;,
+      banner: &quot;unmaintained&quot;,
+    },
+  },
+  onlyIncludeVersions: [&quot;current&quot;, &quot;1.0.0&quot;, &quot;2.0.0&quot;],
+};
+</code></pre><h2 id="markdown-front-matter"><a href="#markdown-front-matter">Markdown front matter</a></h2><p>Markdown documents can use the following Markdown front matter metadata fields, enclosed by a line <code>---</code> on either side.</p><p>Accepted fields:</p><table class="apiTable_e8hp"><thead><tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr id="id" tabindex="0"><td><code>id</code></td><td><code>string</code></td><td>file path (including folders, without the extension)</td><td>A unique document id.</td></tr><tr id="title" tabindex="0"><td><code>title</code></td><td><code>string</code></td><td>Markdown title or <code>id</code></td><td>The text title of your document. Used for the page metadata and as a fallback value in multiple places (sidebar, next/previous buttons...). Automatically added at the top of your doc if it does not contain any Markdown title.</td></tr><tr id="pagination_label" tabindex="0"><td><code>pagination_label</code></td><td><code>string</code></td><td><code>sidebar_label</code> or <code>title</code></td><td>The text used in the document next/previous buttons for this document.</td></tr><tr id="sidebar_label" tabindex="0"><td><code>sidebar_label</code></td><td><code>string</code></td><td><code>title</code></td><td>The text shown in the document sidebar for this document.</td></tr><tr id="sidebar_position" tabindex="0"><td><code>sidebar_position</code></td><td><code>number</code></td><td>Default ordering</td><td>Controls the position of a doc inside the generated sidebar slice when using <code>autogenerated</code> sidebar items. See also <a href="/docs/sidebar#autogenerated-sidebar-metadata">Autogenerated sidebar metadata</a>.</td></tr><tr id="sidebar_class_name" tabindex="0"><td><code>sidebar_class_name</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Gives the corresponding sidebar label a special class name when using autogenerated sidebars.</td></tr><tr id="hide_title" tabindex="0"><td><code>hide_title</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether to hide the title at the top of the doc. It only hides a title declared through the front matter, and have no effect on a Markdown title at the top of your document.</td></tr><tr id="hide_table_of_contents" tabindex="0"><td><code>hide_table_of_contents</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether to hide the table of contents to the right.</td></tr><tr id="toc_min_heading_level" tabindex="0"><td><code>toc_min_heading_level</code></td><td><code>number</code></td><td><code>2</code></td><td>The minimum heading level shown in the table of contents. Must be between 2 and 6 and lower or equal to the max value.</td></tr><tr id="toc_max_heading_level" tabindex="0"><td><code>toc_max_heading_level</code></td><td><code>number</code></td><td><code>3</code></td><td>The max heading level shown in the table of contents. Must be between 2 and 6.</td></tr><tr id="pagination_next" tabindex="0"><td><code>pagination_next</code></td><td><code>string <!-- -->|<!-- --> null</code></td><td>Next doc in the sidebar</td><td>The ID of the documentation you want the &quot;Next&quot; pagination to link to. Use <code>null</code> to disable showing &quot;Next&quot; for this page.</td></tr><tr id="pagination_prev" tabindex="0"><td><code>pagination_prev</code></td><td><code>string <!-- -->|<!-- --> null</code></td><td>Previous doc in the sidebar</td><td>The ID of the documentation you want the &quot;Previous&quot; pagination to link to. Use <code>null</code> to disable showing &quot;Previous&quot; for this page.</td></tr><tr id="parse_number_prefixes" tabindex="0"><td><code>parse_number_prefixes</code></td><td><code>boolean</code></td><td><code>numberPrefixParser</code> plugin option</td><td>Whether number prefix parsing is disabled on this doc. See also <a href="/docs/sidebar#using-number-prefixes">Using number prefixes</a>.</td></tr><tr id="custom_edit_url" tabindex="0"><td><code>custom_edit_url</code></td><td><code>string</code></td><td>Computed using the <code>editUrl</code> plugin option</td><td>The URL for editing this document.</td></tr><tr id="keywords" tabindex="0"><td><code>keywords</code></td><td><code>string[]</code></td><td><code>undefined</code></td><td>Keywords meta tag for the document page, for search engines.</td></tr><tr id="description" tabindex="0"><td><code>description</code></td><td><code>string</code></td><td>The first line of Markdown content</td><td>The description of your document, which will become the <code>&lt;meta name=&quot;description&quot; content=&quot;...&quot;/&gt;</code> and <code>&lt;meta property=&quot;og:description&quot; content=&quot;...&quot;/&gt;</code> in <code>&lt;head&gt;</code>, used by search engines.</td></tr><tr id="image" tabindex="0"><td><code>image</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Cover or thumbnail image that will be used when displaying the link to your post.</td></tr><tr id="slug" tabindex="0"><td><code>slug</code></td><td><code>string</code></td><td>File path</td><td>Allows to customize the document url (<code>/&lt;routeBasePath&gt;/&lt;slug&gt;</code>). Support multiple patterns: <code>slug: my-doc</code>, <code>slug: /my/path/myDoc</code>, <code>slug: /</code>.</td></tr><tr id="tags" tabindex="0"><td><code>tags</code></td><td><code>Tag[]</code></td><td><code>undefined</code></td><td>A list of strings or objects of two string fields <code>label</code> and <code>permalink</code> to tag to your docs.</td></tr><tr id="draft" tabindex="0"><td><code>draft</code></td><td><code>boolean</code></td><td><code>false</code></td><td>A boolean flag to indicate that a document is a work-in-progress. Draft documents will only be displayed during development.</td></tr></tbody></table><pre><code class="language-ts">type Tag = string | { label: string; permalink: string };
+</code></pre><p>Example:</p><pre><code class="language-md">---
+id: doc-markdown
+title: Docs Markdown Features
+hide_title: false
+hide_table_of_contents: false
+sidebar_label: Markdown
+sidebar_position: 3
+pagination_label: Markdown features
+custom_edit_url: https://github.com/facebook/docusaurus/edit/main/docs/api-doc-markdown.md
+description: How do I find you when I cannot solve this problem
+keywords:
+  - docs
+  - docusaurus
+image: https://i.imgur.com/mErPwqL.png
+slug: /myDoc
+---
+
+# Markdown Features
+
+My Document Markdown content
+</code></pre><h2 id="i18n"><a href="#i18n">i18n</a></h2><p>Read the <a href="/docs/i18n/introduction">i18n introduction</a> first.</p><h3 id="translation-files-location"><a href="#translation-files-location">Translation files location</a></h3><ul><li><strong>Base path</strong>: <code>website/i18n/[locale]/docusaurus-plugin-content-docs</code></li><li><strong>Multi-instance path</strong>: <code>website/i18n/[locale]/docusaurus-plugin-content-docs-[pluginId]</code></li><li><strong>JSON files</strong>: extracted with <a href="/docs/cli#docusaurus-write-translations-sitedir"><code>docusaurus write-translations</code></a></li><li><strong>Markdown files</strong>: <code>website/i18n/[locale]/docusaurus-plugin-content-docs/[versionName]</code></li></ul><h3 id="example-file-system-structure"><a href="#example-file-system-structure">Example file-system structure</a></h3><pre><code class="language-bash">website/i18n/[locale]/docusaurus-plugin-content-docs
+│
+│ # translations for website/docs
+├── current
+│   ├── api
+│   │   └── config.md
+│   └── getting-started.md
+├── current.json
+│
+│ # translations for website/versioned_docs/version-1.0.0
+├── version-1.0.0
+│   ├── api
+│   │   └── config.md
+│   └── getting-started.md
+└── version-1.0.0.json
+</code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docs/api/plugins">Previous doc: <!-- -->Plugins overview</a></span><span class="nextLink_cubj"><a href="/docs/api/plugins/@docusaurus/plugin-content-blog">Next doc: <!-- -->📦 plugin-content-blog</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#types">Types</a></li><li><a href="#ex-config">Example configuration</a></li></ol></li><li><a href="#markdown-front-matter">Markdown front matter</a></li><li><a href="#i18n">i18n</a><ol><li><a href="#translation-files-location">Translation files location</a></li><li><a href="#example-file-system-structure">Example file-system structure</a></li></ol></li></ol></nav></aside></div></div>
+<script src="/assets/js/runtime~main.7597a360.js"></script>
+<script src="/assets/js/main.5ffb9fe3.js"></script>
+</body>
+</html>

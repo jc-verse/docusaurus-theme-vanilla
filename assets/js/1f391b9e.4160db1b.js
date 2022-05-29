@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_theme_vanilla=self.webpackChunkdocusaurus_theme_vanilla||[]).push([[3085],{8375:function(e,n,l){l.r(n),l.d(n,{default:function(){return t}});var u=l(7294);function t(e){return u.createElement("div",null,u.createElement("h1",null,"Yey, MDXPage!"),u.createElement("pre",null,u.createElement("code",null,JSON.stringify(e,null,2))))}}}]);
