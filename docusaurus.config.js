@@ -4,15 +4,12 @@ const npm2yarn = require("@docusaurus/remark-plugin-npm2yarn");
 
 /** @type {import("@docusaurus/types").Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
-  url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/",
+  title: "docusaurus-theme-vanilla",
+  url: "https://jc-verse.github.io",
+  baseUrl: "/docusaurus-theme-vanilla/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
 
   stylesheets: [
     {
