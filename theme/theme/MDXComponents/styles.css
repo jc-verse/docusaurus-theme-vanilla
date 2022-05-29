@@ -1,0 +1,33 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.admonition {
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+
+.admonition-icon {
+  display: inline-block;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+h2 > a,
+h3 > a,
+h4 > a,
+h5 > a,
+h6 > a {
+  text-decoration: none;
+  color: black;
+}
+
+h2 > a:hover,
+h3 > a:hover,
+h4 > a:hover,
+h5 > a:hover,
+h6 > a:hover {
+  text-decoration: underline;
+  color: black;
+}

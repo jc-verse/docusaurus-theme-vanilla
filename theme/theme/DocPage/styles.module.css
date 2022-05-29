@@ -1,0 +1,7 @@
+.docMain {
+  display: flex;
+}
+
+.docSidebar {
+  width: 300px;
+}

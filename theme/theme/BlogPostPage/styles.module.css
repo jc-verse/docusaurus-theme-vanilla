@@ -1,0 +1,56 @@
+.blogContainer {
+  display: flex;
+  margin: 1rem 3rem 0 3rem;
+}
+
+.blogSidebar {
+  width: 300px;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.blogSidebarContent {
+  overflow-y: auto;
+  position: sticky;
+  top: 3rem;
+}
+
+.blogContent {
+  width: calc(100vw - 600px);
+}
+
+.prevLink {
+  text-align: left;
+  padding: 1.5rem;
+  grid-column: 1 / 2;
+}
+
+.prevLink::before {
+  content: "←";
+}
+
+.nextLink {
+  text-align: right;
+  padding: 1.5rem;
+  grid-column: 2 / 2;
+}
+
+.nextLink::after {
+  content: "→";
+}
+
+.pagination {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.blogSidebar {
+  width: 300px;
+}
+
+.blogSidebarContent {
+  overflow-y: auto;
+  position: sticky;
+  top: 3rem;
+}
