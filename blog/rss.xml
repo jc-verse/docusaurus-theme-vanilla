@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>My Site Blog</title>
-        <link>https://your-docusaurus-test-site.com/blog</link>
-        <description>My Site Blog</description>
+        <title>docusaurus-theme-vanilla Blog</title>
+        <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog</link>
+        <description>docusaurus-theme-vanilla Blog</description>
         <lastBuildDate>Mon, 24 Jan 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
@@ -11,7 +11,7 @@
         <copyright>Copyright © 2022 Facebook, Inc.</copyright>
         <item>
             <title><![CDATA[Docusaurus 2021 Recap]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2022/01/24/docusaurus-2021-recap</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2022/01/24/docusaurus-2021-recap</link>
             <guid>/2022/01/24/docusaurus-2021-recap</guid>
             <pubDate>Mon, 24 Jan 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Docusaurus has made great progress in 2021! We've seen a lot of traction and just crossed 30k stars on GitHub!]]></description>
@@ -20,7 +20,7 @@
         </item>
         <item>
             <title><![CDATA[DocSearch migration]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2021/11/21/algolia-docsearch-migration</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/11/21/algolia-docsearch-migration</link>
             <guid>/2021/11/21/algolia-docsearch-migration</guid>
             <pubDate>Sun, 21 Nov 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[DocSearch is migrating to a new, more powerful system, which gives users their own Algolia application and new credentials.]]></description>
@@ -29,7 +29,7 @@
         </item>
         <item>
             <title><![CDATA[Announcing Docusaurus 2 Beta]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2021/05/12/announcing-docusaurus-two-beta</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/05/12/announcing-docusaurus-two-beta</link>
             <guid>/2021/05/12/announcing-docusaurus-two-beta</guid>
             <pubDate>Wed, 12 May 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[After a lengthy alpha stage in order to ensure feature parity and quality, we are excited to officially release the first Docusaurus 2 beta.]]></description>
@@ -42,7 +42,7 @@
         </item>
         <item>
             <title><![CDATA[Releasing Docusaurus i18n]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2021/03/09/releasing-docusaurus-i18n</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/03/09/releasing-docusaurus-i18n</link>
             <guid>/2021/03/09/releasing-docusaurus-i18n</guid>
             <pubDate>Tue, 09 Mar 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[Today, we officially release Docusaurus 2 i18n (internationalization), as part of 2.0.0-alpha.71.]]></description>
@@ -52,7 +52,7 @@
         </item>
         <item>
             <title><![CDATA[Docusaurus 2020 Recap]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2021/01/19/docusaurus-2020-recap</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/01/19/docusaurus-2020-recap</link>
             <guid>/2021/01/19/docusaurus-2020-recap</guid>
             <pubDate>Tue, 19 Jan 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[2020 was great for Docusaurus, despite a regrettable start and a tumultuous year for everyone.]]></description>
@@ -61,7 +61,7 @@
         </item>
         <item>
             <title><![CDATA[Tribute to Endi]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2020/01/07/tribute-to-endi</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2020/01/07/tribute-to-endi</link>
             <guid>/2020/01/07/tribute-to-endi</guid>
             <pubDate>Tue, 07 Jan 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[It is with great sadness to announce that our primary external Docusaurus contributor, Endilie Yacop Sucipto (Endi to those who knew him), passed away over the weekend after an illness associated with his bout with cancer.]]></description>
@@ -71,7 +71,7 @@
         </item>
         <item>
             <title><![CDATA[Docusaurus 2019 Recap]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2019/12/30/docusaurus-2019-recap</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2019/12/30/docusaurus-2019-recap</link>
             <guid>/2019/12/30/docusaurus-2019-recap</guid>
             <pubDate>Mon, 30 Dec 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[2019 was a great year for Docusaurus - we've made tremendous progress on Docusaurus 2. Current Docusaurus 1 users who aren't using the translations feature can feel free to check it out and migrate to it! Otherwise we will work with you to make that happen in 2020 :)]]></description>
@@ -80,7 +80,7 @@
         </item>
         <item>
             <title><![CDATA[Happy 1st Birthday Slash!]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2018/12/14/Happy-First-Birthday-Slash</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2018/12/14/Happy-First-Birthday-Slash</link>
             <guid>/2018/12/14/Happy-First-Birthday-Slash</guid>
             <pubDate>Fri, 14 Dec 2018 00:00:00 GMT</pubDate>
             <description><![CDATA[First Birthday Slash]]></description>
@@ -89,7 +89,7 @@
         </item>
         <item>
             <title><![CDATA[Towards Docusaurus 2]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2018/09/11/Towards-Docusaurus-2</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2018/09/11/Towards-Docusaurus-2</link>
             <guid>/2018/09/11/Towards-Docusaurus-2</guid>
             <pubDate>Tue, 11 Sep 2018 00:00:00 GMT</pubDate>
             <description><![CDATA[Docusaurus was officially announced over nine months ago as a way to easily build open source documentation websites. Since then, it has amassed over 8,600 GitHub Stars, and is used by many popular open source projects such as React Native, Babel, Jest, Reason and Prettier.]]></description>
@@ -98,7 +98,7 @@
         </item>
         <item>
             <title><![CDATA[How I Converted Profilo to Docusaurus in Under 2 Hours]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2018/04/30/How-I-Converted-Profilo-To-Docusaurus</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2018/04/30/How-I-Converted-Profilo-To-Docusaurus</link>
             <guid>/2018/04/30/How-I-Converted-Profilo-To-Docusaurus</guid>
             <pubDate>Mon, 30 Apr 2018 00:00:00 GMT</pubDate>
             <description><![CDATA[“Joel and I were discussing having a website and how it would have been great to launch with it. So I challenged myself to add Docusaurus support. It took just over an hour and a half. I'm going to send you a PR with the addition so you can take a look and see if you like it. Your workflow for adding docs wouldn't be much different from editing those markdown files.”]]></description>
@@ -107,7 +107,7 @@
         </item>
         <item>
             <title><![CDATA[Introducing Docusaurus]]></title>
-            <link>https://your-docusaurus-test-site.com/blog/2017/12/14/introducing-docusaurus</link>
+            <link>https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2017/12/14/introducing-docusaurus</link>
             <guid>/2017/12/14/introducing-docusaurus</guid>
             <pubDate>Thu, 14 Dec 2017 00:00:00 GMT</pubDate>
             <description><![CDATA[Introducing Slash]]></description>

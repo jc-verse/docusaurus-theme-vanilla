@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_theme_vanilla=self.webpackChunkdocusaurus_theme_vanilla||[]).push([[4319],{5423:function(a){a.exports=JSON.parse('{"label":"recap","permalink":"/docusaurus-theme-vanilla/blog/tags/recap","allTagsPath":"/docusaurus-theme-vanilla/blog/tags","count":3}')}}]);

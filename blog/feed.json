@@ -1,13 +1,13 @@
 {
     "version": "https://jsonfeed.org/version/1",
-    "title": "My Site Blog",
-    "home_page_url": "https://your-docusaurus-test-site.com/blog",
-    "description": "My Site Blog",
+    "title": "docusaurus-theme-vanilla Blog",
+    "home_page_url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog",
+    "description": "docusaurus-theme-vanilla Blog",
     "items": [
         {
             "id": "/2022/01/24/docusaurus-2021-recap",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2022/01/24/docusaurus-2021-recap",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2022/01/24/docusaurus-2021-recap",
             "title": "Docusaurus 2021 Recap",
             "summary": "Docusaurus has made great progress in 2021! We've seen a lot of traction and just crossed 30k stars on GitHub!",
             "date_modified": "2022-01-24T00:00:00.000Z",
@@ -22,7 +22,7 @@
         {
             "id": "/2021/11/21/algolia-docsearch-migration",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2021/11/21/algolia-docsearch-migration",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/11/21/algolia-docsearch-migration",
             "title": "DocSearch migration",
             "summary": "DocSearch is migrating to a new, more powerful system, which gives users their own Algolia application and new credentials.",
             "date_modified": "2021-11-21T00:00:00.000Z",
@@ -37,7 +37,7 @@
         {
             "id": "/2021/05/12/announcing-docusaurus-two-beta",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2021/05/12/announcing-docusaurus-two-beta",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/05/12/announcing-docusaurus-two-beta",
             "title": "Announcing Docusaurus 2 Beta",
             "summary": "After a lengthy alpha stage in order to ensure feature parity and quality, we are excited to officially release the first Docusaurus 2 beta.",
             "date_modified": "2021-05-12T00:00:00.000Z",
@@ -53,7 +53,7 @@
         {
             "id": "/2021/03/09/releasing-docusaurus-i18n",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2021/03/09/releasing-docusaurus-i18n",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/03/09/releasing-docusaurus-i18n",
             "title": "Releasing Docusaurus i18n",
             "summary": "Today, we officially release Docusaurus 2 i18n (internationalization), as part of 2.0.0-alpha.71.",
             "date_modified": "2021-03-09T00:00:00.000Z",
@@ -69,7 +69,7 @@
         {
             "id": "/2021/01/19/docusaurus-2020-recap",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2021/01/19/docusaurus-2020-recap",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2021/01/19/docusaurus-2020-recap",
             "title": "Docusaurus 2020 Recap",
             "summary": "2020 was great for Docusaurus, despite a regrettable start and a tumultuous year for everyone.",
             "date_modified": "2021-01-19T00:00:00.000Z",
@@ -84,7 +84,7 @@
         {
             "id": "/2020/01/07/tribute-to-endi",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2020/01/07/tribute-to-endi",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2020/01/07/tribute-to-endi",
             "title": "Tribute to Endi",
             "summary": "It is with great sadness to announce that our primary external Docusaurus contributor, Endilie Yacop Sucipto (Endi to those who knew him), passed away over the weekend after an illness associated with his bout with cancer.",
             "date_modified": "2020-01-07T00:00:00.000Z",
@@ -100,7 +100,7 @@
         {
             "id": "/2019/12/30/docusaurus-2019-recap",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2019/12/30/docusaurus-2019-recap",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2019/12/30/docusaurus-2019-recap",
             "title": "Docusaurus 2019 Recap",
             "summary": "2019 was a great year for Docusaurus - we've made tremendous progress on Docusaurus 2. Current Docusaurus 1 users who aren't using the translations feature can feel free to check it out and migrate to it! Otherwise we will work with you to make that happen in 2020 :)",
             "date_modified": "2019-12-30T00:00:00.000Z",
@@ -115,7 +115,7 @@
         {
             "id": "/2018/12/14/Happy-First-Birthday-Slash",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2018/12/14/Happy-First-Birthday-Slash",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2018/12/14/Happy-First-Birthday-Slash",
             "title": "Happy 1st Birthday Slash!",
             "summary": "First Birthday Slash",
             "date_modified": "2018-12-14T00:00:00.000Z",
@@ -130,7 +130,7 @@
         {
             "id": "/2018/09/11/Towards-Docusaurus-2",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2018/09/11/Towards-Docusaurus-2",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2018/09/11/Towards-Docusaurus-2",
             "title": "Towards Docusaurus 2",
             "summary": "Docusaurus was officially announced over nine months ago as a way to easily build open source documentation websites. Since then, it has amassed over 8,600 GitHub Stars, and is used by many popular open source projects such as React Native, Babel, Jest, Reason and Prettier.",
             "date_modified": "2018-09-11T00:00:00.000Z",
@@ -146,7 +146,7 @@
         {
             "id": "/2018/04/30/How-I-Converted-Profilo-To-Docusaurus",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2018/04/30/How-I-Converted-Profilo-To-Docusaurus",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2018/04/30/How-I-Converted-Profilo-To-Docusaurus",
             "title": "How I Converted Profilo to Docusaurus in Under 2 Hours",
             "summary": "“Joel and I were discussing having a website and how it would have been great to launch with it. So I challenged myself to add Docusaurus support. It took just over an hour and a half. I'm going to send you a PR with the addition so you can take a look and see if you like it. Your workflow for adding docs wouldn't be much different from editing those markdown files.”",
             "date_modified": "2018-04-30T00:00:00.000Z",
@@ -162,7 +162,7 @@
         {
             "id": "/2017/12/14/introducing-docusaurus",
             "content_html": null,
-            "url": "https://your-docusaurus-test-site.com/blog/2017/12/14/introducing-docusaurus",
+            "url": "https://jc-verse.github.io/docusaurus-theme-vanilla/blog/2017/12/14/introducing-docusaurus",
             "title": "Introducing Docusaurus",
             "summary": "Introducing Slash",
             "date_modified": "2017-12-14T00:00:00.000Z",

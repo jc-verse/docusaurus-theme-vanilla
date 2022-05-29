@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_theme_vanilla=self.webpackChunkdocusaurus_theme_vanilla||[]).push([[389],{7810:function(e){e.exports=JSON.parse('{"permalink":"/docusaurus-theme-vanilla/blog/tags/new","page":1,"postsPerPage":5,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

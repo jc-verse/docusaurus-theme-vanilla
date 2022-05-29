@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus_theme_vanilla=self.webpackChunkdocusaurus_theme_vanilla||[]).push([[3757],{626:function(a){a.exports=JSON.parse('{"label":"recap","permalink":"/blog/tags/recap","allTagsPath":"/blog/tags","count":3}')}}]);

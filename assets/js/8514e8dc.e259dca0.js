@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus_theme_vanilla=self.webpackChunkdocusaurus_theme_vanilla||[]).push([[2986],{5418:function(e){e.exports=JSON.parse('{"permalink":"/blog/tags/birth","page":1,"postsPerPage":5,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

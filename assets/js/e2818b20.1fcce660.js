@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_theme_vanilla=self.webpackChunkdocusaurus_theme_vanilla||[]).push([[8515],{2071:function(a){a.exports=JSON.parse('{"label":"new","permalink":"/docusaurus-theme-vanilla/blog/tags/new","allTagsPath":"/docusaurus-theme-vanilla/blog/tags","count":1}')}}]);
