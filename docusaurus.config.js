@@ -13,7 +13,7 @@ const config = {
 
   stylesheets: [
     {
-      href: "/katex/katex.min.css",
+      href: "/docusaurus-theme-vanilla/katex/katex.min.css",
       type: "text/css",
     },
   ],
@@ -31,11 +31,8 @@ const config = {
       "content-docs",
       /** @type {import("@docusaurus/plugin-content-docs").Options} */
       ({
-        // routeBasePath: '/',
         path: "docs",
         sidebarPath: "sidebars.js",
-        // sidebarCollapsible: false,
-        // sidebarCollapsed: true,
         editUrl: ({ locale, docPath }) => {
           if (locale !== "en")
             return `https://crowdin.com/project/docusaurus-v2/${locale}`;
@@ -60,7 +57,6 @@ const config = {
       "content-blog",
       /** @type {import("@docusaurus/plugin-content-blog").Options} */
       ({
-        // routeBasePath: '/',
         path: "blog",
         editUrl: ({ locale, blogDirPath, blogPath }) => {
           if (locale !== "en")

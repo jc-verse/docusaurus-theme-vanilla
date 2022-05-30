@@ -1,0 +1,23 @@
+.tabHeadings {
+  padding-left: 0;
+}
+
+.tabHeading {
+  display: inline;
+  cursor: pointer;
+  padding: 0 0.4rem;
+}
+
+.tabHeading:not(.tabHeadingSelected)::before {
+  content: "☐";
+}
+
+.tabHeadingSelected::before {
+  content: "☒";
+}
+
+.tabsContainer {
+  margin: 1rem 0;
+  border: 1px solid black;
+  padding: 0 1rem;
+}

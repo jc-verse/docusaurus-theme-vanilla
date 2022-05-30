@@ -32,13 +32,6 @@ export default function BrowserWindow({
         <div className={clsx(styles.browserWindowAddressBar, "text--truncate")}>
           {url}
         </div>
-        <div className={styles.browserWindowMenuIcon}>
-          <div>
-            <span className={styles.bar} />
-            <span className={styles.bar} />
-            <span className={styles.bar} />
-          </div>
-        </div>
       </div>
 
       <div className={styles.browserWindowBody}>{children}</div>

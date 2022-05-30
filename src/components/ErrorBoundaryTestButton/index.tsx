@@ -13,9 +13,8 @@ export default function ErrorBoundaryTestButton({
   children?: ReactNode;
 }): JSX.Element {
   const [state, setState] = useState(false);
-  if (state) {
-    throw new Error("Boom!");
-  }
+  if (state) throw new Error("Boom!");
+
   return (
     <button type="button" onClick={() => setState(true)}>
       {children}

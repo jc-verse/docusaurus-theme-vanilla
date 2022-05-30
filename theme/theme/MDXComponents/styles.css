@@ -6,12 +6,17 @@ img {
 .admonition {
   border: 1px solid black;
   padding: 0.5rem;
+  margin: 1rem 0;
 }
 
 .admonition-icon {
   display: inline-block;
   margin-right: 0.4rem;
   vertical-align: middle;
+}
+
+.admonition-heading {
+  text-transform: uppercase;
 }
 
 h2 > a,

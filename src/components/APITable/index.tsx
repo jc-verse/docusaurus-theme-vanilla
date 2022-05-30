@@ -24,9 +24,9 @@ interface Props {
 // ReactNode equivalent of HTMLElement#innerText
 function getText(node: ReactElement): string {
   let curNode: ReactNode = node;
-  while (isValidElement(curNode)) {
+  while (isValidElement(curNode))
     [curNode] = React.Children.toArray(curNode.props.children);
-  }
+
   return curNode as string;
 }
 
@@ -50,9 +50,7 @@ function APITableRow(
         history.push(anchor);
       }}
       onKeyDown={(e: React.KeyboardEvent) => {
-        if (e.key === "Enter") {
-          history.push(anchor);
-        }
+        if (e.key === "Enter") history.push(anchor);
       }}>
       {children.props.children}
     </tr>
@@ -61,7 +59,7 @@ function APITableRow(
 
 const APITableRowComp = React.forwardRef(APITableRow);
 
-/*
+/**
  * Note: this is not a quite robust component since it makes a lot of
  * assumptions about how the children looks; however, those assumptions
  * should be generally correct in the MDX context.

@@ -13,6 +13,8 @@ import {
 } from "@docusaurus/theme-common";
 import type { Props as TabItemProps } from "@theme/TabItem";
 
+import styles from "./styles.module.css";
+
 export interface Props {
   readonly lazy?: boolean;
   readonly block?: boolean;
@@ -38,7 +40,6 @@ function isTabItem(
 function TabsComponent(props: Props): JSX.Element {
   const {
     lazy,
-    block,
     defaultValue: defaultValueProp,
     values: valuesProp,
     groupId,
@@ -47,7 +48,7 @@ function TabsComponent(props: Props): JSX.Element {
   const children = React.Children.map(props.children, (child) => {
     if (isValidElement(child) && isTabItem(child)) return child;
 
-    // child.type.name will give non-sensical values in prod because of
+    // `child.type.name` will give non-sensical values in prod because of
     // minification, but we assume it won't throw in prod.
     throw new Error(
       `Docusaurus error: Bad <Tabs> child <${
@@ -142,17 +143,11 @@ function TabsComponent(props: Props): JSX.Element {
   };
 
   return (
-    <div className="tabs-container">
+    <div className={styles.tabsContainer}>
       <ul
         role="tablist"
         aria-orientation="horizontal"
-        className={clsx(
-          "tabs",
-          {
-            "tabs--block": block,
-          },
-          className,
-        )}>
+        className={clsx(styles.tabHeadings, className)}>
         {values.map(({ value, label, attributes }) => (
           <li
             role="tab"
@@ -164,9 +159,11 @@ function TabsComponent(props: Props): JSX.Element {
             onFocus={handleTabChange}
             onClick={handleTabChange}
             {...attributes}
-            className={clsx("tabs__item", attributes?.className as string, {
-              "tabs__item--active": selectedValue === value,
-            })}>
+            className={clsx(
+              styles.tabHeading,
+              selectedValue === value && styles.tabHeadingSelected,
+              attributes?.className as string,
+            )}>
             {label ?? value}
           </li>
         ))}
@@ -177,10 +174,9 @@ function TabsComponent(props: Props): JSX.Element {
           children.filter(
             (tabItem) => tabItem.props.value === selectedValue,
           )[0]!,
-          { className: "margin-top--md" },
         )
       ) : (
-        <div className="margin-top--md">
+        <div>
           {children.map((tabItem, i) =>
             cloneElement(tabItem, {
               key: i,

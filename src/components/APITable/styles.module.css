@@ -16,7 +16,7 @@
 .apiTable tbody tr:focus,
 .apiTable tbody tr:hover {
   outline: none;
-  box-shadow: 0 0 7px 0 inset var(--ifm-color-warning);
+  box-shadow: 0 0 7px 0 inset #ffc400c0;
   cursor: pointer;
   transition: box-shadow 0.2s;
 }

@@ -3,10 +3,15 @@
   "extends": ["jc"],
   "rules": {
     "react/no-array-index-key": "off",
-    // TODO remove in next version
-    "react/jsx-pascal-case": ["error", { "allowAllCaps": true }],
-    // TODO remove in next version
-    "react/jsx-no-bind": ["error", { "ignoreDOMComponents": true }],
+
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "vars": "all"
+      }
+    ],
 
     "import/no-unresolved": [
       "error",

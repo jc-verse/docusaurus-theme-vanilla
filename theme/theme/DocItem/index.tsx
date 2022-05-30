@@ -10,10 +10,13 @@ import styles from "./styles.module.css";
 export default function DocItem(props: Props): JSX.Element {
   const Content = props.content;
   const toc = Content.toc!;
+  const { hide_title: hideTitle } = Content.frontMatter;
+  const shouldAddTitle =
+    !hideTitle && typeof Content.contentTitle === "undefined";
   return (
     <>
       <main className={styles.docContent}>
-        <h1>{props.content.metadata.title}</h1>
+        {shouldAddTitle && <h1>{props.content.metadata.title}</h1>}
         <MDXProvider components={MDXComponents}>
           <Content />
         </MDXProvider>
