@@ -10,13 +10,13 @@
 
 
 
-<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">docusaurus-theme-vanilla</title><meta data-rh="true" property="og:title" content="docusaurus-theme-vanilla"><link data-rh="true" rel="icon" href="/docusaurus-theme-vanilla/img/favicon.ico"><link rel="stylesheet" href="/docusaurus-theme-vanilla/assets/css/styles.e0663130.css">
-<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/runtime~main.afcb9b20.js" as="script">
-<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/main.77df87c4.js" as="script">
+<link rel="stylesheet" href="/docusaurus-theme-vanilla/katex/katex.min.css"><title data-rh="true">docusaurus-theme-vanilla</title><meta data-rh="true" property="og:title" content="docusaurus-theme-vanilla"><link data-rh="true" rel="icon" href="/docusaurus-theme-vanilla/img/favicon.ico"><link rel="stylesheet" href="/docusaurus-theme-vanilla/assets/css/styles.13911129.css">
+<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/runtime~main.0e7e609d.js" as="script">
+<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/main.098ed90b.js" as="script">
 </head>
 <body>
 <div id="__docusaurus">
-<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Extending infrastructure</h1><h1>Extending infrastructure</h1><p>Docusaurus has some infrastructure like hot reloading, CLI, and swizzling, that can be extended by external plugins.</p><h2 id="getPathsToWatch"><a href="#getPathsToWatch"><code>getPathsToWatch()</code></a></h2><p>Specifies the paths to watch for plugins and themes. The paths are watched by the dev server so that the plugin lifecycles are reloaded when contents in the watched paths change. Note that the plugins and themes modules are initially called with <code>context</code> and <code>options</code> from Node, which you may use to find the necessary directory information about the site.</p><p>Use this for files that are consumed server-side, because theme files are automatically watched by Webpack dev server.</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">const path = require(&quot;path&quot;);
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>Extending infrastructure</h1><p>Docusaurus has some infrastructure like hot reloading, CLI, and swizzling, that can be extended by external plugins.</p><h2 id="getPathsToWatch"><a href="#getPathsToWatch"><code>getPathsToWatch()</code></a></h2><p>Specifies the paths to watch for plugins and themes. The paths are watched by the dev server so that the plugin lifecycles are reloaded when contents in the watched paths change. Note that the plugins and themes modules are initially called with <code>context</code> and <code>options</code> from Node, which you may use to find the necessary directory information about the site.</p><p>Use this for files that are consumed server-side, because theme files are automatically watched by Webpack dev server.</p><p>Example:</p><pre><code class="language-js" metastring="title=&quot;docusaurus-plugin/src/index.js&quot;" title="&quot;docusaurus-plugin/src/index.js&quot;">const path = require(&quot;path&quot;);
 module.exports = function (context, options) {
   return {
     name: &quot;docusaurus-plugin&quot;,
@@ -84,7 +84,7 @@ module.exports = function (context, options) {
 
 myTheme.getSwizzleComponentList = () =&gt; swizzleAllowedComponents;
 </code></pre><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docusaurus-theme-vanilla/docs/api/plugin-methods/lifecycle-apis">Previous doc: <!-- -->Lifecycle APIs</a></span><span class="nextLink_cubj"><a href="/docusaurus-theme-vanilla/docs/api/plugin-methods/i18n-lifecycles">Next doc: <!-- -->I18n lifecycles</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#getPathsToWatch"><code>getPathsToWatch()</code></a></li><li><a href="#extendCli"><code>extendCli(cli)</code></a></li><li><a href="#getThemePath"><code>getThemePath()</code></a></li><li><a href="#getTypeScriptThemePath"><code>getTypeScriptThemePath()</code></a></li><li><a href="#getSwizzleComponentList"><code>getSwizzleComponentList()</code></a></li></ol></nav></aside></div></div>
-<script src="/docusaurus-theme-vanilla/assets/js/runtime~main.afcb9b20.js"></script>
-<script src="/docusaurus-theme-vanilla/assets/js/main.77df87c4.js"></script>
+<script src="/docusaurus-theme-vanilla/assets/js/runtime~main.0e7e609d.js"></script>
+<script src="/docusaurus-theme-vanilla/assets/js/main.098ed90b.js"></script>
 </body>
 </html>

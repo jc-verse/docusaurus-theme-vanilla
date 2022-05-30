@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus_theme_vanilla=self.webpackChunkdocusaurus_theme_vanilla||[]).push([[3608],{1623:function(e,t,u){u.r(t),u.d(t,{default:function(){return a}});var n=u(7294);function a(e){return n.createElement("ul",null,e.archive.blogPosts.map((function(e,t){return n.createElement("li",{key:t},n.createElement("b",null,e.metadata.title))})))}}}]);

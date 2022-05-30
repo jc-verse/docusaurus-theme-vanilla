@@ -10,13 +10,13 @@
 
 
 
-<link rel="stylesheet" href="/katex/katex.min.css"><title data-rh="true">docusaurus-theme-vanilla</title><meta data-rh="true" property="og:title" content="docusaurus-theme-vanilla"><link data-rh="true" rel="icon" href="/docusaurus-theme-vanilla/img/favicon.ico"><link rel="stylesheet" href="/docusaurus-theme-vanilla/assets/css/styles.e0663130.css">
-<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/runtime~main.afcb9b20.js" as="script">
-<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/main.77df87c4.js" as="script">
+<link rel="stylesheet" href="/docusaurus-theme-vanilla/katex/katex.min.css"><title data-rh="true">docusaurus-theme-vanilla</title><meta data-rh="true" property="og:title" content="docusaurus-theme-vanilla"><link data-rh="true" rel="icon" href="/docusaurus-theme-vanilla/img/favicon.ico"><link rel="stylesheet" href="/docusaurus-theme-vanilla/assets/css/styles.13911129.css">
+<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/runtime~main.0e7e609d.js" as="script">
+<link rel="preload" href="/docusaurus-theme-vanilla/assets/js/main.098ed90b.js" as="script">
 </head>
 <body>
 <div id="__docusaurus">
-<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>string-literal-i18n-messages</h1><h1>string-literal-i18n-messages</h1><p>Enforce translate APIs to be called on plain text labels.</p><p>Docusaurus offers the <a href="/docusaurus-theme-vanilla/docs/next/cli#docusaurus-write-translations-sitedir"><code>docusaurus write-translations</code></a> API, which statically extracts the text labels marked as translatable. Dynamic values used in <code>&lt;Translate&gt;</code> or <code>translate()</code> calls will fail to be extracted. This rule will ensure that all translate calls are statically extractable.</p><h2 id="details"><a href="#details">Rule Details</a></h2><p>Examples of <strong>incorrect</strong> code for this rule:</p><pre><code class="language-js">const text = &#x27;Some text to be translated&#x27;
+<div class="docMain_nU3O"><div class="docSidebar_u_TH">hello</div><main class="docContent_Plr0"><h1>string-literal-i18n-messages</h1><p>Enforce translate APIs to be called on plain text labels.</p><p>Docusaurus offers the <a href="/docusaurus-theme-vanilla/docs/next/cli#docusaurus-write-translations-sitedir"><code>docusaurus write-translations</code></a> API, which statically extracts the text labels marked as translatable. Dynamic values used in <code>&lt;Translate&gt;</code> or <code>translate()</code> calls will fail to be extracted. This rule will ensure that all translate calls are statically extractable.</p><h2 id="details"><a href="#details">Rule Details</a></h2><p>Examples of <strong>incorrect</strong> code for this rule:</p><pre><code class="language-js">const text = &#x27;Some text to be translated&#x27;
 
 // Invalid &lt;Translate&gt; child
 &lt;Translate&gt;{text}&lt;/Translate&gt;
@@ -37,7 +37,7 @@ translate({message: &#x27;Some text to be translated&#x27;})
 // Valid message attribute using values object as second argument
 translate({message: &#x27;The logo of site {siteName}&#x27;}, {siteName: &#x27;Docusaurus&#x27;})
 </code></pre><h2 id="when-not-to-use"><a href="#when-not-to-use">When Not To Use It</a></h2><p>If you&#x27;re not using the <a href="/docusaurus-theme-vanilla/docs/next/i18n/introduction">i18n feature</a>, you can disable this rule.</p><h2 id="further-reading"><a href="#further-reading">Further Reading</a></h2><ul><li><a href="https://docusaurus.io/docs/docusaurus-core#translate">https://docusaurus.io/docs/docusaurus-core#translate</a></li><li><a href="https://docusaurus.io/docs/docusaurus-core#translate-imperative">https://docusaurus.io/docs/docusaurus-core#translate-imperative</a></li></ul><nav class="pagination_m5Fq"><span class="prevLink_bZi_"><a href="/docusaurus-theme-vanilla/docs/next/api/misc/@docusaurus/eslint-plugin/no-untranslated-text">Previous doc: <!-- -->no-untranslated-text</a></span><span class="nextLink_cubj"><a href="/docusaurus-theme-vanilla/docs/next/api/misc/@docusaurus/logger">Next doc: <!-- -->📦 logger</a></span></nav></main><aside class="docSidebar_pDtY"><nav class="docSidebarContent_nqVt"><ol><li><a href="#details">Rule Details</a></li><li><a href="#when-not-to-use">When Not To Use It</a></li><li><a href="#further-reading">Further Reading</a></li></ol></nav></aside></div></div>
-<script src="/docusaurus-theme-vanilla/assets/js/runtime~main.afcb9b20.js"></script>
-<script src="/docusaurus-theme-vanilla/assets/js/main.77df87c4.js"></script>
+<script src="/docusaurus-theme-vanilla/assets/js/runtime~main.0e7e609d.js"></script>
+<script src="/docusaurus-theme-vanilla/assets/js/main.098ed90b.js"></script>
 </body>
 </html>
