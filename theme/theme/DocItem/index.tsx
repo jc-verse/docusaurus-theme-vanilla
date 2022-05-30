@@ -37,8 +37,8 @@ export default function DocItem(props: Props): JSX.Element {
           )}
         </nav>
       </main>
-      <aside className={styles.docSidebar}>
-        <nav className={styles.docSidebarContent}>
+      <aside className={styles.docTOC}>
+        <nav className={styles.docTOCContent}>
           <TOC toc={toc} />
         </nav>
       </aside>

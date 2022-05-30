@@ -1,9 +1,9 @@
 .docContent {
-  width: calc(100vw - 300px);
+  width: calc(100vw - 350px);
 }
 
 [class*="docSidebar"] + .docContent {
-  width: calc(100vw - 600px);
+  width: calc(100vw - 700px);
 }
 
 .prevLink {
@@ -32,11 +32,11 @@
   gap: 10px;
 }
 
-.docSidebar {
-  width: 300px;
+.docTOC {
+  width: 350px;
 }
 
-.docSidebarContent {
+.docTOCContent {
   overflow-y: auto;
   position: sticky;
   top: 3rem;

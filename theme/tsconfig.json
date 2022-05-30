@@ -5,6 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@theme/*": ["./theme/*"]
-    }
+    },
+    "types": ["@docusaurus/module-type-aliases"]
   }
 }

@@ -3,5 +3,17 @@
 }
 
 .docSidebar {
-  width: 300px;
+  width: 350px;
+  padding-right: 1rem;
+}
+
+.docSidebarContent {
+  overflow-y: scroll;
+  position: sticky;
+  top: 3rem;
+}
+
+.category {
+  list-style: none;
+  margin-left: calc(-1rem + 2.5px);
 }

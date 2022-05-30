@@ -23,6 +23,9 @@ const config = {
   themeConfig: {
     docs: {
       versionPersistence: "localStorage",
+      sidebar: {
+        autoCollapseCategories: true,
+      },
     },
   },
 

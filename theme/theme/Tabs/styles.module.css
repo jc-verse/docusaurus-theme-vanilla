@@ -8,11 +8,11 @@
   padding: 0 0.4rem;
 }
 
-.tabHeading:not(.tabHeadingSelected)::before {
+.tabHeading::before {
   content: "☐";
 }
 
-.tabHeadingSelected::before {
+.tabHeading[aria-selected="true"]:before {
   content: "☒";
 }
 

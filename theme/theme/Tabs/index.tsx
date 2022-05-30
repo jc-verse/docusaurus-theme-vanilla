@@ -161,7 +161,6 @@ function TabsComponent(props: Props): JSX.Element {
             {...attributes}
             className={clsx(
               styles.tabHeading,
-              selectedValue === value && styles.tabHeadingSelected,
               attributes?.className as string,
             )}>
             {label ?? value}
